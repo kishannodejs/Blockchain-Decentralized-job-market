@@ -1,0 +1,3911 @@
+{
+  "contractName": "WorkerJobs",
+  "abi": [
+    {
+      "inputs": [],
+      "name": "AlreadyBided",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "AlreadyWorking",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "GreaterThanPreviousBid",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "InvalidWorker",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "NotBided",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "OverBudget",
+      "type": "error"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "_workerAdd",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "_jobId",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "_bidAmount",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "_prevBidAmount",
+          "type": "uint256"
+        }
+      ],
+      "name": "BidModifiedSuccessfully",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "_workerAdd",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "_jobId",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "_bidAmount",
+          "type": "uint256"
+        }
+      ],
+      "name": "SuccessfullyBid",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_jobId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_bidAmount",
+          "type": "uint256"
+        }
+      ],
+      "name": "bidJob",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_jobId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_bidAmount",
+          "type": "uint256"
+        }
+      ],
+      "name": "modifyBid",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.17+commit.8df45f5f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"AlreadyBided\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"AlreadyWorking\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"GreaterThanPreviousBid\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidWorker\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"NotBided\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OverBudget\",\"type\":\"error\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_workerAdd\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"_jobId\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"_bidAmount\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"_prevBidAmount\",\"type\":\"uint256\"}],\"name\":\"BidModifiedSuccessfully\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_workerAdd\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"_jobId\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"_bidAmount\",\"type\":\"uint256\"}],\"name\":\"SuccessfullyBid\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_jobId\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_bidAmount\",\"type\":\"uint256\"}],\"name\":\"bidJob\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_jobId\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_bidAmount\",\"type\":\"uint256\"}],\"name\":\"modifyBid\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/workers/WorkerJobs.sol\":\"WorkerJobs\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/Accountable.sol\":{\"keccak256\":\"0x4d2e6c30e38a2df5abb8da09f819da78366e67c96d566d249225fd1d93271a16\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://57207884cf9839cd0eff64f95fd6b14be047ad78f39b72918a4ee74775da4644\",\"dweb:/ipfs/QmRkXDvgAeNECdp3cDY6dKQX46ZoGszuFEJ82B3QAir4TQ\"]},\"project:/contracts/workers/WorkerJobs.sol\":{\"keccak256\":\"0x7491047426f193b3d9a707b61a4fe64ea54480fb208248b56e368ff3dec4a271\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://0bc60bcc403c0e7b368547f66cfb3ac175fb6fec3c3a4533092be041ac4be4c5\",\"dweb:/ipfs/QmUPH7mB1P2DkmpbzqZJ28TVH6NczvM2AK9M3Jzhpoy8yp\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: MIT\r\npragma solidity >=0.8.4 <0.9.0;\r\n\r\nimport \"../Accountable.sol\";\r\n\r\nabstract contract WorkerJobs is Accountable {\r\n    event SuccessfullyBid(\r\n        address indexed _workerAdd,\r\n        uint256 indexed _jobId,\r\n        uint256 indexed _bidAmount\r\n    );\r\n    event BidModifiedSuccessfully(\r\n        address indexed _workerAdd,\r\n        uint256 indexed _jobId,\r\n        uint256 indexed _bidAmount,\r\n        uint256 _prevBidAmount\r\n    );\r\n    error OverBudget();\r\n    error AlreadyBided();\r\n    error NotBided();\r\n    error GreaterThanPreviousBid();\r\n    error AlreadyWorking();\r\n\r\n    modifier validJob(uint256 _jobId) {\r\n        Job memory _job = _jobs[_jobId];\r\n        require(_job.isJobValid, \"Job does not exists.\");\r\n        require(_job.jobWorker == address(0x0), \"Worker already assigned.\");\r\n        _;\r\n    }\r\n\r\n    function bidJob(uint256 _jobId, uint256 _bidAmount)\r\n        external\r\n        validJob(_jobId)\r\n    {\r\n        if(!_validWorkers[msg.sender]) revert InvalidWorker();\r\n        if (_jobBiddersAmount[_jobId][msg.sender] != 0) revert AlreadyBided();\r\n\r\n        Worker memory _worker = _workers[msg.sender];\r\n        if(_worker.isWorking) revert AlreadyWorking();\r\n\r\n        Job storage _job = _jobs[_jobId];\r\n        if (_bidAmount > _job.jobBudget) revert OverBudget();\r\n        _job.jobAllBiders.push(msg.sender);\r\n\r\n        _jobBiddersAmount[_jobId][msg.sender] = _bidAmount;\r\n\r\n        Bider storage _bider = _biders[_jobId];\r\n        if (\r\n            _bider.biderAddress != address(0x0) && _bidAmount < _bider.bidAmount\r\n        ) {\r\n            _bider.bidAmount = _bidAmount;\r\n            _bider.biderAddress = msg.sender;\r\n        } else {\r\n            _bider.bidAmount = _bidAmount;\r\n            _bider.biderAddress = msg.sender;\r\n        }\r\n\r\n        emit SuccessfullyBid(msg.sender, _jobId, _bidAmount);\r\n    }\r\n\r\n    function modifyBid(uint256 _jobId, uint256 _bidAmount)\r\n        external\r\n        validJob(_jobId)\r\n    {\r\n        if(!_validWorkers[msg.sender]) revert InvalidWorker();\r\n        if (_jobBiddersAmount[_jobId][msg.sender] == 0) revert NotBided();\r\n\r\n        if (_bidAmount >= _jobBiddersAmount[_jobId][msg.sender])\r\n            revert GreaterThanPreviousBid();\r\n        uint256 _prevBidAmount = _jobBiddersAmount[_jobId][msg.sender];\r\n\r\n        Bider storage _bider = _biders[_jobId];\r\n        if (\r\n            msg.sender == _bider.biderAddress && _bidAmount < _bider.bidAmount\r\n        ) {\r\n            _bider.bidAmount = _bidAmount;\r\n        } else if(_bidAmount < _bider.bidAmount){\r\n            _bider.bidAmount = _bidAmount;\r\n            _bider.biderAddress = msg.sender;\r\n        }\r\n\r\n        _jobBiddersAmount[_jobId][msg.sender] = _bidAmount;\r\n        emit BidModifiedSuccessfully(\r\n            msg.sender,\r\n            _jobId,\r\n            _bidAmount,\r\n            _prevBidAmount\r\n        );\r\n    }\r\n}\r\n",
+  "sourcePath": "C:\\Users\\Neosoft\\Desktop\\NeoSoft\\POC\\truffle\\decentralized-job-market\\contracts\\workers\\WorkerJobs.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/workers/WorkerJobs.sol",
+    "exportedSymbols": {
+      "Accountable": [
+        83
+      ],
+      "WorkerJobs": [
+        830
+      ]
+    },
+    "id": 831,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 520,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.8",
+          ".4",
+          "<",
+          "0.9",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "33:31:5"
+      },
+      {
+        "absolutePath": "project:/contracts/Accountable.sol",
+        "file": "../Accountable.sol",
+        "id": 521,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 831,
+        "sourceUnit": 84,
+        "src": "68:28:5",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": true,
+        "baseContracts": [
+          {
+            "baseName": {
+              "id": 522,
+              "name": "Accountable",
+              "nameLocations": [
+                "132:11:5"
+              ],
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 83,
+              "src": "132:11:5"
+            },
+            "id": 523,
+            "nodeType": "InheritanceSpecifier",
+            "src": "132:11:5"
+          }
+        ],
+        "canonicalName": "WorkerJobs",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 830,
+        "linearizedBaseContracts": [
+          830,
+          83
+        ],
+        "name": "WorkerJobs",
+        "nameLocation": "118:10:5",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "anonymous": false,
+            "eventSelector": "b966920fc23b826292c3b95c956eba748e6d42aa61e638077a6b372c37fb5fd0",
+            "id": 531,
+            "name": "SuccessfullyBid",
+            "nameLocation": "157:15:5",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 530,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 525,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "_workerAdd",
+                  "nameLocation": "199:10:5",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 531,
+                  "src": "183:26:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 524,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "183:7:5",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 527,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "_jobId",
+                  "nameLocation": "236:6:5",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 531,
+                  "src": "220:22:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 526,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "220:7:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 529,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "_bidAmount",
+                  "nameLocation": "269:10:5",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 531,
+                  "src": "253:26:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 528,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "253:7:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "172:114:5"
+            },
+            "src": "151:136:5"
+          },
+          {
+            "anonymous": false,
+            "eventSelector": "68cd473c325a0d2c51d6c8b7319220827cbca47eee1719f47eae749506123a02",
+            "id": 541,
+            "name": "BidModifiedSuccessfully",
+            "nameLocation": "299:23:5",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 540,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 533,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "_workerAdd",
+                  "nameLocation": "349:10:5",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 541,
+                  "src": "333:26:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 532,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "333:7:5",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 535,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "_jobId",
+                  "nameLocation": "386:6:5",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 541,
+                  "src": "370:22:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 534,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "370:7:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 537,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "_bidAmount",
+                  "nameLocation": "419:10:5",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 541,
+                  "src": "403:26:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 536,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "403:7:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 539,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "_prevBidAmount",
+                  "nameLocation": "448:14:5",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 541,
+                  "src": "440:22:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 538,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "440:7:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "322:147:5"
+            },
+            "src": "293:177:5"
+          },
+          {
+            "errorSelector": "323e8637",
+            "id": 543,
+            "name": "OverBudget",
+            "nameLocation": "482:10:5",
+            "nodeType": "ErrorDefinition",
+            "parameters": {
+              "id": 542,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "492:2:5"
+            },
+            "src": "476:19:5"
+          },
+          {
+            "errorSelector": "9bf096ea",
+            "id": 545,
+            "name": "AlreadyBided",
+            "nameLocation": "507:12:5",
+            "nodeType": "ErrorDefinition",
+            "parameters": {
+              "id": 544,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "519:2:5"
+            },
+            "src": "501:21:5"
+          },
+          {
+            "errorSelector": "1cea46fd",
+            "id": 547,
+            "name": "NotBided",
+            "nameLocation": "534:8:5",
+            "nodeType": "ErrorDefinition",
+            "parameters": {
+              "id": 546,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "542:2:5"
+            },
+            "src": "528:17:5"
+          },
+          {
+            "errorSelector": "f5919368",
+            "id": 549,
+            "name": "GreaterThanPreviousBid",
+            "nameLocation": "557:22:5",
+            "nodeType": "ErrorDefinition",
+            "parameters": {
+              "id": 548,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "579:2:5"
+            },
+            "src": "551:31:5"
+          },
+          {
+            "errorSelector": "200cbaf4",
+            "id": 551,
+            "name": "AlreadyWorking",
+            "nameLocation": "594:14:5",
+            "nodeType": "ErrorDefinition",
+            "parameters": {
+              "id": 550,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "608:2:5"
+            },
+            "src": "588:23:5"
+          },
+          {
+            "body": {
+              "id": 580,
+              "nodeType": "Block",
+              "src": "653:199:5",
+              "statements": [
+                {
+                  "assignments": [
+                    557
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 557,
+                      "mutability": "mutable",
+                      "name": "_job",
+                      "nameLocation": "675:4:5",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 580,
+                      "src": "664:15:5",
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_Job_$40_memory_ptr",
+                        "typeString": "struct Accountable.Job"
+                      },
+                      "typeName": {
+                        "id": 556,
+                        "nodeType": "UserDefinedTypeName",
+                        "pathNode": {
+                          "id": 555,
+                          "name": "Job",
+                          "nameLocations": [
+                            "664:3:5"
+                          ],
+                          "nodeType": "IdentifierPath",
+                          "referencedDeclaration": 40,
+                          "src": "664:3:5"
+                        },
+                        "referencedDeclaration": 40,
+                        "src": "664:3:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Job_$40_storage_ptr",
+                          "typeString": "struct Accountable.Job"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 561,
+                  "initialValue": {
+                    "baseExpression": {
+                      "id": 558,
+                      "name": "_jobs",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 52,
+                      "src": "682:5:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Job_$40_storage_$",
+                        "typeString": "mapping(uint256 => struct Accountable.Job storage ref)"
+                      }
+                    },
+                    "id": 560,
+                    "indexExpression": {
+                      "id": 559,
+                      "name": "_jobId",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 553,
+                      "src": "688:6:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "IndexAccess",
+                    "src": "682:13:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Job_$40_storage",
+                      "typeString": "struct Accountable.Job storage ref"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "664:31:5"
+                },
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "expression": {
+                          "id": 563,
+                          "name": "_job",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 557,
+                          "src": "714:4:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_Job_$40_memory_ptr",
+                            "typeString": "struct Accountable.Job memory"
+                          }
+                        },
+                        "id": 564,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "719:10:5",
+                        "memberName": "isJobValid",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 28,
+                        "src": "714:15:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "4a6f6220646f6573206e6f74206578697374732e",
+                        "id": 565,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "731:22:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_6d123d3d2c5f24583c5c4462190071e3c4010bae41434ff44eedc2ec690939fe",
+                          "typeString": "literal_string \"Job does not exists.\""
+                        },
+                        "value": "Job does not exists."
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_6d123d3d2c5f24583c5c4462190071e3c4010bae41434ff44eedc2ec690939fe",
+                          "typeString": "literal_string \"Job does not exists.\""
+                        }
+                      ],
+                      "id": 562,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "706:7:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 566,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "706:48:5",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 567,
+                  "nodeType": "ExpressionStatement",
+                  "src": "706:48:5"
+                },
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "commonType": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        "id": 575,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "expression": {
+                            "id": 569,
+                            "name": "_job",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 557,
+                            "src": "773:4:5",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_struct$_Job_$40_memory_ptr",
+                              "typeString": "struct Accountable.Job memory"
+                            }
+                          },
+                          "id": 570,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberLocation": "778:9:5",
+                          "memberName": "jobWorker",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 24,
+                          "src": "773:14:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "==",
+                        "rightExpression": {
+                          "arguments": [
+                            {
+                              "hexValue": "307830",
+                              "id": 573,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "kind": "number",
+                              "lValueRequested": false,
+                              "nodeType": "Literal",
+                              "src": "799:3:5",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_rational_0_by_1",
+                                "typeString": "int_const 0"
+                              },
+                              "value": "0x0"
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": [
+                              {
+                                "typeIdentifier": "t_rational_0_by_1",
+                                "typeString": "int_const 0"
+                              }
+                            ],
+                            "id": 572,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "lValueRequested": false,
+                            "nodeType": "ElementaryTypeNameExpression",
+                            "src": "791:7:5",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_type$_t_address_$",
+                              "typeString": "type(address)"
+                            },
+                            "typeName": {
+                              "id": 571,
+                              "name": "address",
+                              "nodeType": "ElementaryTypeName",
+                              "src": "791:7:5",
+                              "typeDescriptions": {}
+                            }
+                          },
+                          "id": 574,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "typeConversion",
+                          "lValueRequested": false,
+                          "nameLocations": [],
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "791:12:5",
+                          "tryCall": false,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "src": "773:30:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "576f726b657220616c72656164792061737369676e65642e",
+                        "id": 576,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "805:26:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_15a234c7baf463e6c66e920407c398079905d6a69e32c63785c8413be793d217",
+                          "typeString": "literal_string \"Worker already assigned.\""
+                        },
+                        "value": "Worker already assigned."
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_15a234c7baf463e6c66e920407c398079905d6a69e32c63785c8413be793d217",
+                          "typeString": "literal_string \"Worker already assigned.\""
+                        }
+                      ],
+                      "id": 568,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "765:7:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 577,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "765:67:5",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 578,
+                  "nodeType": "ExpressionStatement",
+                  "src": "765:67:5"
+                },
+                {
+                  "id": 579,
+                  "nodeType": "PlaceholderStatement",
+                  "src": "843:1:5"
+                }
+              ]
+            },
+            "id": 581,
+            "name": "validJob",
+            "nameLocation": "628:8:5",
+            "nodeType": "ModifierDefinition",
+            "parameters": {
+              "id": 554,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 553,
+                  "mutability": "mutable",
+                  "name": "_jobId",
+                  "nameLocation": "645:6:5",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 581,
+                  "src": "637:14:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 552,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "637:7:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "636:16:5"
+            },
+            "src": "619:233:5",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 714,
+              "nodeType": "Block",
+              "src": "961:917:5",
+              "statements": [
+                {
+                  "condition": {
+                    "id": 595,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "UnaryOperation",
+                    "operator": "!",
+                    "prefix": true,
+                    "src": "975:26:5",
+                    "subExpression": {
+                      "baseExpression": {
+                        "id": 591,
+                        "name": "_validWorkers",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 71,
+                        "src": "976:13:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
+                          "typeString": "mapping(address => bool)"
+                        }
+                      },
+                      "id": 594,
+                      "indexExpression": {
+                        "expression": {
+                          "id": 592,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 4294967281,
+                          "src": "990:3:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 593,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "994:6:5",
+                        "memberName": "sender",
+                        "nodeType": "MemberAccess",
+                        "src": "990:10:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "nodeType": "IndexAccess",
+                      "src": "976:25:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 599,
+                  "nodeType": "IfStatement",
+                  "src": "972:53:5",
+                  "trueBody": {
+                    "errorCall": {
+                      "arguments": [],
+                      "expression": {
+                        "argumentTypes": [],
+                        "id": 596,
+                        "name": "InvalidWorker",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 3,
+                        "src": "1010:13:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_function_error_pure$__$returns$__$",
+                          "typeString": "function () pure"
+                        }
+                      },
+                      "id": 597,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "functionCall",
+                      "lValueRequested": false,
+                      "nameLocations": [],
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "1010:15:5",
+                      "tryCall": false,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_tuple$__$",
+                        "typeString": "tuple()"
+                      }
+                    },
+                    "id": 598,
+                    "nodeType": "RevertStatement",
+                    "src": "1003:22:5"
+                  }
+                },
+                {
+                  "condition": {
+                    "commonType": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    },
+                    "id": 607,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "baseExpression": {
+                        "baseExpression": {
+                          "id": 600,
+                          "name": "_jobBiddersAmount",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 82,
+                          "src": "1040:17:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_uint256_$_t_mapping$_t_address_$_t_uint256_$_$",
+                            "typeString": "mapping(uint256 => mapping(address => uint256))"
+                          }
+                        },
+                        "id": 602,
+                        "indexExpression": {
+                          "id": 601,
+                          "name": "_jobId",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 583,
+                          "src": "1058:6:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "1040:25:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
+                          "typeString": "mapping(address => uint256)"
+                        }
+                      },
+                      "id": 605,
+                      "indexExpression": {
+                        "expression": {
+                          "id": 603,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 4294967281,
+                          "src": "1066:3:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 604,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "1070:6:5",
+                        "memberName": "sender",
+                        "nodeType": "MemberAccess",
+                        "src": "1066:10:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "nodeType": "IndexAccess",
+                      "src": "1040:37:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "!=",
+                    "rightExpression": {
+                      "hexValue": "30",
+                      "id": 606,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "number",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "1081:1:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_rational_0_by_1",
+                        "typeString": "int_const 0"
+                      },
+                      "value": "0"
+                    },
+                    "src": "1040:42:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 611,
+                  "nodeType": "IfStatement",
+                  "src": "1036:69:5",
+                  "trueBody": {
+                    "errorCall": {
+                      "arguments": [],
+                      "expression": {
+                        "argumentTypes": [],
+                        "id": 608,
+                        "name": "AlreadyBided",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 545,
+                        "src": "1091:12:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_function_error_pure$__$returns$__$",
+                          "typeString": "function () pure"
+                        }
+                      },
+                      "id": 609,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "functionCall",
+                      "lValueRequested": false,
+                      "nameLocations": [],
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "1091:14:5",
+                      "tryCall": false,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_tuple$__$",
+                        "typeString": "tuple()"
+                      }
+                    },
+                    "id": 610,
+                    "nodeType": "RevertStatement",
+                    "src": "1084:21:5"
+                  }
+                },
+                {
+                  "assignments": [
+                    614
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 614,
+                      "mutability": "mutable",
+                      "name": "_worker",
+                      "nameLocation": "1132:7:5",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 714,
+                      "src": "1118:21:5",
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_Worker_$14_memory_ptr",
+                        "typeString": "struct Accountable.Worker"
+                      },
+                      "typeName": {
+                        "id": 613,
+                        "nodeType": "UserDefinedTypeName",
+                        "pathNode": {
+                          "id": 612,
+                          "name": "Worker",
+                          "nameLocations": [
+                            "1118:6:5"
+                          ],
+                          "nodeType": "IdentifierPath",
+                          "referencedDeclaration": 14,
+                          "src": "1118:6:5"
+                        },
+                        "referencedDeclaration": 14,
+                        "src": "1118:6:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Worker_$14_storage_ptr",
+                          "typeString": "struct Accountable.Worker"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 619,
+                  "initialValue": {
+                    "baseExpression": {
+                      "id": 615,
+                      "name": "_workers",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 67,
+                      "src": "1142:8:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_mapping$_t_address_$_t_struct$_Worker_$14_storage_$",
+                        "typeString": "mapping(address => struct Accountable.Worker storage ref)"
+                      }
+                    },
+                    "id": 618,
+                    "indexExpression": {
+                      "expression": {
+                        "id": 616,
+                        "name": "msg",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 4294967281,
+                        "src": "1151:3:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_magic_message",
+                          "typeString": "msg"
+                        }
+                      },
+                      "id": 617,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberLocation": "1155:6:5",
+                      "memberName": "sender",
+                      "nodeType": "MemberAccess",
+                      "src": "1151:10:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "IndexAccess",
+                    "src": "1142:20:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Worker_$14_storage",
+                      "typeString": "struct Accountable.Worker storage ref"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "1118:44:5"
+                },
+                {
+                  "condition": {
+                    "expression": {
+                      "id": 620,
+                      "name": "_worker",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 614,
+                      "src": "1176:7:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_Worker_$14_memory_ptr",
+                        "typeString": "struct Accountable.Worker memory"
+                      }
+                    },
+                    "id": 621,
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "memberLocation": "1184:9:5",
+                    "memberName": "isWorking",
+                    "nodeType": "MemberAccess",
+                    "referencedDeclaration": 9,
+                    "src": "1176:17:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 625,
+                  "nodeType": "IfStatement",
+                  "src": "1173:45:5",
+                  "trueBody": {
+                    "errorCall": {
+                      "arguments": [],
+                      "expression": {
+                        "argumentTypes": [],
+                        "id": 622,
+                        "name": "AlreadyWorking",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 551,
+                        "src": "1202:14:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_function_error_pure$__$returns$__$",
+                          "typeString": "function () pure"
+                        }
+                      },
+                      "id": 623,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "functionCall",
+                      "lValueRequested": false,
+                      "nameLocations": [],
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "1202:16:5",
+                      "tryCall": false,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_tuple$__$",
+                        "typeString": "tuple()"
+                      }
+                    },
+                    "id": 624,
+                    "nodeType": "RevertStatement",
+                    "src": "1195:23:5"
+                  }
+                },
+                {
+                  "assignments": [
+                    628
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 628,
+                      "mutability": "mutable",
+                      "name": "_job",
+                      "nameLocation": "1243:4:5",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 714,
+                      "src": "1231:16:5",
+                      "stateVariable": false,
+                      "storageLocation": "storage",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_Job_$40_storage_ptr",
+                        "typeString": "struct Accountable.Job"
+                      },
+                      "typeName": {
+                        "id": 627,
+                        "nodeType": "UserDefinedTypeName",
+                        "pathNode": {
+                          "id": 626,
+                          "name": "Job",
+                          "nameLocations": [
+                            "1231:3:5"
+                          ],
+                          "nodeType": "IdentifierPath",
+                          "referencedDeclaration": 40,
+                          "src": "1231:3:5"
+                        },
+                        "referencedDeclaration": 40,
+                        "src": "1231:3:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Job_$40_storage_ptr",
+                          "typeString": "struct Accountable.Job"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 632,
+                  "initialValue": {
+                    "baseExpression": {
+                      "id": 629,
+                      "name": "_jobs",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 52,
+                      "src": "1250:5:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Job_$40_storage_$",
+                        "typeString": "mapping(uint256 => struct Accountable.Job storage ref)"
+                      }
+                    },
+                    "id": 631,
+                    "indexExpression": {
+                      "id": 630,
+                      "name": "_jobId",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 583,
+                      "src": "1256:6:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "IndexAccess",
+                    "src": "1250:13:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Job_$40_storage",
+                      "typeString": "struct Accountable.Job storage ref"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "1231:32:5"
+                },
+                {
+                  "condition": {
+                    "commonType": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    },
+                    "id": 636,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "id": 633,
+                      "name": "_bidAmount",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 585,
+                      "src": "1278:10:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": ">",
+                    "rightExpression": {
+                      "expression": {
+                        "id": 634,
+                        "name": "_job",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 628,
+                        "src": "1291:4:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Job_$40_storage_ptr",
+                          "typeString": "struct Accountable.Job storage pointer"
+                        }
+                      },
+                      "id": 635,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberLocation": "1296:9:5",
+                      "memberName": "jobBudget",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 36,
+                      "src": "1291:14:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "1278:27:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 640,
+                  "nodeType": "IfStatement",
+                  "src": "1274:52:5",
+                  "trueBody": {
+                    "errorCall": {
+                      "arguments": [],
+                      "expression": {
+                        "argumentTypes": [],
+                        "id": 637,
+                        "name": "OverBudget",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 543,
+                        "src": "1314:10:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_function_error_pure$__$returns$__$",
+                          "typeString": "function () pure"
+                        }
+                      },
+                      "id": 638,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "functionCall",
+                      "lValueRequested": false,
+                      "nameLocations": [],
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "1314:12:5",
+                      "tryCall": false,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_tuple$__$",
+                        "typeString": "tuple()"
+                      }
+                    },
+                    "id": 639,
+                    "nodeType": "RevertStatement",
+                    "src": "1307:19:5"
+                  }
+                },
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "expression": {
+                          "id": 646,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 4294967281,
+                          "src": "1360:3:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 647,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "1364:6:5",
+                        "memberName": "sender",
+                        "nodeType": "MemberAccess",
+                        "src": "1360:10:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "expression": {
+                        "expression": {
+                          "id": 641,
+                          "name": "_job",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 628,
+                          "src": "1337:4:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_Job_$40_storage_ptr",
+                            "typeString": "struct Accountable.Job storage pointer"
+                          }
+                        },
+                        "id": 644,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "1342:12:5",
+                        "memberName": "jobAllBiders",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 39,
+                        "src": "1337:17:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_address_$dyn_storage",
+                          "typeString": "address[] storage ref"
+                        }
+                      },
+                      "id": 645,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberLocation": "1355:4:5",
+                      "memberName": "push",
+                      "nodeType": "MemberAccess",
+                      "src": "1337:22:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_arraypush_nonpayable$_t_array$_t_address_$dyn_storage_ptr_$_t_address_$returns$__$bound_to$_t_array$_t_address_$dyn_storage_ptr_$",
+                        "typeString": "function (address[] storage pointer,address)"
+                      }
+                    },
+                    "id": 648,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1337:34:5",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 649,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1337:34:5"
+                },
+                {
+                  "expression": {
+                    "id": 657,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "baseExpression": {
+                        "baseExpression": {
+                          "id": 650,
+                          "name": "_jobBiddersAmount",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 82,
+                          "src": "1384:17:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_uint256_$_t_mapping$_t_address_$_t_uint256_$_$",
+                            "typeString": "mapping(uint256 => mapping(address => uint256))"
+                          }
+                        },
+                        "id": 654,
+                        "indexExpression": {
+                          "id": 651,
+                          "name": "_jobId",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 583,
+                          "src": "1402:6:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "1384:25:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
+                          "typeString": "mapping(address => uint256)"
+                        }
+                      },
+                      "id": 655,
+                      "indexExpression": {
+                        "expression": {
+                          "id": 652,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 4294967281,
+                          "src": "1410:3:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 653,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "1414:6:5",
+                        "memberName": "sender",
+                        "nodeType": "MemberAccess",
+                        "src": "1410:10:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "nodeType": "IndexAccess",
+                      "src": "1384:37:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 656,
+                      "name": "_bidAmount",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 585,
+                      "src": "1424:10:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "1384:50:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 658,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1384:50:5"
+                },
+                {
+                  "assignments": [
+                    661
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 661,
+                      "mutability": "mutable",
+                      "name": "_bider",
+                      "nameLocation": "1461:6:5",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 714,
+                      "src": "1447:20:5",
+                      "stateVariable": false,
+                      "storageLocation": "storage",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_Bider_$45_storage_ptr",
+                        "typeString": "struct Accountable.Bider"
+                      },
+                      "typeName": {
+                        "id": 660,
+                        "nodeType": "UserDefinedTypeName",
+                        "pathNode": {
+                          "id": 659,
+                          "name": "Bider",
+                          "nameLocations": [
+                            "1447:5:5"
+                          ],
+                          "nodeType": "IdentifierPath",
+                          "referencedDeclaration": 45,
+                          "src": "1447:5:5"
+                        },
+                        "referencedDeclaration": 45,
+                        "src": "1447:5:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Bider_$45_storage_ptr",
+                          "typeString": "struct Accountable.Bider"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 665,
+                  "initialValue": {
+                    "baseExpression": {
+                      "id": 662,
+                      "name": "_biders",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 76,
+                      "src": "1470:7:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Bider_$45_storage_$",
+                        "typeString": "mapping(uint256 => struct Accountable.Bider storage ref)"
+                      }
+                    },
+                    "id": 664,
+                    "indexExpression": {
+                      "id": 663,
+                      "name": "_jobId",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 583,
+                      "src": "1478:6:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "IndexAccess",
+                    "src": "1470:15:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Bider_$45_storage",
+                      "typeString": "struct Accountable.Bider storage ref"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "1447:38:5"
+                },
+                {
+                  "condition": {
+                    "commonType": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    },
+                    "id": 677,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "commonType": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      },
+                      "id": 672,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "leftExpression": {
+                        "expression": {
+                          "id": 666,
+                          "name": "_bider",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 661,
+                          "src": "1514:6:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_Bider_$45_storage_ptr",
+                            "typeString": "struct Accountable.Bider storage pointer"
+                          }
+                        },
+                        "id": 667,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "1521:12:5",
+                        "memberName": "biderAddress",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 44,
+                        "src": "1514:19:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "nodeType": "BinaryOperation",
+                      "operator": "!=",
+                      "rightExpression": {
+                        "arguments": [
+                          {
+                            "hexValue": "307830",
+                            "id": 670,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "kind": "number",
+                            "lValueRequested": false,
+                            "nodeType": "Literal",
+                            "src": "1545:3:5",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_rational_0_by_1",
+                              "typeString": "int_const 0"
+                            },
+                            "value": "0x0"
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_rational_0_by_1",
+                              "typeString": "int_const 0"
+                            }
+                          ],
+                          "id": 669,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "nodeType": "ElementaryTypeNameExpression",
+                          "src": "1537:7:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_type$_t_address_$",
+                            "typeString": "type(address)"
+                          },
+                          "typeName": {
+                            "id": 668,
+                            "name": "address",
+                            "nodeType": "ElementaryTypeName",
+                            "src": "1537:7:5",
+                            "typeDescriptions": {}
+                          }
+                        },
+                        "id": 671,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "typeConversion",
+                        "lValueRequested": false,
+                        "nameLocations": [],
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "1537:12:5",
+                        "tryCall": false,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "src": "1514:35:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "&&",
+                    "rightExpression": {
+                      "commonType": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      },
+                      "id": 676,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "leftExpression": {
+                        "id": 673,
+                        "name": "_bidAmount",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 585,
+                        "src": "1553:10:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "nodeType": "BinaryOperation",
+                      "operator": "<",
+                      "rightExpression": {
+                        "expression": {
+                          "id": 674,
+                          "name": "_bider",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 661,
+                          "src": "1566:6:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_Bider_$45_storage_ptr",
+                            "typeString": "struct Accountable.Bider storage pointer"
+                          }
+                        },
+                        "id": 675,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "1573:9:5",
+                        "memberName": "bidAmount",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 42,
+                        "src": "1566:16:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "src": "1553:29:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "src": "1514:68:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "falseBody": {
+                    "id": 705,
+                    "nodeType": "Block",
+                    "src": "1703:103:5",
+                    "statements": [
+                      {
+                        "expression": {
+                          "id": 696,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftHandSide": {
+                            "expression": {
+                              "id": 692,
+                              "name": "_bider",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 661,
+                              "src": "1718:6:5",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_struct$_Bider_$45_storage_ptr",
+                                "typeString": "struct Accountable.Bider storage pointer"
+                              }
+                            },
+                            "id": 694,
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": true,
+                            "memberLocation": "1725:9:5",
+                            "memberName": "bidAmount",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": 42,
+                            "src": "1718:16:5",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          },
+                          "nodeType": "Assignment",
+                          "operator": "=",
+                          "rightHandSide": {
+                            "id": 695,
+                            "name": "_bidAmount",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 585,
+                            "src": "1737:10:5",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          },
+                          "src": "1718:29:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "id": 697,
+                        "nodeType": "ExpressionStatement",
+                        "src": "1718:29:5"
+                      },
+                      {
+                        "expression": {
+                          "id": 703,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftHandSide": {
+                            "expression": {
+                              "id": 698,
+                              "name": "_bider",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 661,
+                              "src": "1762:6:5",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_struct$_Bider_$45_storage_ptr",
+                                "typeString": "struct Accountable.Bider storage pointer"
+                              }
+                            },
+                            "id": 700,
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": true,
+                            "memberLocation": "1769:12:5",
+                            "memberName": "biderAddress",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": 44,
+                            "src": "1762:19:5",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          },
+                          "nodeType": "Assignment",
+                          "operator": "=",
+                          "rightHandSide": {
+                            "expression": {
+                              "id": 701,
+                              "name": "msg",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 4294967281,
+                              "src": "1784:3:5",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_magic_message",
+                                "typeString": "msg"
+                              }
+                            },
+                            "id": 702,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberLocation": "1788:6:5",
+                            "memberName": "sender",
+                            "nodeType": "MemberAccess",
+                            "src": "1784:10:5",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          },
+                          "src": "1762:32:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "id": 704,
+                        "nodeType": "ExpressionStatement",
+                        "src": "1762:32:5"
+                      }
+                    ]
+                  },
+                  "id": 706,
+                  "nodeType": "IfStatement",
+                  "src": "1496:310:5",
+                  "trueBody": {
+                    "id": 691,
+                    "nodeType": "Block",
+                    "src": "1594:103:5",
+                    "statements": [
+                      {
+                        "expression": {
+                          "id": 682,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftHandSide": {
+                            "expression": {
+                              "id": 678,
+                              "name": "_bider",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 661,
+                              "src": "1609:6:5",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_struct$_Bider_$45_storage_ptr",
+                                "typeString": "struct Accountable.Bider storage pointer"
+                              }
+                            },
+                            "id": 680,
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": true,
+                            "memberLocation": "1616:9:5",
+                            "memberName": "bidAmount",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": 42,
+                            "src": "1609:16:5",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          },
+                          "nodeType": "Assignment",
+                          "operator": "=",
+                          "rightHandSide": {
+                            "id": 681,
+                            "name": "_bidAmount",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 585,
+                            "src": "1628:10:5",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          },
+                          "src": "1609:29:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "id": 683,
+                        "nodeType": "ExpressionStatement",
+                        "src": "1609:29:5"
+                      },
+                      {
+                        "expression": {
+                          "id": 689,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftHandSide": {
+                            "expression": {
+                              "id": 684,
+                              "name": "_bider",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 661,
+                              "src": "1653:6:5",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_struct$_Bider_$45_storage_ptr",
+                                "typeString": "struct Accountable.Bider storage pointer"
+                              }
+                            },
+                            "id": 686,
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": true,
+                            "memberLocation": "1660:12:5",
+                            "memberName": "biderAddress",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": 44,
+                            "src": "1653:19:5",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          },
+                          "nodeType": "Assignment",
+                          "operator": "=",
+                          "rightHandSide": {
+                            "expression": {
+                              "id": 687,
+                              "name": "msg",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 4294967281,
+                              "src": "1675:3:5",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_magic_message",
+                                "typeString": "msg"
+                              }
+                            },
+                            "id": 688,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberLocation": "1679:6:5",
+                            "memberName": "sender",
+                            "nodeType": "MemberAccess",
+                            "src": "1675:10:5",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          },
+                          "src": "1653:32:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "id": 690,
+                        "nodeType": "ExpressionStatement",
+                        "src": "1653:32:5"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "eventCall": {
+                    "arguments": [
+                      {
+                        "expression": {
+                          "id": 708,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 4294967281,
+                          "src": "1839:3:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 709,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "1843:6:5",
+                        "memberName": "sender",
+                        "nodeType": "MemberAccess",
+                        "src": "1839:10:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "id": 710,
+                        "name": "_jobId",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 583,
+                        "src": "1851:6:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "id": 711,
+                        "name": "_bidAmount",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 585,
+                        "src": "1859:10:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "id": 707,
+                      "name": "SuccessfullyBid",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 531,
+                      "src": "1823:15:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_address_$_t_uint256_$_t_uint256_$returns$__$",
+                        "typeString": "function (address,uint256,uint256)"
+                      }
+                    },
+                    "id": 712,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1823:47:5",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 713,
+                  "nodeType": "EmitStatement",
+                  "src": "1818:52:5"
+                }
+              ]
+            },
+            "functionSelector": "1e14e8e1",
+            "id": 715,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "arguments": [
+                  {
+                    "id": 588,
+                    "name": "_jobId",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 583,
+                    "src": "948:6:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  }
+                ],
+                "id": 589,
+                "kind": "modifierInvocation",
+                "modifierName": {
+                  "id": 587,
+                  "name": "validJob",
+                  "nameLocations": [
+                    "939:8:5"
+                  ],
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 581,
+                  "src": "939:8:5"
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "939:16:5"
+              }
+            ],
+            "name": "bidJob",
+            "nameLocation": "869:6:5",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 586,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 583,
+                  "mutability": "mutable",
+                  "name": "_jobId",
+                  "nameLocation": "884:6:5",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 715,
+                  "src": "876:14:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 582,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "876:7:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 585,
+                  "mutability": "mutable",
+                  "name": "_bidAmount",
+                  "nameLocation": "900:10:5",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 715,
+                  "src": "892:18:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 584,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "892:7:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "875:36:5"
+            },
+            "returnParameters": {
+              "id": 590,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "961:0:5"
+            },
+            "scope": 830,
+            "src": "860:1018:5",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 828,
+              "nodeType": "Block",
+              "src": "1990:903:5",
+              "statements": [
+                {
+                  "condition": {
+                    "id": 729,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "UnaryOperation",
+                    "operator": "!",
+                    "prefix": true,
+                    "src": "2004:26:5",
+                    "subExpression": {
+                      "baseExpression": {
+                        "id": 725,
+                        "name": "_validWorkers",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 71,
+                        "src": "2005:13:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
+                          "typeString": "mapping(address => bool)"
+                        }
+                      },
+                      "id": 728,
+                      "indexExpression": {
+                        "expression": {
+                          "id": 726,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 4294967281,
+                          "src": "2019:3:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 727,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "2023:6:5",
+                        "memberName": "sender",
+                        "nodeType": "MemberAccess",
+                        "src": "2019:10:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "nodeType": "IndexAccess",
+                      "src": "2005:25:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 733,
+                  "nodeType": "IfStatement",
+                  "src": "2001:53:5",
+                  "trueBody": {
+                    "errorCall": {
+                      "arguments": [],
+                      "expression": {
+                        "argumentTypes": [],
+                        "id": 730,
+                        "name": "InvalidWorker",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 3,
+                        "src": "2039:13:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_function_error_pure$__$returns$__$",
+                          "typeString": "function () pure"
+                        }
+                      },
+                      "id": 731,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "functionCall",
+                      "lValueRequested": false,
+                      "nameLocations": [],
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "2039:15:5",
+                      "tryCall": false,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_tuple$__$",
+                        "typeString": "tuple()"
+                      }
+                    },
+                    "id": 732,
+                    "nodeType": "RevertStatement",
+                    "src": "2032:22:5"
+                  }
+                },
+                {
+                  "condition": {
+                    "commonType": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    },
+                    "id": 741,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "baseExpression": {
+                        "baseExpression": {
+                          "id": 734,
+                          "name": "_jobBiddersAmount",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 82,
+                          "src": "2069:17:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_uint256_$_t_mapping$_t_address_$_t_uint256_$_$",
+                            "typeString": "mapping(uint256 => mapping(address => uint256))"
+                          }
+                        },
+                        "id": 736,
+                        "indexExpression": {
+                          "id": 735,
+                          "name": "_jobId",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 717,
+                          "src": "2087:6:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "2069:25:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
+                          "typeString": "mapping(address => uint256)"
+                        }
+                      },
+                      "id": 739,
+                      "indexExpression": {
+                        "expression": {
+                          "id": 737,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 4294967281,
+                          "src": "2095:3:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 738,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "2099:6:5",
+                        "memberName": "sender",
+                        "nodeType": "MemberAccess",
+                        "src": "2095:10:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "nodeType": "IndexAccess",
+                      "src": "2069:37:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "==",
+                    "rightExpression": {
+                      "hexValue": "30",
+                      "id": 740,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "number",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "2110:1:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_rational_0_by_1",
+                        "typeString": "int_const 0"
+                      },
+                      "value": "0"
+                    },
+                    "src": "2069:42:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 745,
+                  "nodeType": "IfStatement",
+                  "src": "2065:65:5",
+                  "trueBody": {
+                    "errorCall": {
+                      "arguments": [],
+                      "expression": {
+                        "argumentTypes": [],
+                        "id": 742,
+                        "name": "NotBided",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 547,
+                        "src": "2120:8:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_function_error_pure$__$returns$__$",
+                          "typeString": "function () pure"
+                        }
+                      },
+                      "id": 743,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "functionCall",
+                      "lValueRequested": false,
+                      "nameLocations": [],
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "2120:10:5",
+                      "tryCall": false,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_tuple$__$",
+                        "typeString": "tuple()"
+                      }
+                    },
+                    "id": 744,
+                    "nodeType": "RevertStatement",
+                    "src": "2113:17:5"
+                  }
+                },
+                {
+                  "condition": {
+                    "commonType": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    },
+                    "id": 753,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "id": 746,
+                      "name": "_bidAmount",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 719,
+                      "src": "2147:10:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": ">=",
+                    "rightExpression": {
+                      "baseExpression": {
+                        "baseExpression": {
+                          "id": 747,
+                          "name": "_jobBiddersAmount",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 82,
+                          "src": "2161:17:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_uint256_$_t_mapping$_t_address_$_t_uint256_$_$",
+                            "typeString": "mapping(uint256 => mapping(address => uint256))"
+                          }
+                        },
+                        "id": 749,
+                        "indexExpression": {
+                          "id": 748,
+                          "name": "_jobId",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 717,
+                          "src": "2179:6:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "2161:25:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
+                          "typeString": "mapping(address => uint256)"
+                        }
+                      },
+                      "id": 752,
+                      "indexExpression": {
+                        "expression": {
+                          "id": 750,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 4294967281,
+                          "src": "2187:3:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 751,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "2191:6:5",
+                        "memberName": "sender",
+                        "nodeType": "MemberAccess",
+                        "src": "2187:10:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "nodeType": "IndexAccess",
+                      "src": "2161:37:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "2147:51:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 757,
+                  "nodeType": "IfStatement",
+                  "src": "2143:101:5",
+                  "trueBody": {
+                    "errorCall": {
+                      "arguments": [],
+                      "expression": {
+                        "argumentTypes": [],
+                        "id": 754,
+                        "name": "GreaterThanPreviousBid",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 549,
+                        "src": "2220:22:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_function_error_pure$__$returns$__$",
+                          "typeString": "function () pure"
+                        }
+                      },
+                      "id": 755,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "functionCall",
+                      "lValueRequested": false,
+                      "nameLocations": [],
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "2220:24:5",
+                      "tryCall": false,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_tuple$__$",
+                        "typeString": "tuple()"
+                      }
+                    },
+                    "id": 756,
+                    "nodeType": "RevertStatement",
+                    "src": "2213:31:5"
+                  }
+                },
+                {
+                  "assignments": [
+                    759
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 759,
+                      "mutability": "mutable",
+                      "name": "_prevBidAmount",
+                      "nameLocation": "2263:14:5",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 828,
+                      "src": "2255:22:5",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      },
+                      "typeName": {
+                        "id": 758,
+                        "name": "uint256",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "2255:7:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 766,
+                  "initialValue": {
+                    "baseExpression": {
+                      "baseExpression": {
+                        "id": 760,
+                        "name": "_jobBiddersAmount",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 82,
+                        "src": "2280:17:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_uint256_$_t_mapping$_t_address_$_t_uint256_$_$",
+                          "typeString": "mapping(uint256 => mapping(address => uint256))"
+                        }
+                      },
+                      "id": 762,
+                      "indexExpression": {
+                        "id": 761,
+                        "name": "_jobId",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 717,
+                        "src": "2298:6:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "nodeType": "IndexAccess",
+                      "src": "2280:25:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
+                        "typeString": "mapping(address => uint256)"
+                      }
+                    },
+                    "id": 765,
+                    "indexExpression": {
+                      "expression": {
+                        "id": 763,
+                        "name": "msg",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 4294967281,
+                        "src": "2306:3:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_magic_message",
+                          "typeString": "msg"
+                        }
+                      },
+                      "id": 764,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberLocation": "2310:6:5",
+                      "memberName": "sender",
+                      "nodeType": "MemberAccess",
+                      "src": "2306:10:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "IndexAccess",
+                    "src": "2280:37:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "2255:62:5"
+                },
+                {
+                  "assignments": [
+                    769
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 769,
+                      "mutability": "mutable",
+                      "name": "_bider",
+                      "nameLocation": "2344:6:5",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 828,
+                      "src": "2330:20:5",
+                      "stateVariable": false,
+                      "storageLocation": "storage",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_Bider_$45_storage_ptr",
+                        "typeString": "struct Accountable.Bider"
+                      },
+                      "typeName": {
+                        "id": 768,
+                        "nodeType": "UserDefinedTypeName",
+                        "pathNode": {
+                          "id": 767,
+                          "name": "Bider",
+                          "nameLocations": [
+                            "2330:5:5"
+                          ],
+                          "nodeType": "IdentifierPath",
+                          "referencedDeclaration": 45,
+                          "src": "2330:5:5"
+                        },
+                        "referencedDeclaration": 45,
+                        "src": "2330:5:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Bider_$45_storage_ptr",
+                          "typeString": "struct Accountable.Bider"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 773,
+                  "initialValue": {
+                    "baseExpression": {
+                      "id": 770,
+                      "name": "_biders",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 76,
+                      "src": "2353:7:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Bider_$45_storage_$",
+                        "typeString": "mapping(uint256 => struct Accountable.Bider storage ref)"
+                      }
+                    },
+                    "id": 772,
+                    "indexExpression": {
+                      "id": 771,
+                      "name": "_jobId",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 717,
+                      "src": "2361:6:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "IndexAccess",
+                    "src": "2353:15:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Bider_$45_storage",
+                      "typeString": "struct Accountable.Bider storage ref"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "2330:38:5"
+                },
+                {
+                  "condition": {
+                    "commonType": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    },
+                    "id": 783,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "commonType": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      },
+                      "id": 778,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "leftExpression": {
+                        "expression": {
+                          "id": 774,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 4294967281,
+                          "src": "2397:3:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 775,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "2401:6:5",
+                        "memberName": "sender",
+                        "nodeType": "MemberAccess",
+                        "src": "2397:10:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "nodeType": "BinaryOperation",
+                      "operator": "==",
+                      "rightExpression": {
+                        "expression": {
+                          "id": 776,
+                          "name": "_bider",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 769,
+                          "src": "2411:6:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_Bider_$45_storage_ptr",
+                            "typeString": "struct Accountable.Bider storage pointer"
+                          }
+                        },
+                        "id": 777,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "2418:12:5",
+                        "memberName": "biderAddress",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 44,
+                        "src": "2411:19:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "src": "2397:33:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "&&",
+                    "rightExpression": {
+                      "commonType": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      },
+                      "id": 782,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "leftExpression": {
+                        "id": 779,
+                        "name": "_bidAmount",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 719,
+                        "src": "2434:10:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "nodeType": "BinaryOperation",
+                      "operator": "<",
+                      "rightExpression": {
+                        "expression": {
+                          "id": 780,
+                          "name": "_bider",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 769,
+                          "src": "2447:6:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_Bider_$45_storage_ptr",
+                            "typeString": "struct Accountable.Bider storage pointer"
+                          }
+                        },
+                        "id": 781,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "2454:9:5",
+                        "memberName": "bidAmount",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 42,
+                        "src": "2447:16:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "src": "2434:29:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "src": "2397:66:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "falseBody": {
+                    "condition": {
+                      "commonType": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      },
+                      "id": 794,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "leftExpression": {
+                        "id": 791,
+                        "name": "_bidAmount",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 719,
+                        "src": "2540:10:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "nodeType": "BinaryOperation",
+                      "operator": "<",
+                      "rightExpression": {
+                        "expression": {
+                          "id": 792,
+                          "name": "_bider",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 769,
+                          "src": "2553:6:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_Bider_$45_storage_ptr",
+                            "typeString": "struct Accountable.Bider storage pointer"
+                          }
+                        },
+                        "id": 793,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "2560:9:5",
+                        "memberName": "bidAmount",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 42,
+                        "src": "2553:16:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "src": "2540:29:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "id": 809,
+                    "nodeType": "IfStatement",
+                    "src": "2537:136:5",
+                    "trueBody": {
+                      "id": 808,
+                      "nodeType": "Block",
+                      "src": "2570:103:5",
+                      "statements": [
+                        {
+                          "expression": {
+                            "id": 799,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "leftHandSide": {
+                              "expression": {
+                                "id": 795,
+                                "name": "_bider",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 769,
+                                "src": "2585:6:5",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_struct$_Bider_$45_storage_ptr",
+                                  "typeString": "struct Accountable.Bider storage pointer"
+                                }
+                              },
+                              "id": 797,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": true,
+                              "memberLocation": "2592:9:5",
+                              "memberName": "bidAmount",
+                              "nodeType": "MemberAccess",
+                              "referencedDeclaration": 42,
+                              "src": "2585:16:5",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_uint256",
+                                "typeString": "uint256"
+                              }
+                            },
+                            "nodeType": "Assignment",
+                            "operator": "=",
+                            "rightHandSide": {
+                              "id": 798,
+                              "name": "_bidAmount",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 719,
+                              "src": "2604:10:5",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_uint256",
+                                "typeString": "uint256"
+                              }
+                            },
+                            "src": "2585:29:5",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          },
+                          "id": 800,
+                          "nodeType": "ExpressionStatement",
+                          "src": "2585:29:5"
+                        },
+                        {
+                          "expression": {
+                            "id": 806,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "leftHandSide": {
+                              "expression": {
+                                "id": 801,
+                                "name": "_bider",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 769,
+                                "src": "2629:6:5",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_struct$_Bider_$45_storage_ptr",
+                                  "typeString": "struct Accountable.Bider storage pointer"
+                                }
+                              },
+                              "id": 803,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": true,
+                              "memberLocation": "2636:12:5",
+                              "memberName": "biderAddress",
+                              "nodeType": "MemberAccess",
+                              "referencedDeclaration": 44,
+                              "src": "2629:19:5",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_address",
+                                "typeString": "address"
+                              }
+                            },
+                            "nodeType": "Assignment",
+                            "operator": "=",
+                            "rightHandSide": {
+                              "expression": {
+                                "id": 804,
+                                "name": "msg",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 4294967281,
+                                "src": "2651:3:5",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_magic_message",
+                                  "typeString": "msg"
+                                }
+                              },
+                              "id": 805,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "memberLocation": "2655:6:5",
+                              "memberName": "sender",
+                              "nodeType": "MemberAccess",
+                              "src": "2651:10:5",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_address",
+                                "typeString": "address"
+                              }
+                            },
+                            "src": "2629:32:5",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          },
+                          "id": 807,
+                          "nodeType": "ExpressionStatement",
+                          "src": "2629:32:5"
+                        }
+                      ]
+                    }
+                  },
+                  "id": 810,
+                  "nodeType": "IfStatement",
+                  "src": "2379:294:5",
+                  "trueBody": {
+                    "id": 790,
+                    "nodeType": "Block",
+                    "src": "2475:56:5",
+                    "statements": [
+                      {
+                        "expression": {
+                          "id": 788,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftHandSide": {
+                            "expression": {
+                              "id": 784,
+                              "name": "_bider",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 769,
+                              "src": "2490:6:5",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_struct$_Bider_$45_storage_ptr",
+                                "typeString": "struct Accountable.Bider storage pointer"
+                              }
+                            },
+                            "id": 786,
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": true,
+                            "memberLocation": "2497:9:5",
+                            "memberName": "bidAmount",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": 42,
+                            "src": "2490:16:5",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          },
+                          "nodeType": "Assignment",
+                          "operator": "=",
+                          "rightHandSide": {
+                            "id": 787,
+                            "name": "_bidAmount",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 719,
+                            "src": "2509:10:5",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          },
+                          "src": "2490:29:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "id": 789,
+                        "nodeType": "ExpressionStatement",
+                        "src": "2490:29:5"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "expression": {
+                    "id": 818,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "baseExpression": {
+                        "baseExpression": {
+                          "id": 811,
+                          "name": "_jobBiddersAmount",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 82,
+                          "src": "2685:17:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_uint256_$_t_mapping$_t_address_$_t_uint256_$_$",
+                            "typeString": "mapping(uint256 => mapping(address => uint256))"
+                          }
+                        },
+                        "id": 815,
+                        "indexExpression": {
+                          "id": 812,
+                          "name": "_jobId",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 717,
+                          "src": "2703:6:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "2685:25:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
+                          "typeString": "mapping(address => uint256)"
+                        }
+                      },
+                      "id": 816,
+                      "indexExpression": {
+                        "expression": {
+                          "id": 813,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 4294967281,
+                          "src": "2711:3:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 814,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "2715:6:5",
+                        "memberName": "sender",
+                        "nodeType": "MemberAccess",
+                        "src": "2711:10:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "nodeType": "IndexAccess",
+                      "src": "2685:37:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 817,
+                      "name": "_bidAmount",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 719,
+                      "src": "2725:10:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "2685:50:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 819,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2685:50:5"
+                },
+                {
+                  "eventCall": {
+                    "arguments": [
+                      {
+                        "expression": {
+                          "id": 821,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 4294967281,
+                          "src": "2789:3:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 822,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "2793:6:5",
+                        "memberName": "sender",
+                        "nodeType": "MemberAccess",
+                        "src": "2789:10:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "id": 823,
+                        "name": "_jobId",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 717,
+                        "src": "2814:6:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "id": 824,
+                        "name": "_bidAmount",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 719,
+                        "src": "2835:10:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "id": 825,
+                        "name": "_prevBidAmount",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 759,
+                        "src": "2860:14:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "id": 820,
+                      "name": "BidModifiedSuccessfully",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 541,
+                      "src": "2751:23:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_address_$_t_uint256_$_t_uint256_$_t_uint256_$returns$__$",
+                        "typeString": "function (address,uint256,uint256,uint256)"
+                      }
+                    },
+                    "id": 826,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2751:134:5",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 827,
+                  "nodeType": "EmitStatement",
+                  "src": "2746:139:5"
+                }
+              ]
+            },
+            "functionSelector": "ded9b21e",
+            "id": 829,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "arguments": [
+                  {
+                    "id": 722,
+                    "name": "_jobId",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 717,
+                    "src": "1977:6:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  }
+                ],
+                "id": 723,
+                "kind": "modifierInvocation",
+                "modifierName": {
+                  "id": 721,
+                  "name": "validJob",
+                  "nameLocations": [
+                    "1968:8:5"
+                  ],
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 581,
+                  "src": "1968:8:5"
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "1968:16:5"
+              }
+            ],
+            "name": "modifyBid",
+            "nameLocation": "1895:9:5",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 720,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 717,
+                  "mutability": "mutable",
+                  "name": "_jobId",
+                  "nameLocation": "1913:6:5",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 829,
+                  "src": "1905:14:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 716,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1905:7:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 719,
+                  "mutability": "mutable",
+                  "name": "_bidAmount",
+                  "nameLocation": "1929:10:5",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 829,
+                  "src": "1921:18:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 718,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1921:7:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1904:36:5"
+            },
+            "returnParameters": {
+              "id": 724,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1990:0:5"
+            },
+            "scope": 830,
+            "src": "1886:1007:5",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 831,
+        "src": "100:2796:5",
+        "usedErrors": [
+          3,
+          543,
+          545,
+          547,
+          549,
+          551
+        ]
+      }
+    ],
+    "src": "33:2865:5"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.17+commit.8df45f5f.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.10",
+  "updatedAt": "2022-11-08T11:59:46.015Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

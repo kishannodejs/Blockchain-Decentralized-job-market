@@ -1,0 +1,1088 @@
+{
+  "contractName": "Accountable",
+  "abi": [
+    {
+      "inputs": [],
+      "name": "InvalidWorker",
+      "type": "error"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.17+commit.8df45f5f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"InvalidWorker\",\"type\":\"error\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/Accountable.sol\":\"Accountable\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/Accountable.sol\":{\"keccak256\":\"0x4d2e6c30e38a2df5abb8da09f819da78366e67c96d566d249225fd1d93271a16\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://57207884cf9839cd0eff64f95fd6b14be047ad78f39b72918a4ee74775da4644\",\"dweb:/ipfs/QmRkXDvgAeNECdp3cDY6dKQX46ZoGszuFEJ82B3QAir4TQ\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: MIT\r\npragma solidity >=0.8.4 <0.9.0;\r\n\r\nabstract contract Accountable {\r\n    error InvalidWorker();\r\n\r\n    struct Worker{\r\n        uint256 workerId;\r\n        string workerName;\r\n        bool isWorking;\r\n        uint32 workerRegisteredDate;\r\n        uint256 jobCompleted;\r\n    }\r\n\r\n    struct Job{\r\n        uint256 jobId;\r\n        string jobName;\r\n        string jobDescription;\r\n        address jobOwner;\r\n        address jobWorker;\r\n        bool isCompleted;\r\n        bool isJobValid;\r\n        uint32 jobRegisteredDate;\r\n        uint32 jobStartedDate;\r\n        uint32 jobCompletedDate;\r\n        uint256 jobBudget;\r\n        address [] jobAllBiders;\r\n    }\r\n\r\n    struct Bider {\r\n        uint256 bidAmount;\r\n        address biderAddress;\r\n    }\r\n\r\n    uint256 internal _jobIds;\r\n\r\n    mapping(uint256 => Job) internal _jobs;\r\n\r\n    mapping(address => uint256) internal _fundByJobOwner;\r\n\r\n    mapping(address => uint256) internal _jobOwnerFundLocked;\r\n\r\n    uint256 internal _workerIds;\r\n\r\n    mapping(address => Worker) internal _workers;\r\n\r\n    mapping(address => bool) internal _validWorkers;\r\n\r\n    mapping(uint256 => Bider) internal _biders;\r\n\r\n    mapping(uint256 => mapping(address => uint256)) internal _jobBiddersAmount;\r\n\r\n}",
+  "sourcePath": "C:\\Users\\Neosoft\\Desktop\\NeoSoft\\POC\\truffle\\decentralized-job-market\\contracts\\Accountable.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/Accountable.sol",
+    "exportedSymbols": {
+      "Accountable": [
+        83
+      ]
+    },
+    "id": 84,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.8",
+          ".4",
+          "<",
+          "0.9",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "33:31:0"
+      },
+      {
+        "abstract": true,
+        "baseContracts": [],
+        "canonicalName": "Accountable",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 83,
+        "linearizedBaseContracts": [
+          83
+        ],
+        "name": "Accountable",
+        "nameLocation": "86:11:0",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "errorSelector": "c9051603",
+            "id": 3,
+            "name": "InvalidWorker",
+            "nameLocation": "111:13:0",
+            "nodeType": "ErrorDefinition",
+            "parameters": {
+              "id": 2,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "124:2:0"
+            },
+            "src": "105:22:0"
+          },
+          {
+            "canonicalName": "Accountable.Worker",
+            "id": 14,
+            "members": [
+              {
+                "constant": false,
+                "id": 5,
+                "mutability": "mutable",
+                "name": "workerId",
+                "nameLocation": "167:8:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 14,
+                "src": "159:16:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 4,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "159:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 7,
+                "mutability": "mutable",
+                "name": "workerName",
+                "nameLocation": "193:10:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 14,
+                "src": "186:17:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 6,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "186:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 9,
+                "mutability": "mutable",
+                "name": "isWorking",
+                "nameLocation": "219:9:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 14,
+                "src": "214:14:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bool",
+                  "typeString": "bool"
+                },
+                "typeName": {
+                  "id": 8,
+                  "name": "bool",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "214:4:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 11,
+                "mutability": "mutable",
+                "name": "workerRegisteredDate",
+                "nameLocation": "246:20:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 14,
+                "src": "239:27:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint32",
+                  "typeString": "uint32"
+                },
+                "typeName": {
+                  "id": 10,
+                  "name": "uint32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "239:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint32",
+                    "typeString": "uint32"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 13,
+                "mutability": "mutable",
+                "name": "jobCompleted",
+                "nameLocation": "285:12:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 14,
+                "src": "277:20:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 12,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "277:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "Worker",
+            "nameLocation": "142:6:0",
+            "nodeType": "StructDefinition",
+            "scope": 83,
+            "src": "135:170:0",
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "Accountable.Job",
+            "id": 40,
+            "members": [
+              {
+                "constant": false,
+                "id": 16,
+                "mutability": "mutable",
+                "name": "jobId",
+                "nameLocation": "342:5:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 40,
+                "src": "334:13:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 15,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "334:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 18,
+                "mutability": "mutable",
+                "name": "jobName",
+                "nameLocation": "365:7:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 40,
+                "src": "358:14:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 17,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "358:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 20,
+                "mutability": "mutable",
+                "name": "jobDescription",
+                "nameLocation": "390:14:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 40,
+                "src": "383:21:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 19,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "383:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 22,
+                "mutability": "mutable",
+                "name": "jobOwner",
+                "nameLocation": "423:8:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 40,
+                "src": "415:16:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 21,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "415:7:0",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 24,
+                "mutability": "mutable",
+                "name": "jobWorker",
+                "nameLocation": "450:9:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 40,
+                "src": "442:17:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 23,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "442:7:0",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 26,
+                "mutability": "mutable",
+                "name": "isCompleted",
+                "nameLocation": "475:11:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 40,
+                "src": "470:16:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bool",
+                  "typeString": "bool"
+                },
+                "typeName": {
+                  "id": 25,
+                  "name": "bool",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "470:4:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 28,
+                "mutability": "mutable",
+                "name": "isJobValid",
+                "nameLocation": "502:10:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 40,
+                "src": "497:15:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bool",
+                  "typeString": "bool"
+                },
+                "typeName": {
+                  "id": 27,
+                  "name": "bool",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "497:4:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 30,
+                "mutability": "mutable",
+                "name": "jobRegisteredDate",
+                "nameLocation": "530:17:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 40,
+                "src": "523:24:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint32",
+                  "typeString": "uint32"
+                },
+                "typeName": {
+                  "id": 29,
+                  "name": "uint32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "523:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint32",
+                    "typeString": "uint32"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 32,
+                "mutability": "mutable",
+                "name": "jobStartedDate",
+                "nameLocation": "565:14:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 40,
+                "src": "558:21:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint32",
+                  "typeString": "uint32"
+                },
+                "typeName": {
+                  "id": 31,
+                  "name": "uint32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "558:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint32",
+                    "typeString": "uint32"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 34,
+                "mutability": "mutable",
+                "name": "jobCompletedDate",
+                "nameLocation": "597:16:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 40,
+                "src": "590:23:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint32",
+                  "typeString": "uint32"
+                },
+                "typeName": {
+                  "id": 33,
+                  "name": "uint32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "590:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint32",
+                    "typeString": "uint32"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 36,
+                "mutability": "mutable",
+                "name": "jobBudget",
+                "nameLocation": "632:9:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 40,
+                "src": "624:17:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 35,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "624:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 39,
+                "mutability": "mutable",
+                "name": "jobAllBiders",
+                "nameLocation": "663:12:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 40,
+                "src": "652:23:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                  "typeString": "address[]"
+                },
+                "typeName": {
+                  "baseType": {
+                    "id": 37,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "652:7:0",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "id": 38,
+                  "nodeType": "ArrayTypeName",
+                  "src": "652:10:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                    "typeString": "address[]"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "Job",
+            "nameLocation": "320:3:0",
+            "nodeType": "StructDefinition",
+            "scope": 83,
+            "src": "313:370:0",
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "Accountable.Bider",
+            "id": 45,
+            "members": [
+              {
+                "constant": false,
+                "id": 42,
+                "mutability": "mutable",
+                "name": "bidAmount",
+                "nameLocation": "723:9:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 45,
+                "src": "715:17:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 41,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "715:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 44,
+                "mutability": "mutable",
+                "name": "biderAddress",
+                "nameLocation": "751:12:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 45,
+                "src": "743:20:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 43,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "743:7:0",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "Bider",
+            "nameLocation": "698:5:0",
+            "nodeType": "StructDefinition",
+            "scope": 83,
+            "src": "691:80:0",
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 47,
+            "mutability": "mutable",
+            "name": "_jobIds",
+            "nameLocation": "796:7:0",
+            "nodeType": "VariableDeclaration",
+            "scope": 83,
+            "src": "779:24:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 46,
+              "name": "uint256",
+              "nodeType": "ElementaryTypeName",
+              "src": "779:7:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 52,
+            "mutability": "mutable",
+            "name": "_jobs",
+            "nameLocation": "845:5:0",
+            "nodeType": "VariableDeclaration",
+            "scope": 83,
+            "src": "812:38:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Job_$40_storage_$",
+              "typeString": "mapping(uint256 => struct Accountable.Job)"
+            },
+            "typeName": {
+              "id": 51,
+              "keyType": {
+                "id": 48,
+                "name": "uint256",
+                "nodeType": "ElementaryTypeName",
+                "src": "820:7:0",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "812:23:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Job_$40_storage_$",
+                "typeString": "mapping(uint256 => struct Accountable.Job)"
+              },
+              "valueType": {
+                "id": 50,
+                "nodeType": "UserDefinedTypeName",
+                "pathNode": {
+                  "id": 49,
+                  "name": "Job",
+                  "nameLocations": [
+                    "831:3:0"
+                  ],
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 40,
+                  "src": "831:3:0"
+                },
+                "referencedDeclaration": 40,
+                "src": "831:3:0",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_Job_$40_storage_ptr",
+                  "typeString": "struct Accountable.Job"
+                }
+              }
+            },
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 56,
+            "mutability": "mutable",
+            "name": "_fundByJobOwner",
+            "nameLocation": "896:15:0",
+            "nodeType": "VariableDeclaration",
+            "scope": 83,
+            "src": "859:52:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
+              "typeString": "mapping(address => uint256)"
+            },
+            "typeName": {
+              "id": 55,
+              "keyType": {
+                "id": 53,
+                "name": "address",
+                "nodeType": "ElementaryTypeName",
+                "src": "867:7:0",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "859:27:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
+                "typeString": "mapping(address => uint256)"
+              },
+              "valueType": {
+                "id": 54,
+                "name": "uint256",
+                "nodeType": "ElementaryTypeName",
+                "src": "878:7:0",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              }
+            },
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 60,
+            "mutability": "mutable",
+            "name": "_jobOwnerFundLocked",
+            "nameLocation": "957:19:0",
+            "nodeType": "VariableDeclaration",
+            "scope": 83,
+            "src": "920:56:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
+              "typeString": "mapping(address => uint256)"
+            },
+            "typeName": {
+              "id": 59,
+              "keyType": {
+                "id": 57,
+                "name": "address",
+                "nodeType": "ElementaryTypeName",
+                "src": "928:7:0",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "920:27:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
+                "typeString": "mapping(address => uint256)"
+              },
+              "valueType": {
+                "id": 58,
+                "name": "uint256",
+                "nodeType": "ElementaryTypeName",
+                "src": "939:7:0",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              }
+            },
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 62,
+            "mutability": "mutable",
+            "name": "_workerIds",
+            "nameLocation": "1002:10:0",
+            "nodeType": "VariableDeclaration",
+            "scope": 83,
+            "src": "985:27:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 61,
+              "name": "uint256",
+              "nodeType": "ElementaryTypeName",
+              "src": "985:7:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 67,
+            "mutability": "mutable",
+            "name": "_workers",
+            "nameLocation": "1057:8:0",
+            "nodeType": "VariableDeclaration",
+            "scope": 83,
+            "src": "1021:44:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_address_$_t_struct$_Worker_$14_storage_$",
+              "typeString": "mapping(address => struct Accountable.Worker)"
+            },
+            "typeName": {
+              "id": 66,
+              "keyType": {
+                "id": 63,
+                "name": "address",
+                "nodeType": "ElementaryTypeName",
+                "src": "1029:7:0",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "1021:26:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_address_$_t_struct$_Worker_$14_storage_$",
+                "typeString": "mapping(address => struct Accountable.Worker)"
+              },
+              "valueType": {
+                "id": 65,
+                "nodeType": "UserDefinedTypeName",
+                "pathNode": {
+                  "id": 64,
+                  "name": "Worker",
+                  "nameLocations": [
+                    "1040:6:0"
+                  ],
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 14,
+                  "src": "1040:6:0"
+                },
+                "referencedDeclaration": 14,
+                "src": "1040:6:0",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_Worker_$14_storage_ptr",
+                  "typeString": "struct Accountable.Worker"
+                }
+              }
+            },
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 71,
+            "mutability": "mutable",
+            "name": "_validWorkers",
+            "nameLocation": "1108:13:0",
+            "nodeType": "VariableDeclaration",
+            "scope": 83,
+            "src": "1074:47:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
+              "typeString": "mapping(address => bool)"
+            },
+            "typeName": {
+              "id": 70,
+              "keyType": {
+                "id": 68,
+                "name": "address",
+                "nodeType": "ElementaryTypeName",
+                "src": "1082:7:0",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "1074:24:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
+                "typeString": "mapping(address => bool)"
+              },
+              "valueType": {
+                "id": 69,
+                "name": "bool",
+                "nodeType": "ElementaryTypeName",
+                "src": "1093:4:0",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bool",
+                  "typeString": "bool"
+                }
+              }
+            },
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 76,
+            "mutability": "mutable",
+            "name": "_biders",
+            "nameLocation": "1165:7:0",
+            "nodeType": "VariableDeclaration",
+            "scope": 83,
+            "src": "1130:42:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Bider_$45_storage_$",
+              "typeString": "mapping(uint256 => struct Accountable.Bider)"
+            },
+            "typeName": {
+              "id": 75,
+              "keyType": {
+                "id": 72,
+                "name": "uint256",
+                "nodeType": "ElementaryTypeName",
+                "src": "1138:7:0",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "1130:25:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Bider_$45_storage_$",
+                "typeString": "mapping(uint256 => struct Accountable.Bider)"
+              },
+              "valueType": {
+                "id": 74,
+                "nodeType": "UserDefinedTypeName",
+                "pathNode": {
+                  "id": 73,
+                  "name": "Bider",
+                  "nameLocations": [
+                    "1149:5:0"
+                  ],
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 45,
+                  "src": "1149:5:0"
+                },
+                "referencedDeclaration": 45,
+                "src": "1149:5:0",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_Bider_$45_storage_ptr",
+                  "typeString": "struct Accountable.Bider"
+                }
+              }
+            },
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 82,
+            "mutability": "mutable",
+            "name": "_jobBiddersAmount",
+            "nameLocation": "1238:17:0",
+            "nodeType": "VariableDeclaration",
+            "scope": 83,
+            "src": "1181:74:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_uint256_$_t_mapping$_t_address_$_t_uint256_$_$",
+              "typeString": "mapping(uint256 => mapping(address => uint256))"
+            },
+            "typeName": {
+              "id": 81,
+              "keyType": {
+                "id": 77,
+                "name": "uint256",
+                "nodeType": "ElementaryTypeName",
+                "src": "1189:7:0",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "1181:47:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_uint256_$_t_mapping$_t_address_$_t_uint256_$_$",
+                "typeString": "mapping(uint256 => mapping(address => uint256))"
+              },
+              "valueType": {
+                "id": 80,
+                "keyType": {
+                  "id": 78,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1208:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "nodeType": "Mapping",
+                "src": "1200:27:0",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
+                  "typeString": "mapping(address => uint256)"
+                },
+                "valueType": {
+                  "id": 79,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1219:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                }
+              }
+            },
+            "visibility": "internal"
+          }
+        ],
+        "scope": 84,
+        "src": "68:1193:0",
+        "usedErrors": [
+          3
+        ]
+      }
+    ],
+    "src": "33:1228:0"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.17+commit.8df45f5f.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.10",
+  "updatedAt": "2022-11-08T11:59:45.896Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

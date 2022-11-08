@@ -1,0 +1,264 @@
+{
+  "contractName": "Jobs",
+  "abi": [
+    {
+      "inputs": [],
+      "name": "InvalidWorker",
+      "type": "error"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "_jobOwner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "_jobWorker",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "_jobId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "_bidAmount",
+          "type": "uint256"
+        }
+      ],
+      "name": "BidAccepted",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "_jobOwner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "_jobBudget",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "string",
+          "name": "_jobName",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "_jobId",
+          "type": "uint256"
+        }
+      ],
+      "name": "JobRegistered",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_jobId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "_workerAdd",
+          "type": "address"
+        }
+      ],
+      "name": "acceptBid",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_jobId",
+          "type": "uint256"
+        }
+      ],
+      "name": "jobDone",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_jobName",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "_jobDescription",
+          "type": "string"
+        }
+      ],
+      "name": "registerJob",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.17+commit.8df45f5f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"InvalidWorker\",\"type\":\"error\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_jobOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_jobWorker\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"_jobId\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"_bidAmount\",\"type\":\"uint256\"}],\"name\":\"BidAccepted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_jobOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"_jobBudget\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"string\",\"name\":\"_jobName\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"_jobId\",\"type\":\"uint256\"}],\"name\":\"JobRegistered\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_jobId\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"_workerAdd\",\"type\":\"address\"}],\"name\":\"acceptBid\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_jobId\",\"type\":\"uint256\"}],\"name\":\"jobDone\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_jobName\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_jobDescription\",\"type\":\"string\"}],\"name\":\"registerJob\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/jobs/Jobs.sol\":\"Jobs\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/Accountable.sol\":{\"keccak256\":\"0x4d2e6c30e38a2df5abb8da09f819da78366e67c96d566d249225fd1d93271a16\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://57207884cf9839cd0eff64f95fd6b14be047ad78f39b72918a4ee74775da4644\",\"dweb:/ipfs/QmRkXDvgAeNECdp3cDY6dKQX46ZoGszuFEJ82B3QAir4TQ\"]},\"project:/contracts/jobs/JobManager.sol\":{\"keccak256\":\"0x7d03d0c217a3f70b7a83676a467aa0fa3ac33aab1fe61d72c3a28949925e46c0\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://3e89e8d057cddc0f28b28751fe12dbb34f147790090fc580357d635b91781fd0\",\"dweb:/ipfs/QmWqAYLAmLd9y9eaE2pLXXjdpGKcN5yxvUZsmNyi8WxgZs\"]},\"project:/contracts/jobs/JobWorkers.sol\":{\"keccak256\":\"0x15802684dad89b15914b4bf92134dc06ad4783703be12c9a2e55576649742df8\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://10e364ef6a3080be771a842fd0d31b5202bdafc3d2eff255fd5115a02d7ae471\",\"dweb:/ipfs/QmQJ2qMxVAoZNo59isJmdceWdsQq2T5yNJFDD1vZCQhHv6\"]},\"project:/contracts/jobs/Jobs.sol\":{\"keccak256\":\"0x7481f34ce08ffcffa120adebd72543535c9156c11e61fbde909223476e666f97\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://af9feb03afa2eacba578e0e5b8dde22bb731634e45d77303660e4d76dbb8b612\",\"dweb:/ipfs/QmWy9BGavw7DNGq9hL2NBSt8hcjUW5TkYLLb1TFobw5uU2\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: MIT\r\npragma solidity >=0.8.4 <0.9.0;\r\n\r\nimport './JobManager.sol';\r\nimport './JobWorkers.sol';\r\n\r\nabstract contract Jobs is JobManager, JobWorkers{}",
+  "sourcePath": "C:\\Users\\Neosoft\\Desktop\\NeoSoft\\POC\\truffle\\decentralized-job-market\\contracts\\jobs\\Jobs.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/jobs/Jobs.sol",
+    "exportedSymbols": {
+      "Accountable": [
+        83
+      ],
+      "JobManager": [
+        241
+      ],
+      "JobWorkers": [
+        509
+      ],
+      "Jobs": [
+        518
+      ]
+    },
+    "id": 519,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 511,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.8",
+          ".4",
+          "<",
+          "0.9",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "33:31:4"
+      },
+      {
+        "absolutePath": "project:/contracts/jobs/JobManager.sol",
+        "file": "./JobManager.sol",
+        "id": 512,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 519,
+        "sourceUnit": 242,
+        "src": "68:26:4",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "project:/contracts/jobs/JobWorkers.sol",
+        "file": "./JobWorkers.sol",
+        "id": 513,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 519,
+        "sourceUnit": 510,
+        "src": "96:26:4",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": true,
+        "baseContracts": [
+          {
+            "baseName": {
+              "id": 514,
+              "name": "JobManager",
+              "nameLocations": [
+                "152:10:4"
+              ],
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 241,
+              "src": "152:10:4"
+            },
+            "id": 515,
+            "nodeType": "InheritanceSpecifier",
+            "src": "152:10:4"
+          },
+          {
+            "baseName": {
+              "id": 516,
+              "name": "JobWorkers",
+              "nameLocations": [
+                "164:10:4"
+              ],
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 509,
+              "src": "164:10:4"
+            },
+            "id": 517,
+            "nodeType": "InheritanceSpecifier",
+            "src": "164:10:4"
+          }
+        ],
+        "canonicalName": "Jobs",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 518,
+        "linearizedBaseContracts": [
+          518,
+          509,
+          241,
+          83
+        ],
+        "name": "Jobs",
+        "nameLocation": "144:4:4",
+        "nodeType": "ContractDefinition",
+        "nodes": [],
+        "scope": 519,
+        "src": "126:50:4",
+        "usedErrors": [
+          3
+        ]
+      }
+    ],
+    "src": "33:143:4"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.17+commit.8df45f5f.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.10",
+  "updatedAt": "2022-11-08T11:59:45.980Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}
