@@ -6,8 +6,9 @@ import '../Accountable.sol';
 abstract contract JobManager is Accountable{
     event JobRegistered(address indexed _jobOwner, uint256 indexed _jobBudget, string indexed _jobName, uint256 _jobId);
 
-    function registerJob(string memory _jobName, string memory _jobDescription)external payable{
-        require(msg.value > 0, "Job budget should not be 0.");
+    function registerJob(string memory _jobName, string memory _jobDescription, uint256 _jobBudge)external payable{
+        uint256 _jobBudget = _jobBudge * 10**18;
+        require(_fundByJobOwner[msg.sender] + msg.value >= _jobBudget, "Insufficient Balance.");
 
         uint32 timeNow =  uint32(block.timestamp);
         _jobIds++;
@@ -22,7 +23,7 @@ abstract contract JobManager is Accountable{
             _job.jobRegisteredDate = timeNow;
             _job.jobStartedDate = 0;
             _job.jobCompletedDate = 0;
-            _job.jobBudget = msg.value;
+            _job.jobBudget = _jobBudget;
         
         _fundByJobOwner[msg.sender] += msg.value;
         emit JobRegistered(msg.sender, msg.value, _jobName ,_jobIds);

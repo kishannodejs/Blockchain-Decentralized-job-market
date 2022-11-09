@@ -28,10 +28,19 @@ abstract contract WorkerJobs is Accountable {
         _;
     }
 
-    function bidJob(uint256 _jobId, uint256 _bidAmount)
+
+    modifier notOwner(uint256 _jobId){
+        Job memory _job = _jobs[_jobId];
+        require(msg.sender !=_job.jobOwner, "Job owner not allowed to place bid.");
+        _;
+    }
+
+    function bidJob(uint256 _jobId, uint256 _bidAmoun)
         external
+        notOwner(_jobId)
         validJob(_jobId)
     {
+        uint256 _bidAmount = _bidAmoun * 10**18;
         if(!_validWorkers[msg.sender]) revert InvalidWorker();
         if (_jobBiddersAmount[_jobId][msg.sender] != 0) revert AlreadyBided();
 
@@ -58,10 +67,12 @@ abstract contract WorkerJobs is Accountable {
         emit SuccessfullyBid(msg.sender, _jobId, _bidAmount);
     }
 
-    function modifyBid(uint256 _jobId, uint256 _bidAmount)
+    function modifyBid(uint256 _jobId, uint256 _bidAmoun)
         external
+        notOwner(_jobId)
         validJob(_jobId)
     {
+        uint256 _bidAmount = _bidAmoun * 10**18;
         if(!_validWorkers[msg.sender]) revert InvalidWorker();
         if (_jobBiddersAmount[_jobId][msg.sender] == 0) revert NotBided();
 

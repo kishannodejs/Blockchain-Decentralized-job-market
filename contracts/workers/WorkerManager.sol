@@ -4,7 +4,7 @@ pragma solidity >=0.8.4 <0.9.0;
 import '../Accountable.sol';
 
 abstract contract WorkerManager is Accountable{
-    event WorkerRegister(address indexed _worker, string _workerName, uint256 _workerId);
+    event WorkerRegisterSuccessfully(address indexed _worker, string _workerName, uint256 _workerId);
     error AlreadyWorker();
 
     function registerWorker(string memory _workerName)external {
@@ -21,6 +21,6 @@ abstract contract WorkerManager is Accountable{
         );
         
         _validWorkers[msg.sender] = true;
-        emit WorkerRegister(msg.sender, _workerName, _workerIds);
+        emit WorkerRegisterSuccessfully(msg.sender, _workerName, _workerIds);
     }
 }

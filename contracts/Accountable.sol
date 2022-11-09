@@ -32,22 +32,27 @@ abstract contract Accountable {
         address biderAddress;
     }
 
-    uint256 internal _jobIds;
+    uint256 public _jobIds;
 
     mapping(uint256 => Job) public _jobs;
 
-    mapping(address => uint256) internal _fundByJobOwner;
+    mapping(address => uint256) public _fundByJobOwner;
 
-    mapping(address => uint256) internal _jobOwnerFundLocked;
+    mapping(address => uint256) public _jobOwnerFundLocked;
 
-    uint256 internal _workerIds;
+    uint256 public _workerIds;
 
     mapping(address => Worker) public _workers;
 
-    mapping(address => bool) internal _validWorkers;
+    mapping(address => bool) public _validWorkers;
 
-    mapping(uint256 => Bider) internal _biders;
+    mapping(uint256 => Bider) public _biders;
 
     mapping(uint256 => mapping(address => uint256)) internal _jobBiddersAmount;
 
+    function allBider(uint256 _jobId)external view returns(address [] memory){
+        Job memory _job = _jobs[_jobId];
+        return(_job.jobAllBiders);
+
+    }
 }
