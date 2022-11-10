@@ -29,11 +29,13 @@ abstract contract WorkerJobs is Accountable {
 
         Bider storage _bider = _biders[_jobId];
         if (
-            _bider.biderAddress != address(0x0) && _bidAmount < _bider.bidAmount
+            _bider.biderAddress == address(0x0)
         ) {
             _bider.bidAmount = _bidAmount;
             _bider.biderAddress = msg.sender;
-        } else {
+        } else if(msg.sender == _bider.biderAddress && _bidAmount < _bider.bidAmount) {
+            _bider.bidAmount = _bidAmount;
+        } else if(msg.sender != _bider.biderAddress && _bidAmount < _bider.bidAmount){
             _bider.bidAmount = _bidAmount;
             _bider.biderAddress = msg.sender;
         }
