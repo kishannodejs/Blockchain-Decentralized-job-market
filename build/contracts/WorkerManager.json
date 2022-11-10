@@ -3,13 +3,175 @@
   "abi": [
     {
       "inputs": [],
+      "name": "AlreadyBided",
+      "type": "error"
+    },
+    {
+      "inputs": [],
       "name": "AlreadyWorker",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "AlreadyWorking",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "GreaterThanPreviousBid",
       "type": "error"
     },
     {
       "inputs": [],
       "name": "InvalidWorker",
       "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "NotBided",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "OverBudget",
+      "type": "error"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "_jobOwner",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "_amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "AmountWithdrawSuccessfully",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "_jobOwner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "_jobWorker",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "_jobId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "_bidAmount",
+          "type": "uint256"
+        }
+      ],
+      "name": "BidAccepted",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "_workerAdd",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "_jobId",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "_bidAmount",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "_prevBidAmount",
+          "type": "uint256"
+        }
+      ],
+      "name": "BidModifiedSuccessfully",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "_jobOwner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "_jobBudget",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "string",
+          "name": "_jobName",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "_jobId",
+          "type": "uint256"
+        }
+      ],
+      "name": "JobRegistered",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "_workerAdd",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "_jobId",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "_bidAmount",
+          "type": "uint256"
+        }
+      ],
+      "name": "SuccessfullyBid",
+      "type": "event"
     },
     {
       "anonymous": false,
@@ -33,8 +195,280 @@
           "type": "uint256"
         }
       ],
-      "name": "WorkerRegister",
+      "name": "WorkerRegisterSuccessfully",
       "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "_jobWorker",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "_jobId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "_amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "jobCompleted",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "_biders",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "bidAmount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "biderAddress",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "_fundByJobOwner",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "_jobIds",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "_jobOwnerFundLocked",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "_jobs",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "jobId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "jobName",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "jobDescription",
+          "type": "string"
+        },
+        {
+          "internalType": "address",
+          "name": "jobOwner",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "jobWorker",
+          "type": "address"
+        },
+        {
+          "internalType": "bool",
+          "name": "isCompleted",
+          "type": "bool"
+        },
+        {
+          "internalType": "bool",
+          "name": "isJobValid",
+          "type": "bool"
+        },
+        {
+          "internalType": "uint32",
+          "name": "jobRegisteredDate",
+          "type": "uint32"
+        },
+        {
+          "internalType": "uint32",
+          "name": "jobStartedDate",
+          "type": "uint32"
+        },
+        {
+          "internalType": "uint32",
+          "name": "jobCompletedDate",
+          "type": "uint32"
+        },
+        {
+          "internalType": "uint256",
+          "name": "jobBudget",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "_validWorkers",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "_workerIds",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "_workers",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "workerId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "workerName",
+          "type": "string"
+        },
+        {
+          "internalType": "bool",
+          "name": "isWorking",
+          "type": "bool"
+        },
+        {
+          "internalType": "uint32",
+          "name": "workerRegisteredDate",
+          "type": "uint32"
+        },
+        {
+          "internalType": "uint256",
+          "name": "jobsCompleted",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_jobId",
+          "type": "uint256"
+        }
+      ],
+      "name": "allBider",
+      "outputs": [
+        {
+          "internalType": "address[]",
+          "name": "",
+          "type": "address[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "extraFund",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
     },
     {
       "inputs": [
@@ -50,7 +484,7 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.8.17+commit.8df45f5f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"AlreadyWorker\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidWorker\",\"type\":\"error\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_worker\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"_workerName\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"_workerId\",\"type\":\"uint256\"}],\"name\":\"WorkerRegister\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_workerName\",\"type\":\"string\"}],\"name\":\"registerWorker\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/workers/WorkerManager.sol\":\"WorkerManager\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/Accountable.sol\":{\"keccak256\":\"0x4d2e6c30e38a2df5abb8da09f819da78366e67c96d566d249225fd1d93271a16\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://57207884cf9839cd0eff64f95fd6b14be047ad78f39b72918a4ee74775da4644\",\"dweb:/ipfs/QmRkXDvgAeNECdp3cDY6dKQX46ZoGszuFEJ82B3QAir4TQ\"]},\"project:/contracts/workers/WorkerManager.sol\":{\"keccak256\":\"0x0151c05ff4a64a64682d9b748284ec339d7a7b8b010e725082e3b1202e586784\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://ed5213b51f8d0df72a209bf46bf595f74b02cb06d7be69fc2fb50bdb0a78c870\",\"dweb:/ipfs/QmQbx6ywBMZJHRUhNTgGw2gSGh7jfibGbEfDgoo1F6iNrc\"]}},\"version\":1}",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.17+commit.8df45f5f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"AlreadyBided\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"AlreadyWorker\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"AlreadyWorking\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"GreaterThanPreviousBid\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidWorker\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"NotBided\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OverBudget\",\"type\":\"error\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_jobOwner\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"_amount\",\"type\":\"uint256\"}],\"name\":\"AmountWithdrawSuccessfully\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_jobOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_jobWorker\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"_jobId\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"_bidAmount\",\"type\":\"uint256\"}],\"name\":\"BidAccepted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_workerAdd\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"_jobId\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"_bidAmount\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"_prevBidAmount\",\"type\":\"uint256\"}],\"name\":\"BidModifiedSuccessfully\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_jobOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"_jobBudget\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"string\",\"name\":\"_jobName\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"_jobId\",\"type\":\"uint256\"}],\"name\":\"JobRegistered\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_workerAdd\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"_jobId\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"_bidAmount\",\"type\":\"uint256\"}],\"name\":\"SuccessfullyBid\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_worker\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"_workerName\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"_workerId\",\"type\":\"uint256\"}],\"name\":\"WorkerRegisterSuccessfully\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_jobWorker\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"_jobId\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"_amount\",\"type\":\"uint256\"}],\"name\":\"jobCompleted\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"_biders\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"bidAmount\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"biderAddress\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"_fundByJobOwner\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"_jobIds\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"_jobOwnerFundLocked\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"_jobs\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"jobId\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"jobName\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"jobDescription\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"jobOwner\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"jobWorker\",\"type\":\"address\"},{\"internalType\":\"bool\",\"name\":\"isCompleted\",\"type\":\"bool\"},{\"internalType\":\"bool\",\"name\":\"isJobValid\",\"type\":\"bool\"},{\"internalType\":\"uint32\",\"name\":\"jobRegisteredDate\",\"type\":\"uint32\"},{\"internalType\":\"uint32\",\"name\":\"jobStartedDate\",\"type\":\"uint32\"},{\"internalType\":\"uint32\",\"name\":\"jobCompletedDate\",\"type\":\"uint32\"},{\"internalType\":\"uint256\",\"name\":\"jobBudget\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"_validWorkers\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"_workerIds\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"_workers\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"workerId\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"workerName\",\"type\":\"string\"},{\"internalType\":\"bool\",\"name\":\"isWorking\",\"type\":\"bool\"},{\"internalType\":\"uint32\",\"name\":\"workerRegisteredDate\",\"type\":\"uint32\"},{\"internalType\":\"uint256\",\"name\":\"jobsCompleted\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_jobId\",\"type\":\"uint256\"}],\"name\":\"allBider\",\"outputs\":[{\"internalType\":\"address[]\",\"name\":\"\",\"type\":\"address[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"extraFund\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_workerName\",\"type\":\"string\"}],\"name\":\"registerWorker\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/workers/WorkerManager.sol\":\"WorkerManager\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/Accountable.sol\":{\"keccak256\":\"0x91617522b88eaf871302a1b152f0a0175afa2dd2b620a18109fc4ec29c4b0345\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://03d795e816a4038f70e69956dac69257235738b5a188a8c7a0f461091bee5153\",\"dweb:/ipfs/QmNo6mWUFaTURLQ23kZVUaR4d2Dhk6mLnif6hmakj3b3Ss\"]},\"project:/contracts/workers/WorkerManager.sol\":{\"keccak256\":\"0x6f09e4ace330b6e17edb9bf35deef90e57dc8264c00fd07cdc4e953650617ff6\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://375955be7cadf2a0056bb47215f4ecb3c5a362e291dd7455252b3555cb5ecf6c\",\"dweb:/ipfs/QmSYaiU64vLXFxLttwiESqaBhTqKdbB8JdDUxuAzHJSkqy\"]}},\"version\":1}",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "immutableReferences": {},
@@ -58,24 +492,24 @@
   "deployedGeneratedSources": [],
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": "// SPDX-License-Identifier: MIT\r\npragma solidity >=0.8.4 <0.9.0;\r\n\r\nimport '../Accountable.sol';\r\n\r\nabstract contract WorkerManager is Accountable{\r\n    event WorkerRegister(address indexed _worker, string _workerName, uint256 _workerId);\r\n    error AlreadyWorker();\r\n\r\n    function registerWorker(string memory _workerName)external {\r\n        if(_validWorkers[msg.sender]) revert AlreadyWorker();\r\n\r\n        uint32 timeNow = uint32(block.timestamp);\r\n        _workerIds++;\r\n        _workers[msg.sender] = Worker(\r\n            _workerIds,\r\n            _workerName,\r\n            false,\r\n            timeNow,\r\n            0\r\n        );\r\n        \r\n        _validWorkers[msg.sender] = true;\r\n        emit WorkerRegister(msg.sender, _workerName, _workerIds);\r\n    }\r\n}",
+  "source": "// SPDX-License-Identifier: MIT\r\npragma solidity >=0.8.4 <0.9.0;\r\n\r\nimport '../Accountable.sol';\r\n\r\nabstract contract WorkerManager is Accountable{\r\n\r\n    function registerWorker(string memory _workerName)external {\r\n        if(_validWorkers[msg.sender]) revert(\"AlreadyWorker\");\r\n        // if(_validWorkers[msg.sender]) revert AlreadyWorker();\r\n\r\n        uint32 timeNow = uint32(block.timestamp);\r\n        _workerIds++;\r\n        _workers[msg.sender] = Worker(\r\n            _workerIds,\r\n            _workerName,\r\n            false,\r\n            timeNow,\r\n            0\r\n        );\r\n        \r\n        emit WorkerRegisterSuccessfully(msg.sender, _workerName, _workerIds);\r\n    }\r\n}",
   "sourcePath": "C:\\Users\\Neosoft\\Desktop\\NeoSoft\\POC\\truffle\\decentralized-job-market\\contracts\\workers\\WorkerManager.sol",
   "ast": {
     "absolutePath": "project:/contracts/workers/WorkerManager.sol",
     "exportedSymbols": {
       "Accountable": [
-        83
+        332
       ],
       "WorkerManager": [
-        898
+        1109
       ]
     },
-    "id": 899,
+    "id": 1110,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 832,
+        "id": 1059,
         "literals": [
           "solidity",
           ">=",
@@ -86,17 +520,17 @@
           ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "33:31:6"
+        "src": "33:31:7"
       },
       {
         "absolutePath": "project:/contracts/Accountable.sol",
         "file": "../Accountable.sol",
-        "id": 833,
+        "id": 1060,
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
-        "scope": 899,
-        "sourceUnit": 84,
-        "src": "68:28:6",
+        "scope": 1110,
+        "sourceUnit": 333,
+        "src": "68:28:7",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -105,191 +539,76 @@
         "baseContracts": [
           {
             "baseName": {
-              "id": 834,
+              "id": 1061,
               "name": "Accountable",
               "nameLocations": [
-                "135:11:6"
+                "135:11:7"
               ],
               "nodeType": "IdentifierPath",
-              "referencedDeclaration": 83,
-              "src": "135:11:6"
+              "referencedDeclaration": 332,
+              "src": "135:11:7"
             },
-            "id": 835,
+            "id": 1062,
             "nodeType": "InheritanceSpecifier",
-            "src": "135:11:6"
+            "src": "135:11:7"
           }
         ],
         "canonicalName": "WorkerManager",
         "contractDependencies": [],
         "contractKind": "contract",
         "fullyImplemented": true,
-        "id": 898,
+        "id": 1109,
         "linearizedBaseContracts": [
-          898,
-          83
+          1109,
+          332
         ],
         "name": "WorkerManager",
-        "nameLocation": "118:13:6",
+        "nameLocation": "118:13:7",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
-            "anonymous": false,
-            "eventSelector": "ebe8033066ccff2d9bf7c9f85f6682ddc377058545f48b4ac1ddf22284f0eb25",
-            "id": 843,
-            "name": "WorkerRegister",
-            "nameLocation": "159:14:6",
-            "nodeType": "EventDefinition",
-            "parameters": {
-              "id": 842,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 837,
-                  "indexed": true,
-                  "mutability": "mutable",
-                  "name": "_worker",
-                  "nameLocation": "190:7:6",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 843,
-                  "src": "174:23:6",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 836,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "174:7:6",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 839,
-                  "indexed": false,
-                  "mutability": "mutable",
-                  "name": "_workerName",
-                  "nameLocation": "206:11:6",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 843,
-                  "src": "199:18:6",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_string_memory_ptr",
-                    "typeString": "string"
-                  },
-                  "typeName": {
-                    "id": 838,
-                    "name": "string",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "199:6:6",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_string_storage_ptr",
-                      "typeString": "string"
-                    }
-                  },
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 841,
-                  "indexed": false,
-                  "mutability": "mutable",
-                  "name": "_workerId",
-                  "nameLocation": "227:9:6",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 843,
-                  "src": "219:17:6",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 840,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "219:7:6",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "visibility": "internal"
-                }
-              ],
-              "src": "173:64:6"
-            },
-            "src": "153:85:6"
-          },
-          {
-            "errorSelector": "206e00b4",
-            "id": 845,
-            "name": "AlreadyWorker",
-            "nameLocation": "250:13:6",
-            "nodeType": "ErrorDefinition",
-            "parameters": {
-              "id": 844,
-              "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "263:2:6"
-            },
-            "src": "244:22:6"
-          },
-          {
             "body": {
-              "id": 896,
+              "id": 1107,
               "nodeType": "Block",
-              "src": "333:427:6",
+              "src": "214:463:7",
               "statements": [
                 {
                   "condition": {
                     "baseExpression": {
-                      "id": 850,
+                      "id": 1067,
                       "name": "_validWorkers",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 71,
-                      "src": "347:13:6",
+                      "referencedDeclaration": 143,
+                      "src": "228:13:7",
                       "typeDescriptions": {
                         "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
                         "typeString": "mapping(address => bool)"
                       }
                     },
-                    "id": 853,
+                    "id": 1070,
                     "indexExpression": {
                       "expression": {
-                        "id": 851,
+                        "id": 1068,
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 4294967281,
-                        "src": "361:3:6",
+                        "src": "242:3:7",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_message",
                           "typeString": "msg"
                         }
                       },
-                      "id": 852,
+                      "id": 1069,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
-                      "memberLocation": "365:6:6",
+                      "memberLocation": "246:6:7",
                       "memberName": "sender",
                       "nodeType": "MemberAccess",
-                      "src": "361:10:6",
+                      "src": "242:10:7",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
@@ -300,32 +619,57 @@
                     "isPure": false,
                     "lValueRequested": false,
                     "nodeType": "IndexAccess",
-                    "src": "347:25:6",
+                    "src": "228:25:7",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
                     }
                   },
-                  "id": 857,
+                  "id": 1075,
                   "nodeType": "IfStatement",
-                  "src": "344:52:6",
+                  "src": "225:53:7",
                   "trueBody": {
-                    "errorCall": {
-                      "arguments": [],
+                    "expression": {
+                      "arguments": [
+                        {
+                          "hexValue": "416c7265616479576f726b6572",
+                          "id": 1072,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "string",
+                          "lValueRequested": false,
+                          "nodeType": "Literal",
+                          "src": "262:15:7",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_stringliteral_200e6919c8bf2d0e8beed070eba514ccd4345c669136b42bc6c9f057848caff1",
+                            "typeString": "literal_string \"AlreadyWorker\""
+                          },
+                          "value": "AlreadyWorker"
+                        }
+                      ],
                       "expression": {
-                        "argumentTypes": [],
-                        "id": 854,
-                        "name": "AlreadyWorker",
+                        "argumentTypes": [
+                          {
+                            "typeIdentifier": "t_stringliteral_200e6919c8bf2d0e8beed070eba514ccd4345c669136b42bc6c9f057848caff1",
+                            "typeString": "literal_string \"AlreadyWorker\""
+                          }
+                        ],
+                        "id": 1071,
+                        "name": "revert",
                         "nodeType": "Identifier",
-                        "overloadedDeclarations": [],
-                        "referencedDeclaration": 845,
-                        "src": "381:13:6",
+                        "overloadedDeclarations": [
+                          4294967277,
+                          4294967277
+                        ],
+                        "referencedDeclaration": 4294967277,
+                        "src": "255:6:7",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_function_error_pure$__$returns$__$",
-                          "typeString": "function () pure"
+                          "typeIdentifier": "t_function_revert_pure$_t_string_memory_ptr_$returns$__$",
+                          "typeString": "function (string memory) pure"
                         }
                       },
-                      "id": 855,
+                      "id": 1073,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -334,32 +678,32 @@
                       "nameLocations": [],
                       "names": [],
                       "nodeType": "FunctionCall",
-                      "src": "381:15:6",
+                      "src": "255:23:7",
                       "tryCall": false,
                       "typeDescriptions": {
                         "typeIdentifier": "t_tuple$__$",
                         "typeString": "tuple()"
                       }
                     },
-                    "id": 856,
-                    "nodeType": "RevertStatement",
-                    "src": "374:22:6"
+                    "id": 1074,
+                    "nodeType": "ExpressionStatement",
+                    "src": "255:23:7"
                   }
                 },
                 {
                   "assignments": [
-                    859
+                    1077
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 859,
+                      "id": 1077,
                       "mutability": "mutable",
                       "name": "timeNow",
-                      "nameLocation": "416:7:6",
+                      "nameLocation": "364:7:7",
                       "nodeType": "VariableDeclaration",
-                      "scope": 896,
-                      "src": "409:14:6",
+                      "scope": 1107,
+                      "src": "357:14:7",
                       "stateVariable": false,
                       "storageLocation": "default",
                       "typeDescriptions": {
@@ -367,10 +711,10 @@
                         "typeString": "uint32"
                       },
                       "typeName": {
-                        "id": 858,
+                        "id": 1076,
                         "name": "uint32",
                         "nodeType": "ElementaryTypeName",
-                        "src": "409:6:6",
+                        "src": "357:6:7",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint32",
                           "typeString": "uint32"
@@ -379,31 +723,31 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 865,
+                  "id": 1083,
                   "initialValue": {
                     "arguments": [
                       {
                         "expression": {
-                          "id": 862,
+                          "id": 1080,
                           "name": "block",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
                           "referencedDeclaration": 4294967292,
-                          "src": "433:5:6",
+                          "src": "381:5:7",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_block",
                             "typeString": "block"
                           }
                         },
-                        "id": 863,
+                        "id": 1081,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
-                        "memberLocation": "439:9:6",
+                        "memberLocation": "387:9:7",
                         "memberName": "timestamp",
                         "nodeType": "MemberAccess",
-                        "src": "433:15:6",
+                        "src": "381:15:7",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -417,26 +761,26 @@
                           "typeString": "uint256"
                         }
                       ],
-                      "id": 861,
+                      "id": 1079,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
                       "lValueRequested": false,
                       "nodeType": "ElementaryTypeNameExpression",
-                      "src": "426:6:6",
+                      "src": "374:6:7",
                       "typeDescriptions": {
                         "typeIdentifier": "t_type$_t_uint32_$",
                         "typeString": "type(uint32)"
                       },
                       "typeName": {
-                        "id": 860,
+                        "id": 1078,
                         "name": "uint32",
                         "nodeType": "ElementaryTypeName",
-                        "src": "426:6:6",
+                        "src": "374:6:7",
                         "typeDescriptions": {}
                       }
                     },
-                    "id": 864,
+                    "id": 1082,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -445,7 +789,7 @@
                     "nameLocations": [],
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "426:23:6",
+                    "src": "374:23:7",
                     "tryCall": false,
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint32",
@@ -453,11 +797,11 @@
                     }
                   },
                   "nodeType": "VariableDeclarationStatement",
-                  "src": "409:40:6"
+                  "src": "357:40:7"
                 },
                 {
                   "expression": {
-                    "id": 867,
+                    "id": 1085,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -465,14 +809,14 @@
                     "nodeType": "UnaryOperation",
                     "operator": "++",
                     "prefix": false,
-                    "src": "460:12:6",
+                    "src": "408:12:7",
                     "subExpression": {
-                      "id": 866,
+                      "id": 1084,
                       "name": "_workerIds",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 62,
-                      "src": "460:10:6",
+                      "referencedDeclaration": 134,
+                      "src": "408:10:7",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -483,53 +827,53 @@
                       "typeString": "uint256"
                     }
                   },
-                  "id": 868,
+                  "id": 1086,
                   "nodeType": "ExpressionStatement",
-                  "src": "460:12:6"
+                  "src": "408:12:7"
                 },
                 {
                   "expression": {
-                    "id": 880,
+                    "id": 1098,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "baseExpression": {
-                        "id": 869,
+                        "id": 1087,
                         "name": "_workers",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 67,
-                        "src": "483:8:6",
+                        "referencedDeclaration": 139,
+                        "src": "431:8:7",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_mapping$_t_address_$_t_struct$_Worker_$14_storage_$",
+                          "typeIdentifier": "t_mapping$_t_address_$_t_struct$_Worker_$86_storage_$",
                           "typeString": "mapping(address => struct Accountable.Worker storage ref)"
                         }
                       },
-                      "id": 872,
+                      "id": 1090,
                       "indexExpression": {
                         "expression": {
-                          "id": 870,
+                          "id": 1088,
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
                           "referencedDeclaration": 4294967281,
-                          "src": "492:3:6",
+                          "src": "440:3:7",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
                             "typeString": "msg"
                           }
                         },
-                        "id": 871,
+                        "id": 1089,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
-                        "memberLocation": "496:6:6",
+                        "memberLocation": "444:6:7",
                         "memberName": "sender",
                         "nodeType": "MemberAccess",
-                        "src": "492:10:6",
+                        "src": "440:10:7",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -540,9 +884,9 @@
                       "isPure": false,
                       "lValueRequested": true,
                       "nodeType": "IndexAccess",
-                      "src": "483:20:6",
+                      "src": "431:20:7",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Worker_$14_storage",
+                        "typeIdentifier": "t_struct$_Worker_$86_storage",
                         "typeString": "struct Accountable.Worker storage ref"
                       }
                     },
@@ -551,24 +895,24 @@
                     "rightHandSide": {
                       "arguments": [
                         {
-                          "id": 874,
+                          "id": 1092,
                           "name": "_workerIds",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 62,
-                          "src": "527:10:6",
+                          "referencedDeclaration": 134,
+                          "src": "475:10:7",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
                             "typeString": "uint256"
                           }
                         },
                         {
-                          "id": 875,
+                          "id": 1093,
                           "name": "_workerName",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 847,
-                          "src": "552:11:6",
+                          "referencedDeclaration": 1064,
+                          "src": "500:11:7",
                           "typeDescriptions": {
                             "typeIdentifier": "t_string_memory_ptr",
                             "typeString": "string memory"
@@ -576,14 +920,14 @@
                         },
                         {
                           "hexValue": "66616c7365",
-                          "id": 876,
+                          "id": 1094,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
                           "kind": "bool",
                           "lValueRequested": false,
                           "nodeType": "Literal",
-                          "src": "578:5:6",
+                          "src": "526:5:7",
                           "typeDescriptions": {
                             "typeIdentifier": "t_bool",
                             "typeString": "bool"
@@ -591,12 +935,12 @@
                           "value": "false"
                         },
                         {
-                          "id": 877,
+                          "id": 1095,
                           "name": "timeNow",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 859,
-                          "src": "598:7:6",
+                          "referencedDeclaration": 1077,
+                          "src": "546:7:7",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint32",
                             "typeString": "uint32"
@@ -604,14 +948,14 @@
                         },
                         {
                           "hexValue": "30",
-                          "id": 878,
+                          "id": 1096,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
                           "kind": "number",
                           "lValueRequested": false,
                           "nodeType": "Literal",
-                          "src": "620:1:6",
+                          "src": "568:1:7",
                           "typeDescriptions": {
                             "typeIdentifier": "t_rational_0_by_1",
                             "typeString": "int_const 0"
@@ -642,18 +986,18 @@
                             "typeString": "int_const 0"
                           }
                         ],
-                        "id": 873,
+                        "id": 1091,
                         "name": "Worker",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 14,
-                        "src": "506:6:6",
+                        "referencedDeclaration": 86,
+                        "src": "454:6:7",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_struct$_Worker_$14_storage_ptr_$",
+                          "typeIdentifier": "t_type$_t_struct$_Worker_$86_storage_ptr_$",
                           "typeString": "type(struct Accountable.Worker storage pointer)"
                         }
                       },
-                      "id": 879,
+                      "id": 1097,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -662,159 +1006,72 @@
                       "nameLocations": [],
                       "names": [],
                       "nodeType": "FunctionCall",
-                      "src": "506:126:6",
+                      "src": "454:126:7",
                       "tryCall": false,
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Worker_$14_memory_ptr",
+                        "typeIdentifier": "t_struct$_Worker_$86_memory_ptr",
                         "typeString": "struct Accountable.Worker memory"
                       }
                     },
-                    "src": "483:149:6",
+                    "src": "431:149:7",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_Worker_$14_storage",
+                      "typeIdentifier": "t_struct$_Worker_$86_storage",
                       "typeString": "struct Accountable.Worker storage ref"
                     }
                   },
-                  "id": 881,
+                  "id": 1099,
                   "nodeType": "ExpressionStatement",
-                  "src": "483:149:6"
-                },
-                {
-                  "expression": {
-                    "id": 887,
-                    "isConstant": false,
-                    "isLValue": false,
-                    "isPure": false,
-                    "lValueRequested": false,
-                    "leftHandSide": {
-                      "baseExpression": {
-                        "id": 882,
-                        "name": "_validWorkers",
-                        "nodeType": "Identifier",
-                        "overloadedDeclarations": [],
-                        "referencedDeclaration": 71,
-                        "src": "653:13:6",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
-                          "typeString": "mapping(address => bool)"
-                        }
-                      },
-                      "id": 885,
-                      "indexExpression": {
-                        "expression": {
-                          "id": 883,
-                          "name": "msg",
-                          "nodeType": "Identifier",
-                          "overloadedDeclarations": [],
-                          "referencedDeclaration": 4294967281,
-                          "src": "667:3:6",
-                          "typeDescriptions": {
-                            "typeIdentifier": "t_magic_message",
-                            "typeString": "msg"
-                          }
-                        },
-                        "id": 884,
-                        "isConstant": false,
-                        "isLValue": false,
-                        "isPure": false,
-                        "lValueRequested": false,
-                        "memberLocation": "671:6:6",
-                        "memberName": "sender",
-                        "nodeType": "MemberAccess",
-                        "src": "667:10:6",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_address",
-                          "typeString": "address"
-                        }
-                      },
-                      "isConstant": false,
-                      "isLValue": true,
-                      "isPure": false,
-                      "lValueRequested": true,
-                      "nodeType": "IndexAccess",
-                      "src": "653:25:6",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_bool",
-                        "typeString": "bool"
-                      }
-                    },
-                    "nodeType": "Assignment",
-                    "operator": "=",
-                    "rightHandSide": {
-                      "hexValue": "74727565",
-                      "id": 886,
-                      "isConstant": false,
-                      "isLValue": false,
-                      "isPure": true,
-                      "kind": "bool",
-                      "lValueRequested": false,
-                      "nodeType": "Literal",
-                      "src": "681:4:6",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_bool",
-                        "typeString": "bool"
-                      },
-                      "value": "true"
-                    },
-                    "src": "653:32:6",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_bool",
-                      "typeString": "bool"
-                    }
-                  },
-                  "id": 888,
-                  "nodeType": "ExpressionStatement",
-                  "src": "653:32:6"
+                  "src": "431:149:7"
                 },
                 {
                   "eventCall": {
                     "arguments": [
                       {
                         "expression": {
-                          "id": 890,
+                          "id": 1101,
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
                           "referencedDeclaration": 4294967281,
-                          "src": "716:3:6",
+                          "src": "633:3:7",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
                             "typeString": "msg"
                           }
                         },
-                        "id": 891,
+                        "id": 1102,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
-                        "memberLocation": "720:6:6",
+                        "memberLocation": "637:6:7",
                         "memberName": "sender",
                         "nodeType": "MemberAccess",
-                        "src": "716:10:6",
+                        "src": "633:10:7",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
                         }
                       },
                       {
-                        "id": 892,
+                        "id": 1103,
                         "name": "_workerName",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 847,
-                        "src": "728:11:6",
+                        "referencedDeclaration": 1064,
+                        "src": "645:11:7",
                         "typeDescriptions": {
                           "typeIdentifier": "t_string_memory_ptr",
                           "typeString": "string memory"
                         }
                       },
                       {
-                        "id": 893,
+                        "id": 1104,
                         "name": "_workerIds",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 62,
-                        "src": "741:10:6",
+                        "referencedDeclaration": 134,
+                        "src": "658:10:7",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -836,18 +1093,18 @@
                           "typeString": "uint256"
                         }
                       ],
-                      "id": 889,
-                      "name": "WorkerRegister",
+                      "id": 1100,
+                      "name": "WorkerRegisterSuccessfully",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 843,
-                      "src": "701:14:6",
+                      "referencedDeclaration": 49,
+                      "src": "606:26:7",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_event_nonpayable$_t_address_$_t_string_memory_ptr_$_t_uint256_$returns$__$",
                         "typeString": "function (address,string memory,uint256)"
                       }
                     },
-                    "id": 894,
+                    "id": 1105,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -856,40 +1113,40 @@
                     "nameLocations": [],
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "701:51:6",
+                    "src": "606:63:7",
                     "tryCall": false,
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 895,
+                  "id": 1106,
                   "nodeType": "EmitStatement",
-                  "src": "696:56:6"
+                  "src": "601:68:7"
                 }
               ]
             },
             "functionSelector": "80c8f4fa",
-            "id": 897,
+            "id": 1108,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "registerWorker",
-            "nameLocation": "283:14:6",
+            "nameLocation": "164:14:7",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 848,
+              "id": 1065,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 847,
+                  "id": 1064,
                   "mutability": "mutable",
                   "name": "_workerName",
-                  "nameLocation": "312:11:6",
+                  "nameLocation": "193:11:7",
                   "nodeType": "VariableDeclaration",
-                  "scope": 897,
-                  "src": "298:25:6",
+                  "scope": 1108,
+                  "src": "179:25:7",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -897,10 +1154,10 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 846,
+                    "id": 1063,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "298:6:6",
+                    "src": "179:6:7",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -909,30 +1166,35 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "297:27:6"
+              "src": "178:27:7"
             },
             "returnParameters": {
-              "id": 849,
+              "id": 1066,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "333:0:6"
+              "src": "214:0:7"
             },
-            "scope": 898,
-            "src": "274:486:6",
+            "scope": 1109,
+            "src": "155:522:7",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 899,
-        "src": "100:663:6",
+        "scope": 1110,
+        "src": "100:580:7",
         "usedErrors": [
           3,
-          845
+          5,
+          7,
+          9,
+          11,
+          13,
+          15
         ]
       }
     ],
-    "src": "33:730:6"
+    "src": "33:647:7"
   },
   "compiler": {
     "name": "solc",
@@ -940,7 +1202,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.10",
-  "updatedAt": "2022-11-08T11:59:46.023Z",
+  "updatedAt": "2022-11-10T04:50:45.800Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},

@@ -3,8 +3,57 @@
   "abi": [
     {
       "inputs": [],
+      "name": "AlreadyBided",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "AlreadyWorker",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "AlreadyWorking",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "GreaterThanPreviousBid",
+      "type": "error"
+    },
+    {
+      "inputs": [],
       "name": "InvalidWorker",
       "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "NotBided",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "OverBudget",
+      "type": "error"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "_jobOwner",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "_amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "AmountWithdrawSuccessfully",
+      "type": "event"
     },
     {
       "anonymous": false,
@@ -38,6 +87,390 @@
       "type": "event"
     },
     {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "_workerAdd",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "_jobId",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "_bidAmount",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "_prevBidAmount",
+          "type": "uint256"
+        }
+      ],
+      "name": "BidModifiedSuccessfully",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "_jobOwner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "_jobBudget",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "string",
+          "name": "_jobName",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "_jobId",
+          "type": "uint256"
+        }
+      ],
+      "name": "JobRegistered",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "_workerAdd",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "_jobId",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "_bidAmount",
+          "type": "uint256"
+        }
+      ],
+      "name": "SuccessfullyBid",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "_worker",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "_workerName",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "_workerId",
+          "type": "uint256"
+        }
+      ],
+      "name": "WorkerRegisterSuccessfully",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "_jobWorker",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "_jobId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "_amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "jobCompleted",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "_biders",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "bidAmount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "biderAddress",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "_fundByJobOwner",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "_jobIds",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "_jobOwnerFundLocked",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "_jobs",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "jobId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "jobName",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "jobDescription",
+          "type": "string"
+        },
+        {
+          "internalType": "address",
+          "name": "jobOwner",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "jobWorker",
+          "type": "address"
+        },
+        {
+          "internalType": "bool",
+          "name": "isCompleted",
+          "type": "bool"
+        },
+        {
+          "internalType": "bool",
+          "name": "isJobValid",
+          "type": "bool"
+        },
+        {
+          "internalType": "uint32",
+          "name": "jobRegisteredDate",
+          "type": "uint32"
+        },
+        {
+          "internalType": "uint32",
+          "name": "jobStartedDate",
+          "type": "uint32"
+        },
+        {
+          "internalType": "uint32",
+          "name": "jobCompletedDate",
+          "type": "uint32"
+        },
+        {
+          "internalType": "uint256",
+          "name": "jobBudget",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "_validWorkers",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "_workerIds",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "_workers",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "workerId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "workerName",
+          "type": "string"
+        },
+        {
+          "internalType": "bool",
+          "name": "isWorking",
+          "type": "bool"
+        },
+        {
+          "internalType": "uint32",
+          "name": "workerRegisteredDate",
+          "type": "uint32"
+        },
+        {
+          "internalType": "uint256",
+          "name": "jobsCompleted",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_jobId",
+          "type": "uint256"
+        }
+      ],
+      "name": "allBider",
+      "outputs": [
+        {
+          "internalType": "address[]",
+          "name": "",
+          "type": "address[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "extraFund",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
       "inputs": [
         {
           "internalType": "uint256",
@@ -56,20 +489,14 @@
       "type": "function"
     },
     {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "_jobId",
-          "type": "uint256"
-        }
-      ],
-      "name": "jobDone",
+      "inputs": [],
+      "name": "withdrawExtraAmount",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.8.17+commit.8df45f5f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"InvalidWorker\",\"type\":\"error\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_jobOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_jobWorker\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"_jobId\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"_bidAmount\",\"type\":\"uint256\"}],\"name\":\"BidAccepted\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_jobId\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"_workerAdd\",\"type\":\"address\"}],\"name\":\"acceptBid\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_jobId\",\"type\":\"uint256\"}],\"name\":\"jobDone\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/jobs/JobWorkers.sol\":\"JobWorkers\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/Accountable.sol\":{\"keccak256\":\"0x4d2e6c30e38a2df5abb8da09f819da78366e67c96d566d249225fd1d93271a16\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://57207884cf9839cd0eff64f95fd6b14be047ad78f39b72918a4ee74775da4644\",\"dweb:/ipfs/QmRkXDvgAeNECdp3cDY6dKQX46ZoGszuFEJ82B3QAir4TQ\"]},\"project:/contracts/jobs/JobWorkers.sol\":{\"keccak256\":\"0x15802684dad89b15914b4bf92134dc06ad4783703be12c9a2e55576649742df8\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://10e364ef6a3080be771a842fd0d31b5202bdafc3d2eff255fd5115a02d7ae471\",\"dweb:/ipfs/QmQJ2qMxVAoZNo59isJmdceWdsQq2T5yNJFDD1vZCQhHv6\"]}},\"version\":1}",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.17+commit.8df45f5f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"AlreadyBided\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"AlreadyWorker\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"AlreadyWorking\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"GreaterThanPreviousBid\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidWorker\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"NotBided\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OverBudget\",\"type\":\"error\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_jobOwner\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"_amount\",\"type\":\"uint256\"}],\"name\":\"AmountWithdrawSuccessfully\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_jobOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_jobWorker\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"_jobId\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"_bidAmount\",\"type\":\"uint256\"}],\"name\":\"BidAccepted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_workerAdd\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"_jobId\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"_bidAmount\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"_prevBidAmount\",\"type\":\"uint256\"}],\"name\":\"BidModifiedSuccessfully\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_jobOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"_jobBudget\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"string\",\"name\":\"_jobName\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"_jobId\",\"type\":\"uint256\"}],\"name\":\"JobRegistered\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_workerAdd\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"_jobId\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"_bidAmount\",\"type\":\"uint256\"}],\"name\":\"SuccessfullyBid\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_worker\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"_workerName\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"_workerId\",\"type\":\"uint256\"}],\"name\":\"WorkerRegisterSuccessfully\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_jobWorker\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"_jobId\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"_amount\",\"type\":\"uint256\"}],\"name\":\"jobCompleted\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"_biders\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"bidAmount\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"biderAddress\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"_fundByJobOwner\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"_jobIds\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"_jobOwnerFundLocked\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"_jobs\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"jobId\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"jobName\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"jobDescription\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"jobOwner\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"jobWorker\",\"type\":\"address\"},{\"internalType\":\"bool\",\"name\":\"isCompleted\",\"type\":\"bool\"},{\"internalType\":\"bool\",\"name\":\"isJobValid\",\"type\":\"bool\"},{\"internalType\":\"uint32\",\"name\":\"jobRegisteredDate\",\"type\":\"uint32\"},{\"internalType\":\"uint32\",\"name\":\"jobStartedDate\",\"type\":\"uint32\"},{\"internalType\":\"uint32\",\"name\":\"jobCompletedDate\",\"type\":\"uint32\"},{\"internalType\":\"uint256\",\"name\":\"jobBudget\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"_validWorkers\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"_workerIds\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"_workers\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"workerId\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"workerName\",\"type\":\"string\"},{\"internalType\":\"bool\",\"name\":\"isWorking\",\"type\":\"bool\"},{\"internalType\":\"uint32\",\"name\":\"workerRegisteredDate\",\"type\":\"uint32\"},{\"internalType\":\"uint256\",\"name\":\"jobsCompleted\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_jobId\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"_workerAdd\",\"type\":\"address\"}],\"name\":\"acceptBid\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_jobId\",\"type\":\"uint256\"}],\"name\":\"allBider\",\"outputs\":[{\"internalType\":\"address[]\",\"name\":\"\",\"type\":\"address[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"extraFund\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"withdrawExtraAmount\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/jobs/JobWorkers.sol\":\"JobWorkers\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/Accountable.sol\":{\"keccak256\":\"0x91617522b88eaf871302a1b152f0a0175afa2dd2b620a18109fc4ec29c4b0345\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://03d795e816a4038f70e69956dac69257235738b5a188a8c7a0f461091bee5153\",\"dweb:/ipfs/QmNo6mWUFaTURLQ23kZVUaR4d2Dhk6mLnif6hmakj3b3Ss\"]},\"project:/contracts/jobs/JobWorkers.sol\":{\"keccak256\":\"0x50eb4985ed19aded6e1289b726b4f06f6c6330446d66e1d2983cbcbe4ef6ea00\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://98d830ff2e0c5cec4ed7dced7c4d7216ea9acc5d7e5d7090d69e2a220815a749\",\"dweb:/ipfs/QmeXziVoW3JNWdJBsV8kuBsskTxHfA5ELdhosK2bLaSH6j\"]}},\"version\":1}",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "immutableReferences": {},
@@ -77,24 +504,24 @@
   "deployedGeneratedSources": [],
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": "// SPDX-License-Identifier: MIT\r\npragma solidity >=0.8.4 <0.9.0;\r\n\r\nimport \"../Accountable.sol\";\r\n\r\nabstract contract JobWorkers is Accountable {\r\n    event BidAccepted(\r\n        address indexed _jobOwner,\r\n        address indexed _jobWorker,\r\n        uint256 _jobId,\r\n        uint256 _bidAmount\r\n    );\r\n\r\n    modifier verifyOwnerAndWorker(uint256 _jobId) {\r\n        Job memory _job = _jobs[_jobId];\r\n        require(\r\n            msg.sender == _job.jobOwner,\r\n            \"Only owner of the job will accept the bid.\"\r\n        );\r\n        require(\r\n            _job.jobWorker == address(0x0),\r\n            \"Worker already selected for this job.\"\r\n        );\r\n        _;\r\n    }\r\n\r\n    modifier onlyJobWorker(uint256 _jobId){\r\n        Job memory _job = _jobs[_jobId];\r\n        require(msg.sender == _job.jobWorker, \"Only job worker allowed.\");\r\n        _;\r\n    }\r\n\r\n    modifier jobCompleted(uint256 _jobId){\r\n        Job memory _job = _jobs[_jobId];\r\n        require(!_job.isCompleted, \"Job already completed.\");\r\n        _;\r\n    }\r\n\r\n    function acceptBid(uint256 _jobId, address _workerAdd)\r\n        external\r\n        verifyOwnerAndWorker(_jobId)\r\n    {\r\n        if (!_validWorkers[_workerAdd]) revert InvalidWorker();\r\n        uint32 timeNow = uint32(block.timestamp);\r\n        Job storage _job = _jobs[_jobId];\r\n        _job.jobWorker = _workerAdd;\r\n        _job.jobStartedDate = timeNow;\r\n\r\n        _jobOwnerFundLocked[msg.sender] += _jobBiddersAmount[_jobId][_workerAdd];\r\n        _fundByJobOwner[msg.sender] -= _jobBiddersAmount[_jobId][_workerAdd];\r\n\r\n        Worker storage _worker = _workers[_workerAdd];\r\n        _worker.isWorking = true;\r\n\r\n        emit BidAccepted(\r\n            msg.sender,\r\n            _workerAdd,\r\n            _jobId,\r\n            _jobBiddersAmount[_jobId][_workerAdd]\r\n        );\r\n    }\r\n\r\n    function jobDone(uint256 _jobId)external onlyJobWorker(_jobId) jobCompleted(_jobId){\r\n        uint32 timeNow = uint32(block.timestamp);\r\n\r\n        Job storage _job = _jobs[_jobId];\r\n        _job.isCompleted = true;\r\n        _job.jobCompletedDate = timeNow;\r\n\r\n        Worker storage _worker = _workers[msg.sender];\r\n        _worker.isWorking = false;\r\n        _worker.jobCompleted ++;\r\n\r\n        _jobOwnerFundLocked[_job.jobOwner] -= _jobBiddersAmount[_jobId][msg.sender];\r\n        payable(msg.sender).transfer(_jobBiddersAmount[_jobId][msg.sender]);\r\n    }\r\n}\r\n",
+  "source": "// SPDX-License-Identifier: MIT\r\npragma solidity >=0.8.4 <0.9.0;\r\n\r\nimport \"../Accountable.sol\";\r\n\r\nabstract contract JobWorkers is Accountable {\r\n\r\n    function acceptBid(uint256 _jobId, address _workerAdd)\r\n        external\r\n        onlyJobOwner(_jobId)\r\n        newJob(_jobId)\r\n    {\r\n        if (!_validWorkers[_workerAdd]) revert InvalidWorker();\r\n\r\n        uint32 timeNow = uint32(block.timestamp);\r\n        Job storage _job = _jobs[_jobId];\r\n        _job.jobWorker = _workerAdd;\r\n        _job.jobStartedDate = timeNow;\r\n\r\n        _jobOwnerFundLocked[msg.sender] -= (_job.jobBudget -\r\n            _jobBiddersAmount[_jobId][_workerAdd]);\r\n        _fundByJobOwner[msg.sender] -= _jobBiddersAmount[_jobId][_workerAdd];\r\n\r\n        Worker storage _worker = _workers[_workerAdd];\r\n        _worker.isWorking = true;\r\n\r\n        emit BidAccepted(\r\n            msg.sender,\r\n            _workerAdd,\r\n            _jobId,\r\n            _jobBiddersAmount[_jobId][_workerAdd]\r\n        );\r\n    }\r\n\r\n        function withdrawExtraAmount() external {\r\n        uint256 _amount = extraFund();\r\n        require(_amount > 0, \"No extra amount.\");\r\n        _fundByJobOwner[msg.sender] -= _amount;\r\n        payable(msg.sender).transfer(_amount);\r\n\r\n        emit AmountWithdrawSuccessfully(msg.sender, _amount);\r\n    }\r\n}\r\n",
   "sourcePath": "C:\\Users\\Neosoft\\Desktop\\NeoSoft\\POC\\truffle\\decentralized-job-market\\contracts\\jobs\\JobWorkers.sol",
   "ast": {
     "absolutePath": "project:/contracts/jobs/JobWorkers.sol",
     "exportedSymbols": {
       "Accountable": [
-        83
+        332
       ],
       "JobWorkers": [
-        509
+        675
       ]
     },
-    "id": 510,
+    "id": 676,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 243,
+        "id": 533,
         "literals": [
           "solidity",
           ">=",
@@ -105,17 +532,17 @@
           ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "33:31:3"
+        "src": "33:31:4"
       },
       {
         "absolutePath": "project:/contracts/Accountable.sol",
         "file": "../Accountable.sol",
-        "id": 244,
+        "id": 534,
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
-        "scope": 510,
-        "sourceUnit": 84,
-        "src": "68:28:3",
+        "scope": 676,
+        "sourceUnit": 333,
+        "src": "68:28:4",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -124,1145 +551,42 @@
         "baseContracts": [
           {
             "baseName": {
-              "id": 245,
+              "id": 535,
               "name": "Accountable",
               "nameLocations": [
-                "132:11:3"
+                "132:11:4"
               ],
               "nodeType": "IdentifierPath",
-              "referencedDeclaration": 83,
-              "src": "132:11:3"
+              "referencedDeclaration": 332,
+              "src": "132:11:4"
             },
-            "id": 246,
+            "id": 536,
             "nodeType": "InheritanceSpecifier",
-            "src": "132:11:3"
+            "src": "132:11:4"
           }
         ],
         "canonicalName": "JobWorkers",
         "contractDependencies": [],
         "contractKind": "contract",
         "fullyImplemented": true,
-        "id": 509,
+        "id": 675,
         "linearizedBaseContracts": [
-          509,
-          83
+          675,
+          332
         ],
         "name": "JobWorkers",
-        "nameLocation": "118:10:3",
+        "nameLocation": "118:10:4",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
-            "anonymous": false,
-            "eventSelector": "c94b51939529c736abed465cef9c3c3cacd78ac7ee0855a967ef32f07935abec",
-            "id": 256,
-            "name": "BidAccepted",
-            "nameLocation": "157:11:3",
-            "nodeType": "EventDefinition",
-            "parameters": {
-              "id": 255,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 248,
-                  "indexed": true,
-                  "mutability": "mutable",
-                  "name": "_jobOwner",
-                  "nameLocation": "195:9:3",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 256,
-                  "src": "179:25:3",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 247,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "179:7:3",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 250,
-                  "indexed": true,
-                  "mutability": "mutable",
-                  "name": "_jobWorker",
-                  "nameLocation": "231:10:3",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 256,
-                  "src": "215:26:3",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 249,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "215:7:3",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 252,
-                  "indexed": false,
-                  "mutability": "mutable",
-                  "name": "_jobId",
-                  "nameLocation": "260:6:3",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 256,
-                  "src": "252:14:3",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 251,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "252:7:3",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 254,
-                  "indexed": false,
-                  "mutability": "mutable",
-                  "name": "_bidAmount",
-                  "nameLocation": "285:10:3",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 256,
-                  "src": "277:18:3",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 253,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "277:7:3",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "visibility": "internal"
-                }
-              ],
-              "src": "168:134:3"
-            },
-            "src": "151:152:3"
-          },
-          {
             "body": {
-              "id": 288,
+              "id": 635,
               "nodeType": "Block",
-              "src": "357:320:3",
-              "statements": [
-                {
-                  "assignments": [
-                    262
-                  ],
-                  "declarations": [
-                    {
-                      "constant": false,
-                      "id": 262,
-                      "mutability": "mutable",
-                      "name": "_job",
-                      "nameLocation": "379:4:3",
-                      "nodeType": "VariableDeclaration",
-                      "scope": 288,
-                      "src": "368:15:3",
-                      "stateVariable": false,
-                      "storageLocation": "memory",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Job_$40_memory_ptr",
-                        "typeString": "struct Accountable.Job"
-                      },
-                      "typeName": {
-                        "id": 261,
-                        "nodeType": "UserDefinedTypeName",
-                        "pathNode": {
-                          "id": 260,
-                          "name": "Job",
-                          "nameLocations": [
-                            "368:3:3"
-                          ],
-                          "nodeType": "IdentifierPath",
-                          "referencedDeclaration": 40,
-                          "src": "368:3:3"
-                        },
-                        "referencedDeclaration": 40,
-                        "src": "368:3:3",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Job_$40_storage_ptr",
-                          "typeString": "struct Accountable.Job"
-                        }
-                      },
-                      "visibility": "internal"
-                    }
-                  ],
-                  "id": 266,
-                  "initialValue": {
-                    "baseExpression": {
-                      "id": 263,
-                      "name": "_jobs",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 52,
-                      "src": "386:5:3",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Job_$40_storage_$",
-                        "typeString": "mapping(uint256 => struct Accountable.Job storage ref)"
-                      }
-                    },
-                    "id": 265,
-                    "indexExpression": {
-                      "id": 264,
-                      "name": "_jobId",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 258,
-                      "src": "392:6:3",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_uint256",
-                        "typeString": "uint256"
-                      }
-                    },
-                    "isConstant": false,
-                    "isLValue": true,
-                    "isPure": false,
-                    "lValueRequested": false,
-                    "nodeType": "IndexAccess",
-                    "src": "386:13:3",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_Job_$40_storage",
-                      "typeString": "struct Accountable.Job storage ref"
-                    }
-                  },
-                  "nodeType": "VariableDeclarationStatement",
-                  "src": "368:31:3"
-                },
-                {
-                  "expression": {
-                    "arguments": [
-                      {
-                        "commonType": {
-                          "typeIdentifier": "t_address",
-                          "typeString": "address"
-                        },
-                        "id": 272,
-                        "isConstant": false,
-                        "isLValue": false,
-                        "isPure": false,
-                        "lValueRequested": false,
-                        "leftExpression": {
-                          "expression": {
-                            "id": 268,
-                            "name": "msg",
-                            "nodeType": "Identifier",
-                            "overloadedDeclarations": [],
-                            "referencedDeclaration": 4294967281,
-                            "src": "432:3:3",
-                            "typeDescriptions": {
-                              "typeIdentifier": "t_magic_message",
-                              "typeString": "msg"
-                            }
-                          },
-                          "id": 269,
-                          "isConstant": false,
-                          "isLValue": false,
-                          "isPure": false,
-                          "lValueRequested": false,
-                          "memberLocation": "436:6:3",
-                          "memberName": "sender",
-                          "nodeType": "MemberAccess",
-                          "src": "432:10:3",
-                          "typeDescriptions": {
-                            "typeIdentifier": "t_address",
-                            "typeString": "address"
-                          }
-                        },
-                        "nodeType": "BinaryOperation",
-                        "operator": "==",
-                        "rightExpression": {
-                          "expression": {
-                            "id": 270,
-                            "name": "_job",
-                            "nodeType": "Identifier",
-                            "overloadedDeclarations": [],
-                            "referencedDeclaration": 262,
-                            "src": "446:4:3",
-                            "typeDescriptions": {
-                              "typeIdentifier": "t_struct$_Job_$40_memory_ptr",
-                              "typeString": "struct Accountable.Job memory"
-                            }
-                          },
-                          "id": 271,
-                          "isConstant": false,
-                          "isLValue": true,
-                          "isPure": false,
-                          "lValueRequested": false,
-                          "memberLocation": "451:8:3",
-                          "memberName": "jobOwner",
-                          "nodeType": "MemberAccess",
-                          "referencedDeclaration": 22,
-                          "src": "446:13:3",
-                          "typeDescriptions": {
-                            "typeIdentifier": "t_address",
-                            "typeString": "address"
-                          }
-                        },
-                        "src": "432:27:3",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_bool",
-                          "typeString": "bool"
-                        }
-                      },
-                      {
-                        "hexValue": "4f6e6c79206f776e6572206f6620746865206a6f622077696c6c2061636365707420746865206269642e",
-                        "id": 273,
-                        "isConstant": false,
-                        "isLValue": false,
-                        "isPure": true,
-                        "kind": "string",
-                        "lValueRequested": false,
-                        "nodeType": "Literal",
-                        "src": "474:44:3",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_stringliteral_a1bebe5b56ffb6b49ce2339f3da9ee1a056644259bb7c4fef3c7d530018bf430",
-                          "typeString": "literal_string \"Only owner of the job will accept the bid.\""
-                        },
-                        "value": "Only owner of the job will accept the bid."
-                      }
-                    ],
-                    "expression": {
-                      "argumentTypes": [
-                        {
-                          "typeIdentifier": "t_bool",
-                          "typeString": "bool"
-                        },
-                        {
-                          "typeIdentifier": "t_stringliteral_a1bebe5b56ffb6b49ce2339f3da9ee1a056644259bb7c4fef3c7d530018bf430",
-                          "typeString": "literal_string \"Only owner of the job will accept the bid.\""
-                        }
-                      ],
-                      "id": 267,
-                      "name": "require",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        4294967278,
-                        4294967278
-                      ],
-                      "referencedDeclaration": 4294967278,
-                      "src": "410:7:3",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
-                        "typeString": "function (bool,string memory) pure"
-                      }
-                    },
-                    "id": 274,
-                    "isConstant": false,
-                    "isLValue": false,
-                    "isPure": false,
-                    "kind": "functionCall",
-                    "lValueRequested": false,
-                    "nameLocations": [],
-                    "names": [],
-                    "nodeType": "FunctionCall",
-                    "src": "410:119:3",
-                    "tryCall": false,
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_tuple$__$",
-                      "typeString": "tuple()"
-                    }
-                  },
-                  "id": 275,
-                  "nodeType": "ExpressionStatement",
-                  "src": "410:119:3"
-                },
-                {
-                  "expression": {
-                    "arguments": [
-                      {
-                        "commonType": {
-                          "typeIdentifier": "t_address",
-                          "typeString": "address"
-                        },
-                        "id": 283,
-                        "isConstant": false,
-                        "isLValue": false,
-                        "isPure": false,
-                        "lValueRequested": false,
-                        "leftExpression": {
-                          "expression": {
-                            "id": 277,
-                            "name": "_job",
-                            "nodeType": "Identifier",
-                            "overloadedDeclarations": [],
-                            "referencedDeclaration": 262,
-                            "src": "562:4:3",
-                            "typeDescriptions": {
-                              "typeIdentifier": "t_struct$_Job_$40_memory_ptr",
-                              "typeString": "struct Accountable.Job memory"
-                            }
-                          },
-                          "id": 278,
-                          "isConstant": false,
-                          "isLValue": true,
-                          "isPure": false,
-                          "lValueRequested": false,
-                          "memberLocation": "567:9:3",
-                          "memberName": "jobWorker",
-                          "nodeType": "MemberAccess",
-                          "referencedDeclaration": 24,
-                          "src": "562:14:3",
-                          "typeDescriptions": {
-                            "typeIdentifier": "t_address",
-                            "typeString": "address"
-                          }
-                        },
-                        "nodeType": "BinaryOperation",
-                        "operator": "==",
-                        "rightExpression": {
-                          "arguments": [
-                            {
-                              "hexValue": "307830",
-                              "id": 281,
-                              "isConstant": false,
-                              "isLValue": false,
-                              "isPure": true,
-                              "kind": "number",
-                              "lValueRequested": false,
-                              "nodeType": "Literal",
-                              "src": "588:3:3",
-                              "typeDescriptions": {
-                                "typeIdentifier": "t_rational_0_by_1",
-                                "typeString": "int_const 0"
-                              },
-                              "value": "0x0"
-                            }
-                          ],
-                          "expression": {
-                            "argumentTypes": [
-                              {
-                                "typeIdentifier": "t_rational_0_by_1",
-                                "typeString": "int_const 0"
-                              }
-                            ],
-                            "id": 280,
-                            "isConstant": false,
-                            "isLValue": false,
-                            "isPure": true,
-                            "lValueRequested": false,
-                            "nodeType": "ElementaryTypeNameExpression",
-                            "src": "580:7:3",
-                            "typeDescriptions": {
-                              "typeIdentifier": "t_type$_t_address_$",
-                              "typeString": "type(address)"
-                            },
-                            "typeName": {
-                              "id": 279,
-                              "name": "address",
-                              "nodeType": "ElementaryTypeName",
-                              "src": "580:7:3",
-                              "typeDescriptions": {}
-                            }
-                          },
-                          "id": 282,
-                          "isConstant": false,
-                          "isLValue": false,
-                          "isPure": true,
-                          "kind": "typeConversion",
-                          "lValueRequested": false,
-                          "nameLocations": [],
-                          "names": [],
-                          "nodeType": "FunctionCall",
-                          "src": "580:12:3",
-                          "tryCall": false,
-                          "typeDescriptions": {
-                            "typeIdentifier": "t_address",
-                            "typeString": "address"
-                          }
-                        },
-                        "src": "562:30:3",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_bool",
-                          "typeString": "bool"
-                        }
-                      },
-                      {
-                        "hexValue": "576f726b657220616c72656164792073656c656374656420666f722074686973206a6f622e",
-                        "id": 284,
-                        "isConstant": false,
-                        "isLValue": false,
-                        "isPure": true,
-                        "kind": "string",
-                        "lValueRequested": false,
-                        "nodeType": "Literal",
-                        "src": "607:39:3",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_stringliteral_5bec027401a0d5f23cdf027dc7f1f41a139e1c3a4353359f5be8eb6979653cba",
-                          "typeString": "literal_string \"Worker already selected for this job.\""
-                        },
-                        "value": "Worker already selected for this job."
-                      }
-                    ],
-                    "expression": {
-                      "argumentTypes": [
-                        {
-                          "typeIdentifier": "t_bool",
-                          "typeString": "bool"
-                        },
-                        {
-                          "typeIdentifier": "t_stringliteral_5bec027401a0d5f23cdf027dc7f1f41a139e1c3a4353359f5be8eb6979653cba",
-                          "typeString": "literal_string \"Worker already selected for this job.\""
-                        }
-                      ],
-                      "id": 276,
-                      "name": "require",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        4294967278,
-                        4294967278
-                      ],
-                      "referencedDeclaration": 4294967278,
-                      "src": "540:7:3",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
-                        "typeString": "function (bool,string memory) pure"
-                      }
-                    },
-                    "id": 285,
-                    "isConstant": false,
-                    "isLValue": false,
-                    "isPure": false,
-                    "kind": "functionCall",
-                    "lValueRequested": false,
-                    "nameLocations": [],
-                    "names": [],
-                    "nodeType": "FunctionCall",
-                    "src": "540:117:3",
-                    "tryCall": false,
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_tuple$__$",
-                      "typeString": "tuple()"
-                    }
-                  },
-                  "id": 286,
-                  "nodeType": "ExpressionStatement",
-                  "src": "540:117:3"
-                },
-                {
-                  "id": 287,
-                  "nodeType": "PlaceholderStatement",
-                  "src": "668:1:3"
-                }
-              ]
-            },
-            "id": 289,
-            "name": "verifyOwnerAndWorker",
-            "nameLocation": "320:20:3",
-            "nodeType": "ModifierDefinition",
-            "parameters": {
-              "id": 259,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 258,
-                  "mutability": "mutable",
-                  "name": "_jobId",
-                  "nameLocation": "349:6:3",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 289,
-                  "src": "341:14:3",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 257,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "341:7:3",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "visibility": "internal"
-                }
-              ],
-              "src": "340:16:3"
-            },
-            "src": "311:366:3",
-            "virtual": false,
-            "visibility": "internal"
-          },
-          {
-            "body": {
-              "id": 310,
-              "nodeType": "Block",
-              "src": "723:138:3",
-              "statements": [
-                {
-                  "assignments": [
-                    295
-                  ],
-                  "declarations": [
-                    {
-                      "constant": false,
-                      "id": 295,
-                      "mutability": "mutable",
-                      "name": "_job",
-                      "nameLocation": "745:4:3",
-                      "nodeType": "VariableDeclaration",
-                      "scope": 310,
-                      "src": "734:15:3",
-                      "stateVariable": false,
-                      "storageLocation": "memory",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Job_$40_memory_ptr",
-                        "typeString": "struct Accountable.Job"
-                      },
-                      "typeName": {
-                        "id": 294,
-                        "nodeType": "UserDefinedTypeName",
-                        "pathNode": {
-                          "id": 293,
-                          "name": "Job",
-                          "nameLocations": [
-                            "734:3:3"
-                          ],
-                          "nodeType": "IdentifierPath",
-                          "referencedDeclaration": 40,
-                          "src": "734:3:3"
-                        },
-                        "referencedDeclaration": 40,
-                        "src": "734:3:3",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Job_$40_storage_ptr",
-                          "typeString": "struct Accountable.Job"
-                        }
-                      },
-                      "visibility": "internal"
-                    }
-                  ],
-                  "id": 299,
-                  "initialValue": {
-                    "baseExpression": {
-                      "id": 296,
-                      "name": "_jobs",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 52,
-                      "src": "752:5:3",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Job_$40_storage_$",
-                        "typeString": "mapping(uint256 => struct Accountable.Job storage ref)"
-                      }
-                    },
-                    "id": 298,
-                    "indexExpression": {
-                      "id": 297,
-                      "name": "_jobId",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 291,
-                      "src": "758:6:3",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_uint256",
-                        "typeString": "uint256"
-                      }
-                    },
-                    "isConstant": false,
-                    "isLValue": true,
-                    "isPure": false,
-                    "lValueRequested": false,
-                    "nodeType": "IndexAccess",
-                    "src": "752:13:3",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_Job_$40_storage",
-                      "typeString": "struct Accountable.Job storage ref"
-                    }
-                  },
-                  "nodeType": "VariableDeclarationStatement",
-                  "src": "734:31:3"
-                },
-                {
-                  "expression": {
-                    "arguments": [
-                      {
-                        "commonType": {
-                          "typeIdentifier": "t_address",
-                          "typeString": "address"
-                        },
-                        "id": 305,
-                        "isConstant": false,
-                        "isLValue": false,
-                        "isPure": false,
-                        "lValueRequested": false,
-                        "leftExpression": {
-                          "expression": {
-                            "id": 301,
-                            "name": "msg",
-                            "nodeType": "Identifier",
-                            "overloadedDeclarations": [],
-                            "referencedDeclaration": 4294967281,
-                            "src": "784:3:3",
-                            "typeDescriptions": {
-                              "typeIdentifier": "t_magic_message",
-                              "typeString": "msg"
-                            }
-                          },
-                          "id": 302,
-                          "isConstant": false,
-                          "isLValue": false,
-                          "isPure": false,
-                          "lValueRequested": false,
-                          "memberLocation": "788:6:3",
-                          "memberName": "sender",
-                          "nodeType": "MemberAccess",
-                          "src": "784:10:3",
-                          "typeDescriptions": {
-                            "typeIdentifier": "t_address",
-                            "typeString": "address"
-                          }
-                        },
-                        "nodeType": "BinaryOperation",
-                        "operator": "==",
-                        "rightExpression": {
-                          "expression": {
-                            "id": 303,
-                            "name": "_job",
-                            "nodeType": "Identifier",
-                            "overloadedDeclarations": [],
-                            "referencedDeclaration": 295,
-                            "src": "798:4:3",
-                            "typeDescriptions": {
-                              "typeIdentifier": "t_struct$_Job_$40_memory_ptr",
-                              "typeString": "struct Accountable.Job memory"
-                            }
-                          },
-                          "id": 304,
-                          "isConstant": false,
-                          "isLValue": true,
-                          "isPure": false,
-                          "lValueRequested": false,
-                          "memberLocation": "803:9:3",
-                          "memberName": "jobWorker",
-                          "nodeType": "MemberAccess",
-                          "referencedDeclaration": 24,
-                          "src": "798:14:3",
-                          "typeDescriptions": {
-                            "typeIdentifier": "t_address",
-                            "typeString": "address"
-                          }
-                        },
-                        "src": "784:28:3",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_bool",
-                          "typeString": "bool"
-                        }
-                      },
-                      {
-                        "hexValue": "4f6e6c79206a6f6220776f726b657220616c6c6f7765642e",
-                        "id": 306,
-                        "isConstant": false,
-                        "isLValue": false,
-                        "isPure": true,
-                        "kind": "string",
-                        "lValueRequested": false,
-                        "nodeType": "Literal",
-                        "src": "814:26:3",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_stringliteral_d43a829bedb9dfd0ce6b0116a1a09bed95fb1ad44c219a215fe724c8c2fe7b03",
-                          "typeString": "literal_string \"Only job worker allowed.\""
-                        },
-                        "value": "Only job worker allowed."
-                      }
-                    ],
-                    "expression": {
-                      "argumentTypes": [
-                        {
-                          "typeIdentifier": "t_bool",
-                          "typeString": "bool"
-                        },
-                        {
-                          "typeIdentifier": "t_stringliteral_d43a829bedb9dfd0ce6b0116a1a09bed95fb1ad44c219a215fe724c8c2fe7b03",
-                          "typeString": "literal_string \"Only job worker allowed.\""
-                        }
-                      ],
-                      "id": 300,
-                      "name": "require",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        4294967278,
-                        4294967278
-                      ],
-                      "referencedDeclaration": 4294967278,
-                      "src": "776:7:3",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
-                        "typeString": "function (bool,string memory) pure"
-                      }
-                    },
-                    "id": 307,
-                    "isConstant": false,
-                    "isLValue": false,
-                    "isPure": false,
-                    "kind": "functionCall",
-                    "lValueRequested": false,
-                    "nameLocations": [],
-                    "names": [],
-                    "nodeType": "FunctionCall",
-                    "src": "776:65:3",
-                    "tryCall": false,
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_tuple$__$",
-                      "typeString": "tuple()"
-                    }
-                  },
-                  "id": 308,
-                  "nodeType": "ExpressionStatement",
-                  "src": "776:65:3"
-                },
-                {
-                  "id": 309,
-                  "nodeType": "PlaceholderStatement",
-                  "src": "852:1:3"
-                }
-              ]
-            },
-            "id": 311,
-            "name": "onlyJobWorker",
-            "nameLocation": "694:13:3",
-            "nodeType": "ModifierDefinition",
-            "parameters": {
-              "id": 292,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 291,
-                  "mutability": "mutable",
-                  "name": "_jobId",
-                  "nameLocation": "716:6:3",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 311,
-                  "src": "708:14:3",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 290,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "708:7:3",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "visibility": "internal"
-                }
-              ],
-              "src": "707:16:3"
-            },
-            "src": "685:176:3",
-            "virtual": false,
-            "visibility": "internal"
-          },
-          {
-            "body": {
-              "id": 330,
-              "nodeType": "Block",
-              "src": "906:125:3",
-              "statements": [
-                {
-                  "assignments": [
-                    317
-                  ],
-                  "declarations": [
-                    {
-                      "constant": false,
-                      "id": 317,
-                      "mutability": "mutable",
-                      "name": "_job",
-                      "nameLocation": "928:4:3",
-                      "nodeType": "VariableDeclaration",
-                      "scope": 330,
-                      "src": "917:15:3",
-                      "stateVariable": false,
-                      "storageLocation": "memory",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Job_$40_memory_ptr",
-                        "typeString": "struct Accountable.Job"
-                      },
-                      "typeName": {
-                        "id": 316,
-                        "nodeType": "UserDefinedTypeName",
-                        "pathNode": {
-                          "id": 315,
-                          "name": "Job",
-                          "nameLocations": [
-                            "917:3:3"
-                          ],
-                          "nodeType": "IdentifierPath",
-                          "referencedDeclaration": 40,
-                          "src": "917:3:3"
-                        },
-                        "referencedDeclaration": 40,
-                        "src": "917:3:3",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Job_$40_storage_ptr",
-                          "typeString": "struct Accountable.Job"
-                        }
-                      },
-                      "visibility": "internal"
-                    }
-                  ],
-                  "id": 321,
-                  "initialValue": {
-                    "baseExpression": {
-                      "id": 318,
-                      "name": "_jobs",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 52,
-                      "src": "935:5:3",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Job_$40_storage_$",
-                        "typeString": "mapping(uint256 => struct Accountable.Job storage ref)"
-                      }
-                    },
-                    "id": 320,
-                    "indexExpression": {
-                      "id": 319,
-                      "name": "_jobId",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 313,
-                      "src": "941:6:3",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_uint256",
-                        "typeString": "uint256"
-                      }
-                    },
-                    "isConstant": false,
-                    "isLValue": true,
-                    "isPure": false,
-                    "lValueRequested": false,
-                    "nodeType": "IndexAccess",
-                    "src": "935:13:3",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_Job_$40_storage",
-                      "typeString": "struct Accountable.Job storage ref"
-                    }
-                  },
-                  "nodeType": "VariableDeclarationStatement",
-                  "src": "917:31:3"
-                },
-                {
-                  "expression": {
-                    "arguments": [
-                      {
-                        "id": 325,
-                        "isConstant": false,
-                        "isLValue": false,
-                        "isPure": false,
-                        "lValueRequested": false,
-                        "nodeType": "UnaryOperation",
-                        "operator": "!",
-                        "prefix": true,
-                        "src": "967:17:3",
-                        "subExpression": {
-                          "expression": {
-                            "id": 323,
-                            "name": "_job",
-                            "nodeType": "Identifier",
-                            "overloadedDeclarations": [],
-                            "referencedDeclaration": 317,
-                            "src": "968:4:3",
-                            "typeDescriptions": {
-                              "typeIdentifier": "t_struct$_Job_$40_memory_ptr",
-                              "typeString": "struct Accountable.Job memory"
-                            }
-                          },
-                          "id": 324,
-                          "isConstant": false,
-                          "isLValue": true,
-                          "isPure": false,
-                          "lValueRequested": false,
-                          "memberLocation": "973:11:3",
-                          "memberName": "isCompleted",
-                          "nodeType": "MemberAccess",
-                          "referencedDeclaration": 26,
-                          "src": "968:16:3",
-                          "typeDescriptions": {
-                            "typeIdentifier": "t_bool",
-                            "typeString": "bool"
-                          }
-                        },
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_bool",
-                          "typeString": "bool"
-                        }
-                      },
-                      {
-                        "hexValue": "4a6f6220616c726561647920636f6d706c657465642e",
-                        "id": 326,
-                        "isConstant": false,
-                        "isLValue": false,
-                        "isPure": true,
-                        "kind": "string",
-                        "lValueRequested": false,
-                        "nodeType": "Literal",
-                        "src": "986:24:3",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_stringliteral_2fbcf5c41966a6ea04cdcb4322ede4e4402ade8ca65d55d69d7af883f2ab17f0",
-                          "typeString": "literal_string \"Job already completed.\""
-                        },
-                        "value": "Job already completed."
-                      }
-                    ],
-                    "expression": {
-                      "argumentTypes": [
-                        {
-                          "typeIdentifier": "t_bool",
-                          "typeString": "bool"
-                        },
-                        {
-                          "typeIdentifier": "t_stringliteral_2fbcf5c41966a6ea04cdcb4322ede4e4402ade8ca65d55d69d7af883f2ab17f0",
-                          "typeString": "literal_string \"Job already completed.\""
-                        }
-                      ],
-                      "id": 322,
-                      "name": "require",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        4294967278,
-                        4294967278
-                      ],
-                      "referencedDeclaration": 4294967278,
-                      "src": "959:7:3",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
-                        "typeString": "function (bool,string memory) pure"
-                      }
-                    },
-                    "id": 327,
-                    "isConstant": false,
-                    "isLValue": false,
-                    "isPure": false,
-                    "kind": "functionCall",
-                    "lValueRequested": false,
-                    "nameLocations": [],
-                    "names": [],
-                    "nodeType": "FunctionCall",
-                    "src": "959:52:3",
-                    "tryCall": false,
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_tuple$__$",
-                      "typeString": "tuple()"
-                    }
-                  },
-                  "id": 328,
-                  "nodeType": "ExpressionStatement",
-                  "src": "959:52:3"
-                },
-                {
-                  "id": 329,
-                  "nodeType": "PlaceholderStatement",
-                  "src": "1022:1:3"
-                }
-              ]
-            },
-            "id": 331,
-            "name": "jobCompleted",
-            "nameLocation": "878:12:3",
-            "nodeType": "ModifierDefinition",
-            "parameters": {
-              "id": 314,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 313,
-                  "mutability": "mutable",
-                  "name": "_jobId",
-                  "nameLocation": "899:6:3",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 331,
-                  "src": "891:14:3",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 312,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "891:7:3",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "visibility": "internal"
-                }
-              ],
-              "src": "890:16:3"
-            },
-            "src": "869:162:3",
-            "virtual": false,
-            "visibility": "internal"
-          },
-          {
-            "body": {
-              "id": 423,
-              "nodeType": "Block",
-              "src": "1155:665:3",
+              "src": "285:699:4",
               "statements": [
                 {
                   "condition": {
-                    "id": 344,
+                    "id": 552,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1270,28 +594,28 @@
                     "nodeType": "UnaryOperation",
                     "operator": "!",
                     "prefix": true,
-                    "src": "1170:26:3",
+                    "src": "300:26:4",
                     "subExpression": {
                       "baseExpression": {
-                        "id": 341,
+                        "id": 549,
                         "name": "_validWorkers",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 71,
-                        "src": "1171:13:3",
+                        "referencedDeclaration": 143,
+                        "src": "301:13:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
                           "typeString": "mapping(address => bool)"
                         }
                       },
-                      "id": 343,
+                      "id": 551,
                       "indexExpression": {
-                        "id": 342,
+                        "id": 550,
                         "name": "_workerAdd",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 335,
-                        "src": "1185:10:3",
+                        "referencedDeclaration": 540,
+                        "src": "315:10:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -1302,7 +626,7 @@
                       "isPure": false,
                       "lValueRequested": false,
                       "nodeType": "IndexAccess",
-                      "src": "1171:25:3",
+                      "src": "301:25:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_bool",
                         "typeString": "bool"
@@ -1313,26 +637,26 @@
                       "typeString": "bool"
                     }
                   },
-                  "id": 348,
+                  "id": 556,
                   "nodeType": "IfStatement",
-                  "src": "1166:54:3",
+                  "src": "296:54:4",
                   "trueBody": {
                     "errorCall": {
                       "arguments": [],
                       "expression": {
                         "argumentTypes": [],
-                        "id": 345,
+                        "id": 553,
                         "name": "InvalidWorker",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 3,
-                        "src": "1205:13:3",
+                        "src": "335:13:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_function_error_pure$__$returns$__$",
                           "typeString": "function () pure"
                         }
                       },
-                      "id": 346,
+                      "id": 554,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -1341,32 +665,32 @@
                       "nameLocations": [],
                       "names": [],
                       "nodeType": "FunctionCall",
-                      "src": "1205:15:3",
+                      "src": "335:15:4",
                       "tryCall": false,
                       "typeDescriptions": {
                         "typeIdentifier": "t_tuple$__$",
                         "typeString": "tuple()"
                       }
                     },
-                    "id": 347,
+                    "id": 555,
                     "nodeType": "RevertStatement",
-                    "src": "1198:22:3"
+                    "src": "328:22:4"
                   }
                 },
                 {
                   "assignments": [
-                    350
+                    558
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 350,
+                      "id": 558,
                       "mutability": "mutable",
                       "name": "timeNow",
-                      "nameLocation": "1238:7:3",
+                      "nameLocation": "370:7:4",
                       "nodeType": "VariableDeclaration",
-                      "scope": 423,
-                      "src": "1231:14:3",
+                      "scope": 635,
+                      "src": "363:14:4",
                       "stateVariable": false,
                       "storageLocation": "default",
                       "typeDescriptions": {
@@ -1374,10 +698,10 @@
                         "typeString": "uint32"
                       },
                       "typeName": {
-                        "id": 349,
+                        "id": 557,
                         "name": "uint32",
                         "nodeType": "ElementaryTypeName",
-                        "src": "1231:6:3",
+                        "src": "363:6:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint32",
                           "typeString": "uint32"
@@ -1386,31 +710,31 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 356,
+                  "id": 564,
                   "initialValue": {
                     "arguments": [
                       {
                         "expression": {
-                          "id": 353,
+                          "id": 561,
                           "name": "block",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
                           "referencedDeclaration": 4294967292,
-                          "src": "1255:5:3",
+                          "src": "387:5:4",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_block",
                             "typeString": "block"
                           }
                         },
-                        "id": 354,
+                        "id": 562,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
-                        "memberLocation": "1261:9:3",
+                        "memberLocation": "393:9:4",
                         "memberName": "timestamp",
                         "nodeType": "MemberAccess",
-                        "src": "1255:15:3",
+                        "src": "387:15:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -1424,26 +748,26 @@
                           "typeString": "uint256"
                         }
                       ],
-                      "id": 352,
+                      "id": 560,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
                       "lValueRequested": false,
                       "nodeType": "ElementaryTypeNameExpression",
-                      "src": "1248:6:3",
+                      "src": "380:6:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_type$_t_uint32_$",
                         "typeString": "type(uint32)"
                       },
                       "typeName": {
-                        "id": 351,
+                        "id": 559,
                         "name": "uint32",
                         "nodeType": "ElementaryTypeName",
-                        "src": "1248:6:3",
+                        "src": "380:6:4",
                         "typeDescriptions": {}
                       }
                     },
-                    "id": 355,
+                    "id": 563,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1452,7 +776,7 @@
                     "nameLocations": [],
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "1248:23:3",
+                    "src": "380:23:4",
                     "tryCall": false,
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint32",
@@ -1460,73 +784,73 @@
                     }
                   },
                   "nodeType": "VariableDeclarationStatement",
-                  "src": "1231:40:3"
+                  "src": "363:40:4"
                 },
                 {
                   "assignments": [
-                    359
+                    567
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 359,
+                      "id": 567,
                       "mutability": "mutable",
                       "name": "_job",
-                      "nameLocation": "1294:4:3",
+                      "nameLocation": "426:4:4",
                       "nodeType": "VariableDeclaration",
-                      "scope": 423,
-                      "src": "1282:16:3",
+                      "scope": 635,
+                      "src": "414:16:4",
                       "stateVariable": false,
                       "storageLocation": "storage",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Job_$40_storage_ptr",
+                        "typeIdentifier": "t_struct$_Job_$112_storage_ptr",
                         "typeString": "struct Accountable.Job"
                       },
                       "typeName": {
-                        "id": 358,
+                        "id": 566,
                         "nodeType": "UserDefinedTypeName",
                         "pathNode": {
-                          "id": 357,
+                          "id": 565,
                           "name": "Job",
                           "nameLocations": [
-                            "1282:3:3"
+                            "414:3:4"
                           ],
                           "nodeType": "IdentifierPath",
-                          "referencedDeclaration": 40,
-                          "src": "1282:3:3"
+                          "referencedDeclaration": 112,
+                          "src": "414:3:4"
                         },
-                        "referencedDeclaration": 40,
-                        "src": "1282:3:3",
+                        "referencedDeclaration": 112,
+                        "src": "414:3:4",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Job_$40_storage_ptr",
+                          "typeIdentifier": "t_struct$_Job_$112_storage_ptr",
                           "typeString": "struct Accountable.Job"
                         }
                       },
                       "visibility": "internal"
                     }
                   ],
-                  "id": 363,
+                  "id": 571,
                   "initialValue": {
                     "baseExpression": {
-                      "id": 360,
+                      "id": 568,
                       "name": "_jobs",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 52,
-                      "src": "1301:5:3",
+                      "referencedDeclaration": 124,
+                      "src": "433:5:4",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Job_$40_storage_$",
+                        "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Job_$112_storage_$",
                         "typeString": "mapping(uint256 => struct Accountable.Job storage ref)"
                       }
                     },
-                    "id": 362,
+                    "id": 570,
                     "indexExpression": {
-                      "id": 361,
+                      "id": 569,
                       "name": "_jobId",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 333,
-                      "src": "1307:6:3",
+                      "referencedDeclaration": 538,
+                      "src": "439:6:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -1537,45 +861,45 @@
                     "isPure": false,
                     "lValueRequested": false,
                     "nodeType": "IndexAccess",
-                    "src": "1301:13:3",
+                    "src": "433:13:4",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_Job_$40_storage",
+                      "typeIdentifier": "t_struct$_Job_$112_storage",
                       "typeString": "struct Accountable.Job storage ref"
                     }
                   },
                   "nodeType": "VariableDeclarationStatement",
-                  "src": "1282:32:3"
+                  "src": "414:32:4"
                 },
                 {
                   "expression": {
-                    "id": 368,
+                    "id": 576,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "expression": {
-                        "id": 364,
+                        "id": 572,
                         "name": "_job",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 359,
-                        "src": "1325:4:3",
+                        "referencedDeclaration": 567,
+                        "src": "457:4:4",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Job_$40_storage_ptr",
+                          "typeIdentifier": "t_struct$_Job_$112_storage_ptr",
                           "typeString": "struct Accountable.Job storage pointer"
                         }
                       },
-                      "id": 366,
+                      "id": 574,
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
                       "lValueRequested": true,
-                      "memberLocation": "1330:9:3",
+                      "memberLocation": "462:9:4",
                       "memberName": "jobWorker",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 24,
-                      "src": "1325:14:3",
+                      "referencedDeclaration": 96,
+                      "src": "457:14:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
@@ -1584,57 +908,57 @@
                     "nodeType": "Assignment",
                     "operator": "=",
                     "rightHandSide": {
-                      "id": 367,
+                      "id": 575,
                       "name": "_workerAdd",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 335,
-                      "src": "1342:10:3",
+                      "referencedDeclaration": 540,
+                      "src": "474:10:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
                       }
                     },
-                    "src": "1325:27:3",
+                    "src": "457:27:4",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
                     }
                   },
-                  "id": 369,
+                  "id": 577,
                   "nodeType": "ExpressionStatement",
-                  "src": "1325:27:3"
+                  "src": "457:27:4"
                 },
                 {
                   "expression": {
-                    "id": 374,
+                    "id": 582,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "expression": {
-                        "id": 370,
+                        "id": 578,
                         "name": "_job",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 359,
-                        "src": "1363:4:3",
+                        "referencedDeclaration": 567,
+                        "src": "495:4:4",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Job_$40_storage_ptr",
+                          "typeIdentifier": "t_struct$_Job_$112_storage_ptr",
                           "typeString": "struct Accountable.Job storage pointer"
                         }
                       },
-                      "id": 372,
+                      "id": 580,
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
                       "lValueRequested": true,
-                      "memberLocation": "1368:14:3",
+                      "memberLocation": "500:14:4",
                       "memberName": "jobStartedDate",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 32,
-                      "src": "1363:19:3",
+                      "referencedDeclaration": 104,
+                      "src": "495:19:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint32",
                         "typeString": "uint32"
@@ -1643,70 +967,70 @@
                     "nodeType": "Assignment",
                     "operator": "=",
                     "rightHandSide": {
-                      "id": 373,
+                      "id": 581,
                       "name": "timeNow",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 350,
-                      "src": "1385:7:3",
+                      "referencedDeclaration": 558,
+                      "src": "517:7:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint32",
                         "typeString": "uint32"
                       }
                     },
-                    "src": "1363:29:3",
+                    "src": "495:29:4",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint32",
                       "typeString": "uint32"
                     }
                   },
-                  "id": 375,
+                  "id": 583,
                   "nodeType": "ExpressionStatement",
-                  "src": "1363:29:3"
+                  "src": "495:29:4"
                 },
                 {
                   "expression": {
-                    "id": 385,
+                    "id": 597,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "baseExpression": {
-                        "id": 376,
+                        "id": 584,
                         "name": "_jobOwnerFundLocked",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 60,
-                        "src": "1405:19:3",
+                        "referencedDeclaration": 132,
+                        "src": "537:19:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
                           "typeString": "mapping(address => uint256)"
                         }
                       },
-                      "id": 379,
+                      "id": 587,
                       "indexExpression": {
                         "expression": {
-                          "id": 377,
+                          "id": 585,
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
                           "referencedDeclaration": 4294967281,
-                          "src": "1425:3:3",
+                          "src": "557:3:4",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
                             "typeString": "msg"
                           }
                         },
-                        "id": 378,
+                        "id": 586,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
-                        "memberLocation": "1429:6:3",
+                        "memberLocation": "561:6:4",
                         "memberName": "sender",
                         "nodeType": "MemberAccess",
-                        "src": "1425:10:3",
+                        "src": "557:10:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -1717,129 +1041,191 @@
                       "isPure": false,
                       "lValueRequested": true,
                       "nodeType": "IndexAccess",
-                      "src": "1405:31:3",
+                      "src": "537:31:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       }
                     },
                     "nodeType": "Assignment",
-                    "operator": "+=",
+                    "operator": "-=",
                     "rightHandSide": {
-                      "baseExpression": {
-                        "baseExpression": {
-                          "id": 380,
-                          "name": "_jobBiddersAmount",
-                          "nodeType": "Identifier",
-                          "overloadedDeclarations": [],
-                          "referencedDeclaration": 82,
-                          "src": "1440:17:3",
-                          "typeDescriptions": {
-                            "typeIdentifier": "t_mapping$_t_uint256_$_t_mapping$_t_address_$_t_uint256_$_$",
-                            "typeString": "mapping(uint256 => mapping(address => uint256))"
-                          }
-                        },
-                        "id": 382,
-                        "indexExpression": {
-                          "id": 381,
-                          "name": "_jobId",
-                          "nodeType": "Identifier",
-                          "overloadedDeclarations": [],
-                          "referencedDeclaration": 333,
-                          "src": "1458:6:3",
+                      "components": [
+                        {
+                          "commonType": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          },
+                          "id": 595,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftExpression": {
+                            "expression": {
+                              "id": 588,
+                              "name": "_job",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 567,
+                              "src": "573:4:4",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_struct$_Job_$112_storage_ptr",
+                                "typeString": "struct Accountable.Job storage pointer"
+                              }
+                            },
+                            "id": 589,
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberLocation": "578:9:4",
+                            "memberName": "jobBudget",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": 108,
+                            "src": "573:14:4",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          },
+                          "nodeType": "BinaryOperation",
+                          "operator": "-",
+                          "rightExpression": {
+                            "baseExpression": {
+                              "baseExpression": {
+                                "id": 590,
+                                "name": "_jobBiddersAmount",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 154,
+                                "src": "603:17:4",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_mapping$_t_uint256_$_t_mapping$_t_address_$_t_uint256_$_$",
+                                  "typeString": "mapping(uint256 => mapping(address => uint256))"
+                                }
+                              },
+                              "id": 592,
+                              "indexExpression": {
+                                "id": 591,
+                                "name": "_jobId",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 538,
+                                "src": "621:6:4",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                }
+                              },
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "nodeType": "IndexAccess",
+                              "src": "603:25:4",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
+                                "typeString": "mapping(address => uint256)"
+                              }
+                            },
+                            "id": 594,
+                            "indexExpression": {
+                              "id": 593,
+                              "name": "_workerAdd",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 540,
+                              "src": "629:10:4",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_address",
+                                "typeString": "address"
+                              }
+                            },
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "nodeType": "IndexAccess",
+                            "src": "603:37:4",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          },
+                          "src": "573:67:4",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
                             "typeString": "uint256"
                           }
-                        },
-                        "isConstant": false,
-                        "isLValue": true,
-                        "isPure": false,
-                        "lValueRequested": false,
-                        "nodeType": "IndexAccess",
-                        "src": "1440:25:3",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
-                          "typeString": "mapping(address => uint256)"
                         }
-                      },
-                      "id": 384,
-                      "indexExpression": {
-                        "id": 383,
-                        "name": "_workerAdd",
-                        "nodeType": "Identifier",
-                        "overloadedDeclarations": [],
-                        "referencedDeclaration": 335,
-                        "src": "1466:10:3",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_address",
-                          "typeString": "address"
-                        }
-                      },
+                      ],
+                      "id": 596,
                       "isConstant": false,
-                      "isLValue": true,
+                      "isInlineArray": false,
+                      "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
-                      "nodeType": "IndexAccess",
-                      "src": "1440:37:3",
+                      "nodeType": "TupleExpression",
+                      "src": "572:69:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       }
                     },
-                    "src": "1405:72:3",
+                    "src": "537:104:4",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "id": 386,
+                  "id": 598,
                   "nodeType": "ExpressionStatement",
-                  "src": "1405:72:3"
+                  "src": "537:104:4"
                 },
                 {
                   "expression": {
-                    "id": 396,
+                    "id": 608,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "baseExpression": {
-                        "id": 387,
+                        "id": 599,
                         "name": "_fundByJobOwner",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 56,
-                        "src": "1488:15:3",
+                        "referencedDeclaration": 128,
+                        "src": "652:15:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
                           "typeString": "mapping(address => uint256)"
                         }
                       },
-                      "id": 390,
+                      "id": 602,
                       "indexExpression": {
                         "expression": {
-                          "id": 388,
+                          "id": 600,
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
                           "referencedDeclaration": 4294967281,
-                          "src": "1504:3:3",
+                          "src": "668:3:4",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
                             "typeString": "msg"
                           }
                         },
-                        "id": 389,
+                        "id": 601,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
-                        "memberLocation": "1508:6:3",
+                        "memberLocation": "672:6:4",
                         "memberName": "sender",
                         "nodeType": "MemberAccess",
-                        "src": "1504:10:3",
+                        "src": "668:10:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -1850,7 +1236,7 @@
                       "isPure": false,
                       "lValueRequested": true,
                       "nodeType": "IndexAccess",
-                      "src": "1488:27:3",
+                      "src": "652:27:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -1861,25 +1247,25 @@
                     "rightHandSide": {
                       "baseExpression": {
                         "baseExpression": {
-                          "id": 391,
+                          "id": 603,
                           "name": "_jobBiddersAmount",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 82,
-                          "src": "1519:17:3",
+                          "referencedDeclaration": 154,
+                          "src": "683:17:4",
                           "typeDescriptions": {
                             "typeIdentifier": "t_mapping$_t_uint256_$_t_mapping$_t_address_$_t_uint256_$_$",
                             "typeString": "mapping(uint256 => mapping(address => uint256))"
                           }
                         },
-                        "id": 393,
+                        "id": 605,
                         "indexExpression": {
-                          "id": 392,
+                          "id": 604,
                           "name": "_jobId",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 333,
-                          "src": "1537:6:3",
+                          "referencedDeclaration": 538,
+                          "src": "701:6:4",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
                             "typeString": "uint256"
@@ -1890,20 +1276,20 @@
                         "isPure": false,
                         "lValueRequested": false,
                         "nodeType": "IndexAccess",
-                        "src": "1519:25:3",
+                        "src": "683:25:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
                           "typeString": "mapping(address => uint256)"
                         }
                       },
-                      "id": 395,
+                      "id": 607,
                       "indexExpression": {
-                        "id": 394,
+                        "id": 606,
                         "name": "_workerAdd",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 335,
-                        "src": "1545:10:3",
+                        "referencedDeclaration": 540,
+                        "src": "709:10:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -1914,87 +1300,87 @@
                       "isPure": false,
                       "lValueRequested": false,
                       "nodeType": "IndexAccess",
-                      "src": "1519:37:3",
+                      "src": "683:37:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       }
                     },
-                    "src": "1488:68:3",
+                    "src": "652:68:4",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "id": 397,
+                  "id": 609,
                   "nodeType": "ExpressionStatement",
-                  "src": "1488:68:3"
+                  "src": "652:68:4"
                 },
                 {
                   "assignments": [
-                    400
+                    612
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 400,
+                      "id": 612,
                       "mutability": "mutable",
                       "name": "_worker",
-                      "nameLocation": "1584:7:3",
+                      "nameLocation": "748:7:4",
                       "nodeType": "VariableDeclaration",
-                      "scope": 423,
-                      "src": "1569:22:3",
+                      "scope": 635,
+                      "src": "733:22:4",
                       "stateVariable": false,
                       "storageLocation": "storage",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Worker_$14_storage_ptr",
+                        "typeIdentifier": "t_struct$_Worker_$86_storage_ptr",
                         "typeString": "struct Accountable.Worker"
                       },
                       "typeName": {
-                        "id": 399,
+                        "id": 611,
                         "nodeType": "UserDefinedTypeName",
                         "pathNode": {
-                          "id": 398,
+                          "id": 610,
                           "name": "Worker",
                           "nameLocations": [
-                            "1569:6:3"
+                            "733:6:4"
                           ],
                           "nodeType": "IdentifierPath",
-                          "referencedDeclaration": 14,
-                          "src": "1569:6:3"
+                          "referencedDeclaration": 86,
+                          "src": "733:6:4"
                         },
-                        "referencedDeclaration": 14,
-                        "src": "1569:6:3",
+                        "referencedDeclaration": 86,
+                        "src": "733:6:4",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Worker_$14_storage_ptr",
+                          "typeIdentifier": "t_struct$_Worker_$86_storage_ptr",
                           "typeString": "struct Accountable.Worker"
                         }
                       },
                       "visibility": "internal"
                     }
                   ],
-                  "id": 404,
+                  "id": 616,
                   "initialValue": {
                     "baseExpression": {
-                      "id": 401,
+                      "id": 613,
                       "name": "_workers",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 67,
-                      "src": "1594:8:3",
+                      "referencedDeclaration": 139,
+                      "src": "758:8:4",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_mapping$_t_address_$_t_struct$_Worker_$14_storage_$",
+                        "typeIdentifier": "t_mapping$_t_address_$_t_struct$_Worker_$86_storage_$",
                         "typeString": "mapping(address => struct Accountable.Worker storage ref)"
                       }
                     },
-                    "id": 403,
+                    "id": 615,
                     "indexExpression": {
-                      "id": 402,
+                      "id": 614,
                       "name": "_workerAdd",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 335,
-                      "src": "1603:10:3",
+                      "referencedDeclaration": 540,
+                      "src": "767:10:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
@@ -2005,45 +1391,45 @@
                     "isPure": false,
                     "lValueRequested": false,
                     "nodeType": "IndexAccess",
-                    "src": "1594:20:3",
+                    "src": "758:20:4",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_Worker_$14_storage",
+                      "typeIdentifier": "t_struct$_Worker_$86_storage",
                       "typeString": "struct Accountable.Worker storage ref"
                     }
                   },
                   "nodeType": "VariableDeclarationStatement",
-                  "src": "1569:45:3"
+                  "src": "733:45:4"
                 },
                 {
                   "expression": {
-                    "id": 409,
+                    "id": 621,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "expression": {
-                        "id": 405,
+                        "id": 617,
                         "name": "_worker",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 400,
-                        "src": "1625:7:3",
+                        "referencedDeclaration": 612,
+                        "src": "789:7:4",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Worker_$14_storage_ptr",
+                          "typeIdentifier": "t_struct$_Worker_$86_storage_ptr",
                           "typeString": "struct Accountable.Worker storage pointer"
                         }
                       },
-                      "id": 407,
+                      "id": 619,
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
                       "lValueRequested": true,
-                      "memberLocation": "1633:9:3",
+                      "memberLocation": "797:9:4",
                       "memberName": "isWorking",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 9,
-                      "src": "1625:17:3",
+                      "referencedDeclaration": 81,
+                      "src": "789:17:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_bool",
                         "typeString": "bool"
@@ -2053,79 +1439,79 @@
                     "operator": "=",
                     "rightHandSide": {
                       "hexValue": "74727565",
-                      "id": 408,
+                      "id": 620,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
                       "kind": "bool",
                       "lValueRequested": false,
                       "nodeType": "Literal",
-                      "src": "1645:4:3",
+                      "src": "809:4:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_bool",
                         "typeString": "bool"
                       },
                       "value": "true"
                     },
-                    "src": "1625:24:3",
+                    "src": "789:24:4",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
                     }
                   },
-                  "id": 410,
+                  "id": 622,
                   "nodeType": "ExpressionStatement",
-                  "src": "1625:24:3"
+                  "src": "789:24:4"
                 },
                 {
                   "eventCall": {
                     "arguments": [
                       {
                         "expression": {
-                          "id": 412,
+                          "id": 624,
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
                           "referencedDeclaration": 4294967281,
-                          "src": "1693:3:3",
+                          "src": "857:3:4",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
                             "typeString": "msg"
                           }
                         },
-                        "id": 413,
+                        "id": 625,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
-                        "memberLocation": "1697:6:3",
+                        "memberLocation": "861:6:4",
                         "memberName": "sender",
                         "nodeType": "MemberAccess",
-                        "src": "1693:10:3",
+                        "src": "857:10:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
                         }
                       },
                       {
-                        "id": 414,
+                        "id": 626,
                         "name": "_workerAdd",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 335,
-                        "src": "1718:10:3",
+                        "referencedDeclaration": 540,
+                        "src": "882:10:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
                         }
                       },
                       {
-                        "id": 415,
+                        "id": 627,
                         "name": "_jobId",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 333,
-                        "src": "1743:6:3",
+                        "referencedDeclaration": 538,
+                        "src": "907:6:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -2134,25 +1520,25 @@
                       {
                         "baseExpression": {
                           "baseExpression": {
-                            "id": 416,
+                            "id": 628,
                             "name": "_jobBiddersAmount",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 82,
-                            "src": "1764:17:3",
+                            "referencedDeclaration": 154,
+                            "src": "928:17:4",
                             "typeDescriptions": {
                               "typeIdentifier": "t_mapping$_t_uint256_$_t_mapping$_t_address_$_t_uint256_$_$",
                               "typeString": "mapping(uint256 => mapping(address => uint256))"
                             }
                           },
-                          "id": 418,
+                          "id": 630,
                           "indexExpression": {
-                            "id": 417,
+                            "id": 629,
                             "name": "_jobId",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 333,
-                            "src": "1782:6:3",
+                            "referencedDeclaration": 538,
+                            "src": "946:6:4",
                             "typeDescriptions": {
                               "typeIdentifier": "t_uint256",
                               "typeString": "uint256"
@@ -2163,20 +1549,20 @@
                           "isPure": false,
                           "lValueRequested": false,
                           "nodeType": "IndexAccess",
-                          "src": "1764:25:3",
+                          "src": "928:25:4",
                           "typeDescriptions": {
                             "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
                             "typeString": "mapping(address => uint256)"
                           }
                         },
-                        "id": 420,
+                        "id": 632,
                         "indexExpression": {
-                          "id": 419,
+                          "id": 631,
                           "name": "_workerAdd",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 335,
-                          "src": "1790:10:3",
+                          "referencedDeclaration": 540,
+                          "src": "954:10:4",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
                             "typeString": "address"
@@ -2187,7 +1573,7 @@
                         "isPure": false,
                         "lValueRequested": false,
                         "nodeType": "IndexAccess",
-                        "src": "1764:37:3",
+                        "src": "928:37:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -2213,18 +1599,18 @@
                           "typeString": "uint256"
                         }
                       ],
-                      "id": 411,
+                      "id": 623,
                       "name": "BidAccepted",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 256,
-                      "src": "1667:11:3",
+                      "referencedDeclaration": 35,
+                      "src": "831:11:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_event_nonpayable$_t_address_$_t_address_$_t_uint256_$_t_uint256_$returns$__$",
                         "typeString": "function (address,address,uint256,uint256)"
                       }
                     },
-                    "id": 421,
+                    "id": 633,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2233,71 +1619,101 @@
                     "nameLocations": [],
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "1667:145:3",
+                    "src": "831:145:4",
                     "tryCall": false,
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 422,
+                  "id": 634,
                   "nodeType": "EmitStatement",
-                  "src": "1662:150:3"
+                  "src": "826:150:4"
                 }
               ]
             },
             "functionSelector": "02068664",
-            "id": 424,
+            "id": 636,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
                 "arguments": [
                   {
-                    "id": 338,
+                    "id": 543,
                     "name": "_jobId",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 333,
-                    "src": "1142:6:3",
+                    "referencedDeclaration": 538,
+                    "src": "248:6:4",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   }
                 ],
-                "id": 339,
+                "id": 544,
                 "kind": "modifierInvocation",
                 "modifierName": {
-                  "id": 337,
-                  "name": "verifyOwnerAndWorker",
+                  "id": 542,
+                  "name": "onlyJobOwner",
                   "nameLocations": [
-                    "1121:20:3"
+                    "235:12:4"
                   ],
                   "nodeType": "IdentifierPath",
-                  "referencedDeclaration": 289,
-                  "src": "1121:20:3"
+                  "referencedDeclaration": 176,
+                  "src": "235:12:4"
                 },
                 "nodeType": "ModifierInvocation",
-                "src": "1121:28:3"
+                "src": "235:20:4"
+              },
+              {
+                "arguments": [
+                  {
+                    "id": 546,
+                    "name": "_jobId",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 538,
+                    "src": "272:6:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  }
+                ],
+                "id": 547,
+                "kind": "modifierInvocation",
+                "modifierName": {
+                  "id": 545,
+                  "name": "newJob",
+                  "nameLocations": [
+                    "265:6:4"
+                  ],
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 222,
+                  "src": "265:6:4"
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "265:14:4"
               }
             ],
             "name": "acceptBid",
-            "nameLocation": "1048:9:3",
+            "nameLocation": "162:9:4",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 336,
+              "id": 541,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 333,
+                  "id": 538,
                   "mutability": "mutable",
                   "name": "_jobId",
-                  "nameLocation": "1066:6:3",
+                  "nameLocation": "180:6:4",
                   "nodeType": "VariableDeclaration",
-                  "scope": 424,
-                  "src": "1058:14:3",
+                  "scope": 636,
+                  "src": "172:14:4",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2305,10 +1721,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 332,
+                    "id": 537,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1058:7:3",
+                    "src": "172:7:4",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -2318,13 +1734,13 @@
                 },
                 {
                   "constant": false,
-                  "id": 335,
+                  "id": 540,
                   "mutability": "mutable",
                   "name": "_workerAdd",
-                  "nameLocation": "1082:10:3",
+                  "nameLocation": "196:10:4",
                   "nodeType": "VariableDeclaration",
-                  "scope": 424,
-                  "src": "1074:18:3",
+                  "scope": 636,
+                  "src": "188:18:4",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2332,10 +1748,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 334,
+                    "id": 539,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1074:7:3",
+                    "src": "188:7:4",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2345,595 +1761,248 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1057:36:3"
+              "src": "171:36:4"
             },
             "returnParameters": {
-              "id": 340,
+              "id": 548,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1155:0:3"
+              "src": "285:0:4"
             },
-            "scope": 509,
-            "src": "1039:781:3",
+            "scope": 675,
+            "src": "153:831:4",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           },
           {
             "body": {
-              "id": 507,
+              "id": 673,
               "nodeType": "Block",
-              "src": "1911:474:3",
+              "src": "1036:261:4",
               "statements": [
                 {
                   "assignments": [
-                    436
+                    640
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 436,
+                      "id": 640,
                       "mutability": "mutable",
-                      "name": "timeNow",
-                      "nameLocation": "1929:7:3",
+                      "name": "_amount",
+                      "nameLocation": "1055:7:4",
                       "nodeType": "VariableDeclaration",
-                      "scope": 507,
-                      "src": "1922:14:3",
+                      "scope": 673,
+                      "src": "1047:15:4",
                       "stateVariable": false,
                       "storageLocation": "default",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_uint32",
-                        "typeString": "uint32"
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
                       },
                       "typeName": {
-                        "id": 435,
-                        "name": "uint32",
+                        "id": 639,
+                        "name": "uint256",
                         "nodeType": "ElementaryTypeName",
-                        "src": "1922:6:3",
+                        "src": "1047:7:4",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_uint32",
-                          "typeString": "uint32"
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
                         }
                       },
                       "visibility": "internal"
                     }
                   ],
-                  "id": 442,
+                  "id": 643,
                   "initialValue": {
-                    "arguments": [
-                      {
-                        "expression": {
-                          "id": 439,
-                          "name": "block",
-                          "nodeType": "Identifier",
-                          "overloadedDeclarations": [],
-                          "referencedDeclaration": 4294967292,
-                          "src": "1946:5:3",
-                          "typeDescriptions": {
-                            "typeIdentifier": "t_magic_block",
-                            "typeString": "block"
-                          }
-                        },
-                        "id": 440,
-                        "isConstant": false,
-                        "isLValue": false,
-                        "isPure": false,
-                        "lValueRequested": false,
-                        "memberLocation": "1952:9:3",
-                        "memberName": "timestamp",
-                        "nodeType": "MemberAccess",
-                        "src": "1946:15:3",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_uint256",
-                          "typeString": "uint256"
-                        }
-                      }
-                    ],
+                    "arguments": [],
                     "expression": {
-                      "argumentTypes": [
-                        {
-                          "typeIdentifier": "t_uint256",
-                          "typeString": "uint256"
-                        }
-                      ],
-                      "id": 438,
-                      "isConstant": false,
-                      "isLValue": false,
-                      "isPure": true,
-                      "lValueRequested": false,
-                      "nodeType": "ElementaryTypeNameExpression",
-                      "src": "1939:6:3",
+                      "argumentTypes": [],
+                      "id": 641,
+                      "name": "extraFund",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 331,
+                      "src": "1065:9:4",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_type$_t_uint32_$",
-                        "typeString": "type(uint32)"
-                      },
-                      "typeName": {
-                        "id": 437,
-                        "name": "uint32",
-                        "nodeType": "ElementaryTypeName",
-                        "src": "1939:6:3",
-                        "typeDescriptions": {}
+                        "typeIdentifier": "t_function_internal_view$__$returns$_t_uint256_$",
+                        "typeString": "function () view returns (uint256)"
                       }
                     },
-                    "id": 441,
+                    "id": 642,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
-                    "kind": "typeConversion",
+                    "kind": "functionCall",
                     "lValueRequested": false,
                     "nameLocations": [],
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "1939:23:3",
+                    "src": "1065:11:4",
                     "tryCall": false,
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint32",
-                      "typeString": "uint32"
-                    }
-                  },
-                  "nodeType": "VariableDeclarationStatement",
-                  "src": "1922:40:3"
-                },
-                {
-                  "assignments": [
-                    445
-                  ],
-                  "declarations": [
-                    {
-                      "constant": false,
-                      "id": 445,
-                      "mutability": "mutable",
-                      "name": "_job",
-                      "nameLocation": "1987:4:3",
-                      "nodeType": "VariableDeclaration",
-                      "scope": 507,
-                      "src": "1975:16:3",
-                      "stateVariable": false,
-                      "storageLocation": "storage",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Job_$40_storage_ptr",
-                        "typeString": "struct Accountable.Job"
-                      },
-                      "typeName": {
-                        "id": 444,
-                        "nodeType": "UserDefinedTypeName",
-                        "pathNode": {
-                          "id": 443,
-                          "name": "Job",
-                          "nameLocations": [
-                            "1975:3:3"
-                          ],
-                          "nodeType": "IdentifierPath",
-                          "referencedDeclaration": 40,
-                          "src": "1975:3:3"
-                        },
-                        "referencedDeclaration": 40,
-                        "src": "1975:3:3",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Job_$40_storage_ptr",
-                          "typeString": "struct Accountable.Job"
-                        }
-                      },
-                      "visibility": "internal"
-                    }
-                  ],
-                  "id": 449,
-                  "initialValue": {
-                    "baseExpression": {
-                      "id": 446,
-                      "name": "_jobs",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 52,
-                      "src": "1994:5:3",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Job_$40_storage_$",
-                        "typeString": "mapping(uint256 => struct Accountable.Job storage ref)"
-                      }
-                    },
-                    "id": 448,
-                    "indexExpression": {
-                      "id": 447,
-                      "name": "_jobId",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 426,
-                      "src": "2000:6:3",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_uint256",
-                        "typeString": "uint256"
-                      }
-                    },
-                    "isConstant": false,
-                    "isLValue": true,
-                    "isPure": false,
-                    "lValueRequested": false,
-                    "nodeType": "IndexAccess",
-                    "src": "1994:13:3",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_Job_$40_storage",
-                      "typeString": "struct Accountable.Job storage ref"
-                    }
-                  },
-                  "nodeType": "VariableDeclarationStatement",
-                  "src": "1975:32:3"
-                },
-                {
-                  "expression": {
-                    "id": 454,
-                    "isConstant": false,
-                    "isLValue": false,
-                    "isPure": false,
-                    "lValueRequested": false,
-                    "leftHandSide": {
-                      "expression": {
-                        "id": 450,
-                        "name": "_job",
-                        "nodeType": "Identifier",
-                        "overloadedDeclarations": [],
-                        "referencedDeclaration": 445,
-                        "src": "2018:4:3",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Job_$40_storage_ptr",
-                          "typeString": "struct Accountable.Job storage pointer"
-                        }
-                      },
-                      "id": 452,
-                      "isConstant": false,
-                      "isLValue": true,
-                      "isPure": false,
-                      "lValueRequested": true,
-                      "memberLocation": "2023:11:3",
-                      "memberName": "isCompleted",
-                      "nodeType": "MemberAccess",
-                      "referencedDeclaration": 26,
-                      "src": "2018:16:3",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_bool",
-                        "typeString": "bool"
-                      }
-                    },
-                    "nodeType": "Assignment",
-                    "operator": "=",
-                    "rightHandSide": {
-                      "hexValue": "74727565",
-                      "id": 453,
-                      "isConstant": false,
-                      "isLValue": false,
-                      "isPure": true,
-                      "kind": "bool",
-                      "lValueRequested": false,
-                      "nodeType": "Literal",
-                      "src": "2037:4:3",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_bool",
-                        "typeString": "bool"
-                      },
-                      "value": "true"
-                    },
-                    "src": "2018:23:3",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_bool",
-                      "typeString": "bool"
-                    }
-                  },
-                  "id": 455,
-                  "nodeType": "ExpressionStatement",
-                  "src": "2018:23:3"
-                },
-                {
-                  "expression": {
-                    "id": 460,
-                    "isConstant": false,
-                    "isLValue": false,
-                    "isPure": false,
-                    "lValueRequested": false,
-                    "leftHandSide": {
-                      "expression": {
-                        "id": 456,
-                        "name": "_job",
-                        "nodeType": "Identifier",
-                        "overloadedDeclarations": [],
-                        "referencedDeclaration": 445,
-                        "src": "2052:4:3",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Job_$40_storage_ptr",
-                          "typeString": "struct Accountable.Job storage pointer"
-                        }
-                      },
-                      "id": 458,
-                      "isConstant": false,
-                      "isLValue": true,
-                      "isPure": false,
-                      "lValueRequested": true,
-                      "memberLocation": "2057:16:3",
-                      "memberName": "jobCompletedDate",
-                      "nodeType": "MemberAccess",
-                      "referencedDeclaration": 34,
-                      "src": "2052:21:3",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_uint32",
-                        "typeString": "uint32"
-                      }
-                    },
-                    "nodeType": "Assignment",
-                    "operator": "=",
-                    "rightHandSide": {
-                      "id": 459,
-                      "name": "timeNow",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 436,
-                      "src": "2076:7:3",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_uint32",
-                        "typeString": "uint32"
-                      }
-                    },
-                    "src": "2052:31:3",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint32",
-                      "typeString": "uint32"
-                    }
-                  },
-                  "id": 461,
-                  "nodeType": "ExpressionStatement",
-                  "src": "2052:31:3"
-                },
-                {
-                  "assignments": [
-                    464
-                  ],
-                  "declarations": [
-                    {
-                      "constant": false,
-                      "id": 464,
-                      "mutability": "mutable",
-                      "name": "_worker",
-                      "nameLocation": "2111:7:3",
-                      "nodeType": "VariableDeclaration",
-                      "scope": 507,
-                      "src": "2096:22:3",
-                      "stateVariable": false,
-                      "storageLocation": "storage",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Worker_$14_storage_ptr",
-                        "typeString": "struct Accountable.Worker"
-                      },
-                      "typeName": {
-                        "id": 463,
-                        "nodeType": "UserDefinedTypeName",
-                        "pathNode": {
-                          "id": 462,
-                          "name": "Worker",
-                          "nameLocations": [
-                            "2096:6:3"
-                          ],
-                          "nodeType": "IdentifierPath",
-                          "referencedDeclaration": 14,
-                          "src": "2096:6:3"
-                        },
-                        "referencedDeclaration": 14,
-                        "src": "2096:6:3",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Worker_$14_storage_ptr",
-                          "typeString": "struct Accountable.Worker"
-                        }
-                      },
-                      "visibility": "internal"
-                    }
-                  ],
-                  "id": 469,
-                  "initialValue": {
-                    "baseExpression": {
-                      "id": 465,
-                      "name": "_workers",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 67,
-                      "src": "2121:8:3",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_mapping$_t_address_$_t_struct$_Worker_$14_storage_$",
-                        "typeString": "mapping(address => struct Accountable.Worker storage ref)"
-                      }
-                    },
-                    "id": 468,
-                    "indexExpression": {
-                      "expression": {
-                        "id": 466,
-                        "name": "msg",
-                        "nodeType": "Identifier",
-                        "overloadedDeclarations": [],
-                        "referencedDeclaration": 4294967281,
-                        "src": "2130:3:3",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_magic_message",
-                          "typeString": "msg"
-                        }
-                      },
-                      "id": 467,
-                      "isConstant": false,
-                      "isLValue": false,
-                      "isPure": false,
-                      "lValueRequested": false,
-                      "memberLocation": "2134:6:3",
-                      "memberName": "sender",
-                      "nodeType": "MemberAccess",
-                      "src": "2130:10:3",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_address",
-                        "typeString": "address"
-                      }
-                    },
-                    "isConstant": false,
-                    "isLValue": true,
-                    "isPure": false,
-                    "lValueRequested": false,
-                    "nodeType": "IndexAccess",
-                    "src": "2121:20:3",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_Worker_$14_storage",
-                      "typeString": "struct Accountable.Worker storage ref"
-                    }
-                  },
-                  "nodeType": "VariableDeclarationStatement",
-                  "src": "2096:45:3"
-                },
-                {
-                  "expression": {
-                    "id": 474,
-                    "isConstant": false,
-                    "isLValue": false,
-                    "isPure": false,
-                    "lValueRequested": false,
-                    "leftHandSide": {
-                      "expression": {
-                        "id": 470,
-                        "name": "_worker",
-                        "nodeType": "Identifier",
-                        "overloadedDeclarations": [],
-                        "referencedDeclaration": 464,
-                        "src": "2152:7:3",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Worker_$14_storage_ptr",
-                          "typeString": "struct Accountable.Worker storage pointer"
-                        }
-                      },
-                      "id": 472,
-                      "isConstant": false,
-                      "isLValue": true,
-                      "isPure": false,
-                      "lValueRequested": true,
-                      "memberLocation": "2160:9:3",
-                      "memberName": "isWorking",
-                      "nodeType": "MemberAccess",
-                      "referencedDeclaration": 9,
-                      "src": "2152:17:3",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_bool",
-                        "typeString": "bool"
-                      }
-                    },
-                    "nodeType": "Assignment",
-                    "operator": "=",
-                    "rightHandSide": {
-                      "hexValue": "66616c7365",
-                      "id": 473,
-                      "isConstant": false,
-                      "isLValue": false,
-                      "isPure": true,
-                      "kind": "bool",
-                      "lValueRequested": false,
-                      "nodeType": "Literal",
-                      "src": "2172:5:3",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_bool",
-                        "typeString": "bool"
-                      },
-                      "value": "false"
-                    },
-                    "src": "2152:25:3",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_bool",
-                      "typeString": "bool"
-                    }
-                  },
-                  "id": 475,
-                  "nodeType": "ExpressionStatement",
-                  "src": "2152:25:3"
-                },
-                {
-                  "expression": {
-                    "id": 479,
-                    "isConstant": false,
-                    "isLValue": false,
-                    "isPure": false,
-                    "lValueRequested": false,
-                    "nodeType": "UnaryOperation",
-                    "operator": "++",
-                    "prefix": false,
-                    "src": "2188:23:3",
-                    "subExpression": {
-                      "expression": {
-                        "id": 476,
-                        "name": "_worker",
-                        "nodeType": "Identifier",
-                        "overloadedDeclarations": [],
-                        "referencedDeclaration": 464,
-                        "src": "2188:7:3",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Worker_$14_storage_ptr",
-                          "typeString": "struct Accountable.Worker storage pointer"
-                        }
-                      },
-                      "id": 478,
-                      "isConstant": false,
-                      "isLValue": true,
-                      "isPure": false,
-                      "lValueRequested": true,
-                      "memberLocation": "2196:12:3",
-                      "memberName": "jobCompleted",
-                      "nodeType": "MemberAccess",
-                      "referencedDeclaration": 13,
-                      "src": "2188:20:3",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_uint256",
-                        "typeString": "uint256"
-                      }
-                    },
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "id": 480,
-                  "nodeType": "ExpressionStatement",
-                  "src": "2188:23:3"
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "1047:29:4"
                 },
                 {
                   "expression": {
-                    "id": 491,
+                    "arguments": [
+                      {
+                        "commonType": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        "id": 647,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "id": 645,
+                          "name": "_amount",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 640,
+                          "src": "1095:7:4",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": ">",
+                        "rightExpression": {
+                          "hexValue": "30",
+                          "id": 646,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "number",
+                          "lValueRequested": false,
+                          "nodeType": "Literal",
+                          "src": "1105:1:4",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_rational_0_by_1",
+                            "typeString": "int_const 0"
+                          },
+                          "value": "0"
+                        },
+                        "src": "1095:11:4",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "4e6f20657874726120616d6f756e742e",
+                        "id": 648,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "1108:18:4",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_f21465de242e0e0268c8126102e42ca2e4d5442b928f8ab1acce01c2725d70ab",
+                          "typeString": "literal_string \"No extra amount.\""
+                        },
+                        "value": "No extra amount."
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_f21465de242e0e0268c8126102e42ca2e4d5442b928f8ab1acce01c2725d70ab",
+                          "typeString": "literal_string \"No extra amount.\""
+                        }
+                      ],
+                      "id": 644,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "1087:7:4",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 649,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1087:40:4",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 650,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1087:40:4"
+                },
+                {
+                  "expression": {
+                    "id": 656,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "baseExpression": {
-                        "id": 481,
-                        "name": "_jobOwnerFundLocked",
+                        "id": 651,
+                        "name": "_fundByJobOwner",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 60,
-                        "src": "2224:19:3",
+                        "referencedDeclaration": 128,
+                        "src": "1138:15:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
                           "typeString": "mapping(address => uint256)"
                         }
                       },
-                      "id": 484,
+                      "id": 654,
                       "indexExpression": {
                         "expression": {
-                          "id": 482,
-                          "name": "_job",
+                          "id": 652,
+                          "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 445,
-                          "src": "2244:4:3",
+                          "referencedDeclaration": 4294967281,
+                          "src": "1154:3:4",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_struct$_Job_$40_storage_ptr",
-                            "typeString": "struct Accountable.Job storage pointer"
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
                           }
                         },
-                        "id": 483,
+                        "id": 653,
                         "isConstant": false,
-                        "isLValue": true,
+                        "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
-                        "memberLocation": "2249:8:3",
-                        "memberName": "jobOwner",
+                        "memberLocation": "1158:6:4",
+                        "memberName": "sender",
                         "nodeType": "MemberAccess",
-                        "referencedDeclaration": 22,
-                        "src": "2244:13:3",
+                        "src": "1154:10:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -2944,7 +2013,7 @@
                       "isPure": false,
                       "lValueRequested": true,
                       "nodeType": "IndexAccess",
-                      "src": "2224:34:3",
+                      "src": "1138:27:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -2953,167 +2022,37 @@
                     "nodeType": "Assignment",
                     "operator": "-=",
                     "rightHandSide": {
-                      "baseExpression": {
-                        "baseExpression": {
-                          "id": 485,
-                          "name": "_jobBiddersAmount",
-                          "nodeType": "Identifier",
-                          "overloadedDeclarations": [],
-                          "referencedDeclaration": 82,
-                          "src": "2262:17:3",
-                          "typeDescriptions": {
-                            "typeIdentifier": "t_mapping$_t_uint256_$_t_mapping$_t_address_$_t_uint256_$_$",
-                            "typeString": "mapping(uint256 => mapping(address => uint256))"
-                          }
-                        },
-                        "id": 487,
-                        "indexExpression": {
-                          "id": 486,
-                          "name": "_jobId",
-                          "nodeType": "Identifier",
-                          "overloadedDeclarations": [],
-                          "referencedDeclaration": 426,
-                          "src": "2280:6:3",
-                          "typeDescriptions": {
-                            "typeIdentifier": "t_uint256",
-                            "typeString": "uint256"
-                          }
-                        },
-                        "isConstant": false,
-                        "isLValue": true,
-                        "isPure": false,
-                        "lValueRequested": false,
-                        "nodeType": "IndexAccess",
-                        "src": "2262:25:3",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
-                          "typeString": "mapping(address => uint256)"
-                        }
-                      },
-                      "id": 490,
-                      "indexExpression": {
-                        "expression": {
-                          "id": 488,
-                          "name": "msg",
-                          "nodeType": "Identifier",
-                          "overloadedDeclarations": [],
-                          "referencedDeclaration": 4294967281,
-                          "src": "2288:3:3",
-                          "typeDescriptions": {
-                            "typeIdentifier": "t_magic_message",
-                            "typeString": "msg"
-                          }
-                        },
-                        "id": 489,
-                        "isConstant": false,
-                        "isLValue": false,
-                        "isPure": false,
-                        "lValueRequested": false,
-                        "memberLocation": "2292:6:3",
-                        "memberName": "sender",
-                        "nodeType": "MemberAccess",
-                        "src": "2288:10:3",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_address",
-                          "typeString": "address"
-                        }
-                      },
-                      "isConstant": false,
-                      "isLValue": true,
-                      "isPure": false,
-                      "lValueRequested": false,
-                      "nodeType": "IndexAccess",
-                      "src": "2262:37:3",
+                      "id": 655,
+                      "name": "_amount",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 640,
+                      "src": "1169:7:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       }
                     },
-                    "src": "2224:75:3",
+                    "src": "1138:38:4",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "id": 492,
+                  "id": 657,
                   "nodeType": "ExpressionStatement",
-                  "src": "2224:75:3"
+                  "src": "1138:38:4"
                 },
                 {
                   "expression": {
                     "arguments": [
                       {
-                        "baseExpression": {
-                          "baseExpression": {
-                            "id": 499,
-                            "name": "_jobBiddersAmount",
-                            "nodeType": "Identifier",
-                            "overloadedDeclarations": [],
-                            "referencedDeclaration": 82,
-                            "src": "2339:17:3",
-                            "typeDescriptions": {
-                              "typeIdentifier": "t_mapping$_t_uint256_$_t_mapping$_t_address_$_t_uint256_$_$",
-                              "typeString": "mapping(uint256 => mapping(address => uint256))"
-                            }
-                          },
-                          "id": 501,
-                          "indexExpression": {
-                            "id": 500,
-                            "name": "_jobId",
-                            "nodeType": "Identifier",
-                            "overloadedDeclarations": [],
-                            "referencedDeclaration": 426,
-                            "src": "2357:6:3",
-                            "typeDescriptions": {
-                              "typeIdentifier": "t_uint256",
-                              "typeString": "uint256"
-                            }
-                          },
-                          "isConstant": false,
-                          "isLValue": true,
-                          "isPure": false,
-                          "lValueRequested": false,
-                          "nodeType": "IndexAccess",
-                          "src": "2339:25:3",
-                          "typeDescriptions": {
-                            "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
-                            "typeString": "mapping(address => uint256)"
-                          }
-                        },
-                        "id": 504,
-                        "indexExpression": {
-                          "expression": {
-                            "id": 502,
-                            "name": "msg",
-                            "nodeType": "Identifier",
-                            "overloadedDeclarations": [],
-                            "referencedDeclaration": 4294967281,
-                            "src": "2365:3:3",
-                            "typeDescriptions": {
-                              "typeIdentifier": "t_magic_message",
-                              "typeString": "msg"
-                            }
-                          },
-                          "id": 503,
-                          "isConstant": false,
-                          "isLValue": false,
-                          "isPure": false,
-                          "lValueRequested": false,
-                          "memberLocation": "2369:6:3",
-                          "memberName": "sender",
-                          "nodeType": "MemberAccess",
-                          "src": "2365:10:3",
-                          "typeDescriptions": {
-                            "typeIdentifier": "t_address",
-                            "typeString": "address"
-                          }
-                        },
-                        "isConstant": false,
-                        "isLValue": true,
-                        "isPure": false,
-                        "lValueRequested": false,
-                        "nodeType": "IndexAccess",
-                        "src": "2339:37:3",
+                        "id": 664,
+                        "name": "_amount",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 640,
+                        "src": "1216:7:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -3131,26 +2070,26 @@
                         "arguments": [
                           {
                             "expression": {
-                              "id": 495,
+                              "id": 660,
                               "name": "msg",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
                               "referencedDeclaration": 4294967281,
-                              "src": "2318:3:3",
+                              "src": "1195:3:4",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_magic_message",
                                 "typeString": "msg"
                               }
                             },
-                            "id": 496,
+                            "id": 661,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": false,
                             "lValueRequested": false,
-                            "memberLocation": "2322:6:3",
+                            "memberLocation": "1199:6:4",
                             "memberName": "sender",
                             "nodeType": "MemberAccess",
-                            "src": "2318:10:3",
+                            "src": "1195:10:4",
                             "typeDescriptions": {
                               "typeIdentifier": "t_address",
                               "typeString": "address"
@@ -3164,27 +2103,27 @@
                               "typeString": "address"
                             }
                           ],
-                          "id": 494,
+                          "id": 659,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
                           "lValueRequested": false,
                           "nodeType": "ElementaryTypeNameExpression",
-                          "src": "2310:8:3",
+                          "src": "1187:8:4",
                           "typeDescriptions": {
                             "typeIdentifier": "t_type$_t_address_payable_$",
                             "typeString": "type(address payable)"
                           },
                           "typeName": {
-                            "id": 493,
+                            "id": 658,
                             "name": "address",
                             "nodeType": "ElementaryTypeName",
-                            "src": "2310:8:3",
+                            "src": "1187:8:4",
                             "stateMutability": "payable",
                             "typeDescriptions": {}
                           }
                         },
-                        "id": 497,
+                        "id": 662,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -3193,28 +2132,28 @@
                         "nameLocations": [],
                         "names": [],
                         "nodeType": "FunctionCall",
-                        "src": "2310:19:3",
+                        "src": "1187:19:4",
                         "tryCall": false,
                         "typeDescriptions": {
                           "typeIdentifier": "t_address_payable",
                           "typeString": "address payable"
                         }
                       },
-                      "id": 498,
+                      "id": 663,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
-                      "memberLocation": "2330:8:3",
+                      "memberLocation": "1207:8:4",
                       "memberName": "transfer",
                       "nodeType": "MemberAccess",
-                      "src": "2310:28:3",
+                      "src": "1187:28:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_transfer_nonpayable$_t_uint256_$returns$__$",
                         "typeString": "function (uint256)"
                       }
                     },
-                    "id": 505,
+                    "id": 665,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -3223,143 +2162,145 @@
                     "nameLocations": [],
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "2310:67:3",
+                    "src": "1187:37:4",
                     "tryCall": false,
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 506,
+                  "id": 666,
                   "nodeType": "ExpressionStatement",
-                  "src": "2310:67:3"
+                  "src": "1187:37:4"
+                },
+                {
+                  "eventCall": {
+                    "arguments": [
+                      {
+                        "expression": {
+                          "id": 668,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 4294967281,
+                          "src": "1269:3:4",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 669,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "1273:6:4",
+                        "memberName": "sender",
+                        "nodeType": "MemberAccess",
+                        "src": "1269:10:4",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "id": 670,
+                        "name": "_amount",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 640,
+                        "src": "1281:7:4",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "id": 667,
+                      "name": "AmountWithdrawSuccessfully",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 41,
+                      "src": "1242:26:4",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_address_$_t_uint256_$returns$__$",
+                        "typeString": "function (address,uint256)"
+                      }
+                    },
+                    "id": 671,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1242:47:4",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 672,
+                  "nodeType": "EmitStatement",
+                  "src": "1237:52:4"
                 }
               ]
             },
-            "functionSelector": "81cdcd38",
-            "id": 508,
+            "functionSelector": "99a26c70",
+            "id": 674,
             "implemented": true,
             "kind": "function",
-            "modifiers": [
-              {
-                "arguments": [
-                  {
-                    "id": 429,
-                    "name": "_jobId",
-                    "nodeType": "Identifier",
-                    "overloadedDeclarations": [],
-                    "referencedDeclaration": 426,
-                    "src": "1883:6:3",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  }
-                ],
-                "id": 430,
-                "kind": "modifierInvocation",
-                "modifierName": {
-                  "id": 428,
-                  "name": "onlyJobWorker",
-                  "nameLocations": [
-                    "1869:13:3"
-                  ],
-                  "nodeType": "IdentifierPath",
-                  "referencedDeclaration": 311,
-                  "src": "1869:13:3"
-                },
-                "nodeType": "ModifierInvocation",
-                "src": "1869:21:3"
-              },
-              {
-                "arguments": [
-                  {
-                    "id": 432,
-                    "name": "_jobId",
-                    "nodeType": "Identifier",
-                    "overloadedDeclarations": [],
-                    "referencedDeclaration": 426,
-                    "src": "1904:6:3",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  }
-                ],
-                "id": 433,
-                "kind": "modifierInvocation",
-                "modifierName": {
-                  "id": 431,
-                  "name": "jobCompleted",
-                  "nameLocations": [
-                    "1891:12:3"
-                  ],
-                  "nodeType": "IdentifierPath",
-                  "referencedDeclaration": 331,
-                  "src": "1891:12:3"
-                },
-                "nodeType": "ModifierInvocation",
-                "src": "1891:20:3"
-              }
-            ],
-            "name": "jobDone",
-            "nameLocation": "1837:7:3",
+            "modifiers": [],
+            "name": "withdrawExtraAmount",
+            "nameLocation": "1005:19:4",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 427,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 426,
-                  "mutability": "mutable",
-                  "name": "_jobId",
-                  "nameLocation": "1853:6:3",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 508,
-                  "src": "1845:14:3",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 425,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1845:7:3",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "visibility": "internal"
-                }
-              ],
-              "src": "1844:16:3"
-            },
-            "returnParameters": {
-              "id": 434,
+              "id": 637,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1911:0:3"
+              "src": "1024:2:4"
             },
-            "scope": 509,
-            "src": "1828:557:3",
+            "returnParameters": {
+              "id": 638,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1036:0:4"
+            },
+            "scope": 675,
+            "src": "996:301:4",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 510,
-        "src": "100:2288:3",
+        "scope": 676,
+        "src": "100:1200:4",
         "usedErrors": [
-          3
+          3,
+          5,
+          7,
+          9,
+          11,
+          13,
+          15
         ]
       }
     ],
-    "src": "33:2357:3"
+    "src": "33:1269:4"
   },
   "compiler": {
     "name": "solc",
@@ -3367,7 +2308,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.10",
-  "updatedAt": "2022-11-08T11:59:45.937Z",
+  "updatedAt": "2022-11-10T04:50:45.775Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},

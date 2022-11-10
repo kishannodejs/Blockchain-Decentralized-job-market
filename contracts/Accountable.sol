@@ -2,17 +2,71 @@
 pragma solidity >=0.8.4 <0.9.0;
 
 abstract contract Accountable {
+    //errors
     error InvalidWorker();
+    error AlreadyWorker(address workerName);
+    error OverBudget();
+    error AlreadyBided();
+    error NotBided();
+    error GreaterThanPreviousBid();
+    error AlreadyWorking();
 
-    struct Worker{
+    //events
+    //Job Owner
+    event JobRegistered(
+        address indexed _jobOwner,
+        uint256 indexed _jobBudget,
+        string indexed _jobName,
+        uint256 _jobId
+    );
+
+    event BidAccepted(
+        address indexed _jobOwner,
+        address indexed _jobWorker,
+        uint256 _jobId,
+        uint256 _bidAmount
+    );
+
+    event FundWithdrawSuccessfully(
+        address indexed _jobOwner,
+        uint256 _amount
+    );
+
+    //Worker
+    event WorkerRegisterSuccessfully(
+        address indexed _worker,
+        string _workerName,
+        uint256 _workerId
+    );
+
+    event SuccessfullyBid(
+        address indexed _workerAdd,
+        uint256 indexed _jobId,
+        uint256 indexed _bidAmount
+    );
+
+    event BidModifiedSuccessfully(
+        address indexed _workerAdd,
+        uint256 indexed _jobId,
+        uint256 indexed _bidAmount,
+        uint256 _prevBidAmount
+    );
+
+    event jobCompleted(
+        address indexed _jobWorker,
+        uint256 indexed _jobId,
+        uint256 _amount
+    );
+
+    struct Worker {
         uint256 workerId;
         string workerName;
         bool isWorking;
         uint32 workerRegisteredDate;
-        uint256 jobCompleted;
+        uint256 jobsCompleted;
     }
 
-    struct Job{
+    struct Job {
         uint256 jobId;
         string jobName;
         string jobDescription;
@@ -24,7 +78,8 @@ abstract contract Accountable {
         uint32 jobStartedDate;
         uint32 jobCompletedDate;
         uint256 jobBudget;
-        address [] jobAllBiders;
+        uint256 jobSettledAmount;
+        address[] jobAllBiders;
     }
 
     struct Bider {
@@ -50,9 +105,56 @@ abstract contract Accountable {
 
     mapping(uint256 => mapping(address => uint256)) internal _jobBiddersAmount;
 
-    function allBider(uint256 _jobId)external view returns(address [] memory){
+    //modifiers
+    modifier onlyJobOwner(uint256 _jobId) {
         Job memory _job = _jobs[_jobId];
-        return(_job.jobAllBiders);
+        require(
+            msg.sender == _job.jobOwner,
+            "Only owner of the job will accept the bid."
+        );
+        _;
+    }
 
+    modifier onlyJobWorker(uint256 _jobId) {
+        Job memory _job = _jobs[_jobId];
+        require(msg.sender == _job.jobWorker, "Only job worker allowed.");
+        _;
+    }
+
+    modifier newJob(uint256 _jobId) {
+        Job memory _job = _jobs[_jobId];
+        require(
+            _job.jobWorker == address(0x0),
+            "Worker already assigned."
+        );
+        _;
+    }
+
+    modifier isJobCompleted(uint256 _jobId) {
+        Job memory _job = _jobs[_jobId];
+        require(!_job.isCompleted, "Job already completed.");
+        _;
+    }
+
+    modifier validJob(uint256 _jobId) {
+        Job memory _job = _jobs[_jobId];
+        require(_job.isJobValid, "Job does not exists.");
+        _;
+    }
+
+    modifier notOwner(uint256 _jobId){
+        Job memory _job = _jobs[_jobId];
+        require(msg.sender !=_job.jobOwner, "Job owner not allowed to place bid.");
+        _;
+    }
+
+    //functions
+    function allBiders(uint256 _jobId) external view returns (address[] memory) {
+        Job memory _job = _jobs[_jobId];
+        return (_job.jobAllBiders);
+    }
+
+    function extraFund()public view returns(uint256){
+        return (_fundByJobOwner[msg.sender] - _jobOwnerFundLocked[msg.sender]);
     }
 }
