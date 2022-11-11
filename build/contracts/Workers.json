@@ -7,7 +7,13 @@
       "type": "error"
     },
     {
-      "inputs": [],
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "workerName",
+          "type": "address"
+        }
+      ],
       "name": "AlreadyWorker",
       "type": "error"
     },
@@ -35,25 +41,6 @@
       "inputs": [],
       "name": "OverBudget",
       "type": "error"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": true,
-          "internalType": "address",
-          "name": "_jobOwner",
-          "type": "address"
-        },
-        {
-          "indexed": false,
-          "internalType": "uint256",
-          "name": "_amount",
-          "type": "uint256"
-        }
-      ],
-      "name": "AmountWithdrawSuccessfully",
-      "type": "event"
     },
     {
       "anonymous": false,
@@ -115,6 +102,25 @@
         }
       ],
       "name": "BidModifiedSuccessfully",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "_jobOwner",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "_amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "FundWithdrawSuccessfully",
       "type": "event"
     },
     {
@@ -362,6 +368,11 @@
           "internalType": "uint256",
           "name": "jobBudget",
           "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "jobSettledAmount",
+          "type": "uint256"
         }
       ],
       "stateMutability": "view",
@@ -446,7 +457,7 @@
           "type": "uint256"
         }
       ],
-      "name": "allBider",
+      "name": "allBiders",
       "outputs": [
         {
           "internalType": "address[]",
@@ -466,7 +477,7 @@
         },
         {
           "internalType": "uint256",
-          "name": "_bidAmoun",
+          "name": "_bidAmount",
           "type": "uint256"
         }
       ],
@@ -510,7 +521,7 @@
         },
         {
           "internalType": "uint256",
-          "name": "_bidAmoun",
+          "name": "_bidAmount",
           "type": "uint256"
         }
       ],
@@ -533,7 +544,7 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.8.17+commit.8df45f5f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"AlreadyBided\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"AlreadyWorker\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"AlreadyWorking\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"GreaterThanPreviousBid\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidWorker\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"NotBided\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OverBudget\",\"type\":\"error\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_jobOwner\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"_amount\",\"type\":\"uint256\"}],\"name\":\"AmountWithdrawSuccessfully\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_jobOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_jobWorker\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"_jobId\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"_bidAmount\",\"type\":\"uint256\"}],\"name\":\"BidAccepted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_workerAdd\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"_jobId\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"_bidAmount\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"_prevBidAmount\",\"type\":\"uint256\"}],\"name\":\"BidModifiedSuccessfully\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_jobOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"_jobBudget\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"string\",\"name\":\"_jobName\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"_jobId\",\"type\":\"uint256\"}],\"name\":\"JobRegistered\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_workerAdd\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"_jobId\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"_bidAmount\",\"type\":\"uint256\"}],\"name\":\"SuccessfullyBid\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_worker\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"_workerName\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"_workerId\",\"type\":\"uint256\"}],\"name\":\"WorkerRegisterSuccessfully\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_jobWorker\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"_jobId\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"_amount\",\"type\":\"uint256\"}],\"name\":\"jobCompleted\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"_biders\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"bidAmount\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"biderAddress\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"_fundByJobOwner\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"_jobIds\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"_jobOwnerFundLocked\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"_jobs\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"jobId\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"jobName\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"jobDescription\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"jobOwner\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"jobWorker\",\"type\":\"address\"},{\"internalType\":\"bool\",\"name\":\"isCompleted\",\"type\":\"bool\"},{\"internalType\":\"bool\",\"name\":\"isJobValid\",\"type\":\"bool\"},{\"internalType\":\"uint32\",\"name\":\"jobRegisteredDate\",\"type\":\"uint32\"},{\"internalType\":\"uint32\",\"name\":\"jobStartedDate\",\"type\":\"uint32\"},{\"internalType\":\"uint32\",\"name\":\"jobCompletedDate\",\"type\":\"uint32\"},{\"internalType\":\"uint256\",\"name\":\"jobBudget\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"_validWorkers\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"_workerIds\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"_workers\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"workerId\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"workerName\",\"type\":\"string\"},{\"internalType\":\"bool\",\"name\":\"isWorking\",\"type\":\"bool\"},{\"internalType\":\"uint32\",\"name\":\"workerRegisteredDate\",\"type\":\"uint32\"},{\"internalType\":\"uint256\",\"name\":\"jobsCompleted\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_jobId\",\"type\":\"uint256\"}],\"name\":\"allBider\",\"outputs\":[{\"internalType\":\"address[]\",\"name\":\"\",\"type\":\"address[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_jobId\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_bidAmoun\",\"type\":\"uint256\"}],\"name\":\"bidJob\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"extraFund\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_jobId\",\"type\":\"uint256\"}],\"name\":\"jobDone\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_jobId\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_bidAmoun\",\"type\":\"uint256\"}],\"name\":\"modifyBid\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_workerName\",\"type\":\"string\"}],\"name\":\"registerWorker\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/workers/Workers.sol\":\"Workers\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/Accountable.sol\":{\"keccak256\":\"0x91617522b88eaf871302a1b152f0a0175afa2dd2b620a18109fc4ec29c4b0345\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://03d795e816a4038f70e69956dac69257235738b5a188a8c7a0f461091bee5153\",\"dweb:/ipfs/QmNo6mWUFaTURLQ23kZVUaR4d2Dhk6mLnif6hmakj3b3Ss\"]},\"project:/contracts/workers/WorkerJobs.sol\":{\"keccak256\":\"0x93cf3fe81737511793a32a996ce03ecd7d1335afea2d22d57728b10edf6aa86a\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://5be95d57cac605cbb3d3eebe5e3c9206bc16cadc0b9635acf183078dfd9e8bf8\",\"dweb:/ipfs/QmSU3M9nvDQUn6syGtBm6eH3ue712yTGtg12iajx16AfWJ\"]},\"project:/contracts/workers/WorkerManager.sol\":{\"keccak256\":\"0x6f09e4ace330b6e17edb9bf35deef90e57dc8264c00fd07cdc4e953650617ff6\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://375955be7cadf2a0056bb47215f4ecb3c5a362e291dd7455252b3555cb5ecf6c\",\"dweb:/ipfs/QmSYaiU64vLXFxLttwiESqaBhTqKdbB8JdDUxuAzHJSkqy\"]},\"project:/contracts/workers/Workers.sol\":{\"keccak256\":\"0xa89693da82a6d8abda5726bb8e46f6193e715c9ad0b1949c34179c4ecd1a7bb7\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://ea61489c2a646798e0ecfb59b441ea86c57a11b2dc071499294873a0fd99a742\",\"dweb:/ipfs/QmVjrNnd8RYQskQ7whYR76b9xbjF3K521gt3bW38P7V2dm\"]}},\"version\":1}",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.17+commit.8df45f5f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"AlreadyBided\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"workerName\",\"type\":\"address\"}],\"name\":\"AlreadyWorker\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"AlreadyWorking\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"GreaterThanPreviousBid\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidWorker\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"NotBided\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OverBudget\",\"type\":\"error\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_jobOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_jobWorker\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"_jobId\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"_bidAmount\",\"type\":\"uint256\"}],\"name\":\"BidAccepted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_workerAdd\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"_jobId\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"_bidAmount\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"_prevBidAmount\",\"type\":\"uint256\"}],\"name\":\"BidModifiedSuccessfully\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_jobOwner\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"_amount\",\"type\":\"uint256\"}],\"name\":\"FundWithdrawSuccessfully\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_jobOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"_jobBudget\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"string\",\"name\":\"_jobName\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"_jobId\",\"type\":\"uint256\"}],\"name\":\"JobRegistered\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_workerAdd\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"_jobId\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"_bidAmount\",\"type\":\"uint256\"}],\"name\":\"SuccessfullyBid\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_worker\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"_workerName\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"_workerId\",\"type\":\"uint256\"}],\"name\":\"WorkerRegisterSuccessfully\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_jobWorker\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"_jobId\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"_amount\",\"type\":\"uint256\"}],\"name\":\"jobCompleted\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"_biders\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"bidAmount\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"biderAddress\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"_fundByJobOwner\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"_jobIds\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"_jobOwnerFundLocked\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"_jobs\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"jobId\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"jobName\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"jobDescription\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"jobOwner\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"jobWorker\",\"type\":\"address\"},{\"internalType\":\"bool\",\"name\":\"isCompleted\",\"type\":\"bool\"},{\"internalType\":\"bool\",\"name\":\"isJobValid\",\"type\":\"bool\"},{\"internalType\":\"uint32\",\"name\":\"jobRegisteredDate\",\"type\":\"uint32\"},{\"internalType\":\"uint32\",\"name\":\"jobStartedDate\",\"type\":\"uint32\"},{\"internalType\":\"uint32\",\"name\":\"jobCompletedDate\",\"type\":\"uint32\"},{\"internalType\":\"uint256\",\"name\":\"jobBudget\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"jobSettledAmount\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"_validWorkers\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"_workerIds\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"_workers\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"workerId\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"workerName\",\"type\":\"string\"},{\"internalType\":\"bool\",\"name\":\"isWorking\",\"type\":\"bool\"},{\"internalType\":\"uint32\",\"name\":\"workerRegisteredDate\",\"type\":\"uint32\"},{\"internalType\":\"uint256\",\"name\":\"jobsCompleted\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_jobId\",\"type\":\"uint256\"}],\"name\":\"allBiders\",\"outputs\":[{\"internalType\":\"address[]\",\"name\":\"\",\"type\":\"address[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_jobId\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_bidAmount\",\"type\":\"uint256\"}],\"name\":\"bidJob\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"extraFund\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_jobId\",\"type\":\"uint256\"}],\"name\":\"jobDone\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_jobId\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_bidAmount\",\"type\":\"uint256\"}],\"name\":\"modifyBid\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_workerName\",\"type\":\"string\"}],\"name\":\"registerWorker\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/workers/Workers.sol\":\"Workers\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/Accountable.sol\":{\"keccak256\":\"0x0ad98d63026143834bf2820c182e8053f50cfb9ed0d962a3e1ce226fdb17c552\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://f3a46eb845cf148c6c046e80e35efed41ada3dccb40eae7dcde90fabf34f1582\",\"dweb:/ipfs/QmVxwC6Wh21TdYuUDVVCt6iSdcxV7rgasvrsJpu9AqVM7H\"]},\"project:/contracts/workers/WorkerJobs.sol\":{\"keccak256\":\"0xa7454ed8c687e87ec05482835ffae7aac60f8fa2e7a8b3ed9bd653e05a8f20d3\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://92690d917d751dcd0b9b39e169f2473bb1e9ebfafdf55ec96baeb174b858cebe\",\"dweb:/ipfs/QmXAAV1Uoi2ywQrpbo9pnRERvpZQPavUN6y6nPx9juF1Yr\"]},\"project:/contracts/workers/WorkerManager.sol\":{\"keccak256\":\"0xf0b35884d3556e0e03ddc767419d4d87c40edf3a64f8736e5b6b46faa1ce7513\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://a7b1a2f9ddd1ddf35c9c6f8cee47cfeda2250939cebc74fb99685343e520d5df\",\"dweb:/ipfs/QmP9gFftKBPvyfxi9Z9541V16K85SqtAJhsz4Uz3ZCLovQ\"]},\"project:/contracts/workers/Workers.sol\":{\"keccak256\":\"0xa89693da82a6d8abda5726bb8e46f6193e715c9ad0b1949c34179c4ecd1a7bb7\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://ea61489c2a646798e0ecfb59b441ea86c57a11b2dc071499294873a0fd99a742\",\"dweb:/ipfs/QmVjrNnd8RYQskQ7whYR76b9xbjF3K521gt3bW38P7V2dm\"]}},\"version\":1}",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "immutableReferences": {},
@@ -547,24 +558,24 @@
     "absolutePath": "project:/contracts/workers/Workers.sol",
     "exportedSymbols": {
       "Accountable": [
-        332
+        325
       ],
       "WorkerJobs": [
-        1057
+        1073
       ],
       "WorkerManager": [
-        1109
+        1132
       ],
       "Workers": [
-        1118
+        1141
       ]
     },
-    "id": 1119,
+    "id": 1142,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1111,
+        "id": 1134,
         "literals": [
           "solidity",
           ">=",
@@ -580,11 +591,11 @@
       {
         "absolutePath": "project:/contracts/workers/WorkerManager.sol",
         "file": "./WorkerManager.sol",
-        "id": 1112,
+        "id": 1135,
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
-        "scope": 1119,
-        "sourceUnit": 1110,
+        "scope": 1142,
+        "sourceUnit": 1133,
         "src": "68:29:8",
         "symbolAliases": [],
         "unitAlias": ""
@@ -592,11 +603,11 @@
       {
         "absolutePath": "project:/contracts/workers/WorkerJobs.sol",
         "file": "./WorkerJobs.sol",
-        "id": 1113,
+        "id": 1136,
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
-        "scope": 1119,
-        "sourceUnit": 1058,
+        "scope": 1142,
+        "sourceUnit": 1074,
         "src": "99:26:8",
         "symbolAliases": [],
         "unitAlias": ""
@@ -606,31 +617,31 @@
         "baseContracts": [
           {
             "baseName": {
-              "id": 1114,
+              "id": 1137,
               "name": "WorkerManager",
               "nameLocations": [
                 "158:13:8"
               ],
               "nodeType": "IdentifierPath",
-              "referencedDeclaration": 1109,
+              "referencedDeclaration": 1132,
               "src": "158:13:8"
             },
-            "id": 1115,
+            "id": 1138,
             "nodeType": "InheritanceSpecifier",
             "src": "158:13:8"
           },
           {
             "baseName": {
-              "id": 1116,
+              "id": 1139,
               "name": "WorkerJobs",
               "nameLocations": [
                 "173:10:8"
               ],
               "nodeType": "IdentifierPath",
-              "referencedDeclaration": 1057,
+              "referencedDeclaration": 1073,
               "src": "173:10:8"
             },
-            "id": 1117,
+            "id": 1140,
             "nodeType": "InheritanceSpecifier",
             "src": "173:10:8"
           }
@@ -639,27 +650,27 @@
         "contractDependencies": [],
         "contractKind": "contract",
         "fullyImplemented": true,
-        "id": 1118,
+        "id": 1141,
         "linearizedBaseContracts": [
-          1118,
-          1057,
-          1109,
-          332
+          1141,
+          1073,
+          1132,
+          325
         ],
         "name": "Workers",
         "nameLocation": "147:7:8",
         "nodeType": "ContractDefinition",
         "nodes": [],
-        "scope": 1119,
+        "scope": 1142,
         "src": "129:56:8",
         "usedErrors": [
           3,
-          5,
           7,
           9,
           11,
           13,
-          15
+          15,
+          17
         ]
       }
     ],
@@ -671,7 +682,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.10",
-  "updatedAt": "2022-11-10T04:50:45.833Z",
+  "updatedAt": "2022-11-11T09:47:31.392Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},
