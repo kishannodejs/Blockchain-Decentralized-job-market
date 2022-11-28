@@ -1,0 +1,43 @@
+.buttonDiv {
+  margin: 10px;
+  background-color: #dddad9;
+  padding: 0.5rem 2rem 0.5rem 2rem;
+  border-radius: 1rem;
+}
+
+.owner {
+  /* display: flex;
+    height: auto;
+    width: auto;
+    padding:0rem 18rem;
+    position: inherit;
+    align-items: center;
+    gap: 140px; */
+
+  position: absolute;
+  top: 15vh;
+  left: 10%;
+  width: 80%;
+}
+
+.worker {
+  /* display: flex;
+    height: auto;
+    width: auto;
+    padding:0rem 18rem;
+    position: inherit;
+    align-items: center;
+    gap: 140px; */
+  display: flex;
+  position: absolute;
+  top: 20vh;
+  left: 10%;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .owner {
+    left: calc(50% - 20rem);
+    width: 40rem;
+  }
+}
