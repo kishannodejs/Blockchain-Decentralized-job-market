@@ -1,11 +1,10 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.8.4 <0.9.0;
 
-import "@openzeppelin/contracts/utils/structs/EnumerableSet.sol";
+import "./EnumerableSet.sol";
 
 abstract contract Accountable {
     using EnumerableSet for EnumerableSet.UintSet;
-
     //events
     //Job Owner
     event JobRegistered(
@@ -74,9 +73,9 @@ abstract contract Accountable {
         uint256 jobSettledAmount;
     }
 
-    struct Bider {
+    struct Bidder {
         uint256 jobId;
-        address biderAddress;
+        address bidderAddress;
         uint256 bidAmount;
     }
 
@@ -96,7 +95,7 @@ abstract contract Accountable {
 
     mapping(address => bool) public _validWorkers;
 
-    mapping(uint256 => Bider[]) public _bidersDetails;
+    mapping(uint256 => Bidder[]) public _biddersDetails;
 
 
     //modifiers
@@ -165,7 +164,7 @@ abstract contract Accountable {
         return _liveJobs._inner._values;
     }
 
-    function allBiders(uint256 _jobId) external view validJob(_jobId) returns (Bider[] memory) {
-        return _bidersDetails[_jobId];
+    function allBidders(uint256 _jobId) external view validJob(_jobId) returns (Bidder[] memory) {
+        return _biddersDetails[_jobId];
     }
 }

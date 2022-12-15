@@ -13,9 +13,10 @@ abstract contract WorkerJobs is Accountable {
         newJob(_jobId)
     {
         if (!_validWorkers[msg.sender]) revert("InvalidWorker");
+        if(_bidAmount == 0) revert("BidAmountShouldNotZero");
 
-        for (uint256 i = 0; i < _bidersDetails[_jobId].length; i++) {
-            if (_bidersDetails[_jobId][i].biderAddress == msg.sender)
+        for (uint256 i = 0; i < _biddersDetails[_jobId].length; i++) {
+            if (_biddersDetails[_jobId][i].bidderAddress == msg.sender)
                 revert("AlreadyBided");
         }
 
@@ -26,7 +27,7 @@ abstract contract WorkerJobs is Accountable {
         if (_bidAmount > _job.jobBudget) revert("OverBudget");
         
 
-        _bidersDetails[_jobId].push(Bider(_jobId, msg.sender, _bidAmount));
+        _biddersDetails[_jobId].push(Bidder(_jobId, msg.sender, _bidAmount));
 
         emit SuccessfullyBid(msg.sender, _jobId, _bidAmount);
     }
@@ -41,17 +42,18 @@ abstract contract WorkerJobs is Accountable {
         require(_jobId <= _jobIds, "Job does not exist.");
 
         if (!_validWorkers[msg.sender]) revert("InvalidWorker");
+        if(_bidAmount == 0) revert("BidAmountShouldNotZero");
 
-        for (uint256 i = 0; i < _bidersDetails[_jobId].length; i++) {
-            if (_bidersDetails[_jobId][i].biderAddress != msg.sender) {
+        for (uint256 i = 0; i < _biddersDetails[_jobId].length; i++) {
+            if (_biddersDetails[_jobId][i].bidderAddress != msg.sender) {
                 continue;
             } else {
-                if (_bidAmount >= _bidersDetails[_jobId][i].bidAmount)
+                if (_bidAmount >= _biddersDetails[_jobId][i].bidAmount)
                     revert("GreaterThanPreviousBid");
 
-                uint256 _prevBidAmount = _bidersDetails[_jobId][i].bidAmount;
+                uint256 _prevBidAmount = _biddersDetails[_jobId][i].bidAmount;
 
-                _bidersDetails[_jobId][i].bidAmount = _bidAmount;
+                _biddersDetails[_jobId][i].bidAmount = _bidAmount;
                 emit BidModifiedSuccessfully(
                     msg.sender,
                     _jobId,
@@ -73,9 +75,9 @@ abstract contract WorkerJobs is Accountable {
         _job.jobCompletedDate = timeNow;
 
         uint256 _amountToBePaid;
-        for (uint256 i = 0; i < _bidersDetails[_jobId].length; i++) {
-            if (_bidersDetails[_jobId][i].biderAddress == msg.sender)
-                _amountToBePaid = _bidersDetails[_jobId][i].bidAmount;
+        for (uint256 i = 0; i < _biddersDetails[_jobId].length; i++) {
+            if (_biddersDetails[_jobId][i].bidderAddress == msg.sender)
+                _amountToBePaid = _biddersDetails[_jobId][i].bidAmount;
         }
         _jobOwnerFundLocked[_job.jobOwner] -= _amountToBePaid;
         _fundByJobOwner[_job.jobOwner] -= _amountToBePaid;

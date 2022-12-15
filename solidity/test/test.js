@@ -221,16 +221,16 @@ contract('JobMarket', accounts => {
             assert(_beforeBalanceJobOwner != _afterBalanceJobOwner);
         });
 
-        it("should return array of all bider by jobId", async () => {
-            let _allBidersJob1Array = [jobWorker1, jobWorker3];
-            let _allBidersJob2Array = [jobWorker2, jobWorker4];
-            let _allBidersJob1 = await _JobMarket.allBiders(1, { from: jobOwner });
-            assert(_allBidersJob1[0] == _allBidersJob1Array[0]);
-            assert(_allBidersJob1[1] == _allBidersJob1Array[1]);
-            let _allBidersJob2 = await _JobMarket.allBiders(2, { from: jobOwner });
-            assert(_allBidersJob2[0] == _allBidersJob2Array[0]);
-            assert(_allBidersJob2[1] == _allBidersJob2Array[1]);
-            // console.log(_allBidersJob1Array, _allBidersJob2Array)
+        it("should return array of all bidder by jobId", async () => {
+            let _allBiddersJob1Array = [jobWorker1, jobWorker3];
+            let _allBiddersJob2Array = [jobWorker2, jobWorker4];
+            let _allBiddersJob1 = await _JobMarket.allBidders(1, { from: jobOwner });
+            assert(_allBiddersJob1[0] == _allBiddersJob1Array[0]);
+            assert(_allBiddersJob1[1] == _allBiddersJob1Array[1]);
+            let _allBiddersJob2 = await _JobMarket.allBidders(2, { from: jobOwner });
+            assert(_allBiddersJob2[0] == _allBiddersJob2Array[0]);
+            assert(_allBiddersJob2[1] == _allBiddersJob2Array[1]);
+            // console.log(_allBiddersJob1Array, _allBiddersJob2Array)
         });
     });
 

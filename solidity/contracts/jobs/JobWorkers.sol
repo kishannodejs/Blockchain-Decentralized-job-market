@@ -21,9 +21,9 @@ abstract contract JobWorkers is Accountable {
         Job storage _job = _jobs[_jobId];
         _job.jobWorker = _workerAdd;
         _job.jobStartedDate = timeNow;
-        for (uint256 i = 0; i < _bidersDetails[_jobId].length; i++) {
-            if (_bidersDetails[_jobId][i].biderAddress == _workerAdd)
-                _job.jobSettledAmount = _bidersDetails[_jobId][i].bidAmount;
+        for (uint256 i = 0; i < _biddersDetails[_jobId].length; i++) {
+            if (_biddersDetails[_jobId][i].bidderAddress == _workerAdd)
+                _job.jobSettledAmount = _biddersDetails[_jobId][i].bidAmount;
         }
 
 

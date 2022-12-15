@@ -15,6 +15,8 @@ const reducer = (state, action) => {
   switch (type) {
     case actions.init:
       return { ...state, ...data };
+    case action.logOut:
+      return initialState;
     default:
       throw new Error("Undefined reducer action type");
   }

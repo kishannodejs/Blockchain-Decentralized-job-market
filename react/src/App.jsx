@@ -5,41 +5,36 @@ import Owner from './components/Demo/Owner';
 import JobDetails from "./components/Demo/JobDetails";
 import Jobs from "./components/Demo/Jobs";
 
-import Home from "./components/Demo";
 import Header from "./components/Header";
 
 import { EthProvider } from "./contexts/EthContext";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { useState } from 'react';
 
-//css
-import "./App.css";
 
 
 function App() {
-  const [jobDetails, setJobDetails] = useState([]);
-  const [allBiders, setAllBiders] = useState([]);
 
+  return (
 
-  return (<div>
     <EthProvider>
       <Router>
-        <Header />
+        <Header/>
         <Routes>
-          <Route path='/home' element={<Home />}></Route>
+
+        <Route path='/' element={
+            <Jobs
+            />}></Route>
+          
+          <Route path='/home' element={
+            <Jobs
+            />}></Route>
 
           <Route path='/jobs' element={
             <Jobs
-              jobDetails={jobDetails}
-              setJobDetails={setJobDetails}
-              allBiders={allBiders}
-              setAllBiders={setAllBiders}
             />}></Route>
 
-          <Route path={`/jobDetail/:idx`} element={
+          <Route path={`/jobDetail/:jobId`} element={
             <JobDetails
-              jobDetail={jobDetails}
-              allBiders={allBiders}
             />}></Route>
 
           <Route path='/owner' element={<Owner />}></Route>
@@ -52,7 +47,7 @@ function App() {
         </Routes>
       </Router>
     </EthProvider>
-  </div>
+
 
   );
 }
